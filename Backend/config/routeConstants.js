@@ -2,9 +2,46 @@ module.exports = {
     FRONTEND_URL: "http://localhost:3000",
 
     //CustomerRoutes
-    GET_CUSTOMER_ROUTE: '/customer',
-    POST_CUSTOMER_ROUTE: '/customer',
-    UPDATE_CUSTOMER_ROUTE: '/customer',
+    GET_CUSTOMER_PROFILE: '/profile',
+    GET_ALL_CUSTOMER_PROFILES: '/allcustomers',
+    POST_CUSTOMER_PROFILE: '/profile',
+    UPDATE_CUSTOMER_PROFILE: '/profile',
+    UPDATE_CUSTOMER_IMAGE: '/image',
+
+    POST_CUSTOMER_REVIEW: '/review',
+
+    //Login Routes
+    POST_LOGIN: '/login',
+
+    //RestaurantRoutes
+    // GET_RESTAURANT_BY_ID:'/restaurant/id/',
+    // GET_RESTAURANT_BY_LOCATION:'/restaurant/location',
+    // GET_RESTAURANT_PROFILE:'restaurant/profile',
+    GET_RESTAURANT_PROFILE: '/profile',
+    GET_RESTAURANT_MENU: '/menu',
+    GET_RESTAURANT_BY_ID: '/id/',
+    GET_RESTAURANT_BY_LOCATION: '/location',
+    GET_RESTAURANT_BY_DISH: '/dish',
+    GET_RESTAURANT_REVIEWS: '/reviews',
+
+    UPDATE_RESTAURANT_PROFILE: '/profile',
+    POST_RESTAURANT_MENU: '/menu',
+
+
+    //Orders
+    GET_ORDER_BY_ID: '/id',
+    GET_ORDER_BY_CUSTOMER: '/customerId',
+    GET_ORDER_BY_RESTAURANT: '/restaurantId',
+    POST_ORDER: '/order',
+    UPDATE_ORDER: '/order',
+
+    //Events
+    GET_EVENTS_BY_NAME: '/name',
+    GET_ALL_EVENTS: '/all',
+    GET_EVENT_DETAILS: '/event',
+    POST_EVENT: 'event',
+    UPDATE_EVENT: '/event',
+
 
 
     /**Response status codes */

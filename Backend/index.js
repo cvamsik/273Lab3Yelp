@@ -1,4 +1,5 @@
 //import the require dependencies
+require('dotenv').config({ path: __dirname + '/.env' })
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -10,6 +11,11 @@ app.set('view engine', 'ejs');
 
 
 const customerRoutes = require('./routes/customerRoute');
+const loginRoutes = require('./routes/loginRoute');
+const restaurantRoutes = require('./routes/restaurantRoute');
+const orderRoutes = require('./routes/orderRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+
 
 //use cors to allow cross origin resource sharing
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
@@ -38,8 +44,11 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-app.use('/', customerRoutes);
+app.use('/', loginRoutes);
+app.use('/customer', customerRoutes);
+app.use('/restaurant/', restaurantRoutes);
+app.use('/orders', orderRoutes);
+app.use('/events', eventRoutes);
 
 
 
