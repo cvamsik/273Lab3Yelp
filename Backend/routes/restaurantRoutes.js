@@ -18,7 +18,7 @@ module.exports.login = (req, res) => {
     console.log("req body" + JSON.stringify(req.body));
 
     con.query(`SELECT * FROM login_credentials WHERE email_id="${req.body.username}"`, (error, result) => {
-        //console.log(JSON.stringify(result[0].user_type) + " --->>> " + req.body.password);
+        console.log(JSON.stringify(result[0].user_type) + " --->>> " + req.body.password);
         if (error) {
             console.log(error);
             //res.setHeader(CONTENT_TYPE, APP_JSON);
@@ -30,8 +30,7 @@ module.exports.login = (req, res) => {
                 console.log(JSON.stringify(result));
                 //res.setHeader(CONTENT_TYPE, APP_JSON);
                 res.status(RES_SUCCESS).send({
-                    user_type: result[0].user_type,
-                    email_id: result[0].email_id
+                    user_type: result[0].user_type
                 });
             }
             else {

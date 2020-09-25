@@ -10,9 +10,9 @@ app.set('view engine', 'ejs');
 
 
 
-const customerRoutes = require('./routes/customerRoute');
+const customerRoutes = require('./routes/customerRoutes');
 const loginRoutes = require('./routes/loginRoute');
-const restaurantRoutes = require('./routes/restaurantRoute');
+const restaurantRoutes = require('./routes/restaurantRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 
@@ -46,9 +46,9 @@ app.use(function (req, res, next) {
 
 app.use('/', loginRoutes);
 app.use('/customer', customerRoutes);
-app.use('/restaurant/', restaurantRoutes);
-app.use('/orders', orderRoutes);
-app.use('/events', eventRoutes);
+// app.use('/restaurant/', restaurantRoutes);
+// app.use('/orders', orderRoutes);
+// app.use('/events', eventRoutes);
 
 
 

@@ -20,7 +20,7 @@ const dbConfig = {
     password: process.env.SQL_PASSWORD,
     database: process.env.SQL_DATABASE
 }
-const con = mysql.createConnection({ ...dbConfig });
+const con = mysql.createConnection({ ...dbConfig, multipleStatements: true });
 
 
 con.connect(function (err) {

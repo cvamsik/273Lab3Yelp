@@ -5,8 +5,9 @@ import { Redirect } from 'react-router';
 import CustomInput from '../../Common/CustomInput/CustomInput'
 import CustomButton from '../../Common/CustomButton/CustomButton'
 import { Link } from "react-router-dom";
-import './CreateUser.styles.css';
+import './CreateCustomer.styles.css';
 import Constants from '../../../Config/Constants'
+import routeConstants from '../../../Config/routeConstants';
 
 //Define a Login Component
 class CreateUser extends Component {
@@ -19,7 +20,10 @@ class CreateUser extends Component {
         birthday: "",
         about: "",
         phone: "",
-        userType: "USER",
+        userType: "1",
+        thingsLoved: "",
+        findMe: "",
+        blogs: ""
     };
     //Bind the handlers to this class
     // this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
@@ -88,14 +92,16 @@ class CreateUser extends Component {
                 PASSWORD: this.state.password,
                 BIRTHDAY: this.state.birthday,
                 PHONE: this.state.phone,
-                ABOUT: this.state.about
-
+                ABOUT: this.state.about,
+                THINGS_LOVED: this.state.thingsLoved,
+                FIND_ME: this.state.findMe,
+                BLOG_REF: this.state.blogs
             };
 
             console.log(userdetails);
 
             axios
-                .post(`${Constants.BACKEND_SERVER.URL}/customer`, userdetails)
+                .post(`${Constants.BACKEND_SERVER.URL}/customer${routeConstants.POST_CUSTOMER_SIGNUP}`, userdetails)
                 .then((response) => {
                     console.log(response);
                 }).catch((err) => {
@@ -200,7 +206,28 @@ class CreateUser extends Component {
                                     handleChange={this.handleChange}
                                     required
                                 />
+                                <CustomInput
+                                    type="text"
+                                    label="Things Loved"
+                                    name="thingsLoved"
+                                    value={this.state.thingsLoved}
+                                    handleChange={this.handleChange}
+                                />
 
+                                <CustomInput
+                                    type="text"
+                                    label="Find Me @"
+                                    name="findMe"
+                                    value={this.state.findMe}
+                                    handleChange={this.handleChange}
+                                />
+                                <CustomInput
+                                    type="text"
+                                    label="Blogs"
+                                    name="blogs"
+                                    value={this.state.blogs}
+                                    handleChange={this.handleChange}
+                                />
                             </div>
                             <CustomButton type="submit">SignUp</CustomButton>
                         </form>
