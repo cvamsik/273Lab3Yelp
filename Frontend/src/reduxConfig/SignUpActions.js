@@ -1,6 +1,8 @@
 import actionTypes from './actionTypes';
 
 export const nameHandler = (payload) => {
+    // console.log("actions " + payload)
+
     return {
         type: actionTypes.SIGNUP_NAME,
         payload: payload

@@ -3,7 +3,7 @@ import actionTypes from './actionTypes'
 import { initialState } from './storeObject'
 
 const loginReducer = (state = initialState, action) => {
-    console.log("In login Reducer" + JSON.stringify(action));
+    // console.log("In login Reducer" + JSON.stringify(action));
     switch (action.type) {
         case actionTypes.USER_LOGIN:
             console.log("logging in");

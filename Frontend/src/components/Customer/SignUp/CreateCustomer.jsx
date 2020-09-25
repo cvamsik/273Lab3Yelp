@@ -97,6 +97,7 @@ class CreateUser extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         const { password, confirmPassword } = this.props;
+        console.log(this.props);
 
         if (password !== confirmPassword) {
             alert("Passwords don't match");
@@ -173,7 +174,7 @@ class CreateUser extends Component {
                                     label="Name"
                                     name="name"
                                     //value={this.props.name}
-                                    handleChange={this.nameHandler}
+                                    onChange={this.nameHandler}
                                     required
                                 />
                                 Email:<input
@@ -181,7 +182,7 @@ class CreateUser extends Component {
                                     label="Email"
                                     name="email"
                                     // value={this.props.email}
-                                    handleChange={this.emailHandler}
+                                    onChange={this.emailHandler}
                                     required
                                 />
                                 Password:<input
@@ -189,7 +190,7 @@ class CreateUser extends Component {
                                     label="Password"
                                     name="password"
                                     // value={this.props.password}
-                                    handleChange={this.passwordHandler}
+                                    onChange={this.passwordHandler}
                                     required
                                 />
                                 Confirm Password:<input
@@ -197,7 +198,7 @@ class CreateUser extends Component {
                                     label="Confirm Password"
                                     name="confirmPassword"
                                     // value={this.props.confirmPassword}
-                                    handleChange={this.confirmPasswordHandler}
+                                    onChange={this.confirmPasswordHandler}
                                     required
                                 />
                                 Phone:<input
@@ -205,7 +206,7 @@ class CreateUser extends Component {
                                     label="Phone Number"
                                     name="phone"
                                     // value={this.props.phone}
-                                    handleChange={this.phoneHandler}
+                                    onChange={this.phoneHandler}
                                     required
                                 />
                                 Birthday:<input
@@ -213,7 +214,7 @@ class CreateUser extends Component {
                                     label="Birthday YYYY-MM-DD"
                                     name="birthday"
                                     // value={this.props.birthday}
-                                    handleChange={this.birthdayHandler}
+                                    onChange={this.birthdayHandler}
                                     required
                                 />
                                 About:<input
@@ -221,7 +222,7 @@ class CreateUser extends Component {
                                     label="About"
                                     name="about"
                                     // value={this.props.about}
-                                    handleChange={this.aboutHandler}
+                                    onChange={this.aboutHandler}
                                     required
                                 />
                                 Things Loved:<input
@@ -229,7 +230,7 @@ class CreateUser extends Component {
                                     label="Things Loved"
                                     name="thingsLoved"
                                     // value={this.props.thingsLoved}
-                                    handleChange={this.thingsLovedHandler}
+                                    onChange={this.thingsLovedHandler}
                                 />
 
                                 Find Me @:<input
@@ -237,14 +238,14 @@ class CreateUser extends Component {
                                     label="Find Me @"
                                     name="findMe"
                                     // value={this.props.findMe}
-                                    handleChange={this.findMeHandler}
+                                    onChange={this.findMeHandler}
                                 />
                                 Blogs:<input
                                     type="text"
                                     label="Blogs"
                                     name="blogs"
                                     // value={this.props.blogs}
-                                    handleChange={this.blogsHandler}
+                                    onChange={this.blogsHandler}
                                 />
                             </div>
                             <CustomButton type="submit">SignUp</CustomButton>

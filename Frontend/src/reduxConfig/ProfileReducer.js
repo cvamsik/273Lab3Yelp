@@ -9,7 +9,7 @@ let initialState = {
     }
 }
 const ProfileReducer = (state = initialState, action) => {
-    console.log("In Profile Reducer");
+    // console.log("In Profile Reducer");
     switch (action.type) {
         case actionTypes.USER_GET_PROFILE:
             console.log("Get user profile");
