@@ -1,14 +1,6 @@
 import actionTypes from './actionTypes'
 
-let initialState = {
-    counter: 1,
-    loggedIn: false,
-    login: {
-        email_id: "",
-        password: "",
-        authFlag: ""
-    }
-}
+import { initialState } from './storeObject'
 
 const loginReducer = (state = initialState, action) => {
     console.log("In login Reducer" + JSON.stringify(action));

@@ -8,23 +8,30 @@ import { Link } from "react-router-dom";
 import './CreateCustomer.styles.css';
 import Constants from '../../../Config/Constants'
 import routeConstants from '../../../Config/routeConstants';
+import signupReducer from '../../../reduxConfig/SignUpReducer';
+import {
+    nameHandler, emailHandler, passwordHandler, confirmPasswordHandler, birthdayHandler
+    , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
+} from '../../../reduxConfig/SignUpActions'
+import { connect } from 'react-redux';
+
 
 //Define a Login Component
 class CreateUser extends Component {
 
-    state = {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        birthday: "",
-        about: "",
-        phone: "",
-        userType: "1",
-        thingsLoved: "",
-        findMe: "",
-        blogs: ""
-    };
+    // state = {
+    //     name: "",
+    //     email: "",
+    //     password: "",
+    //     confirmPassword: "",
+    //     birthday: "",
+    //     about: "",
+    //     phone: "",
+    //     userType: "1",
+    //     thingsLoved: "",
+    //     findMe: "",
+    //     blogs: ""
+    // };
     //Bind the handlers to this class
     // this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
     // this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
@@ -70,15 +77,26 @@ class CreateUser extends Component {
     //         });
     // }
 
-    handleChange = (e) => {
-        //  console.log(this.state);
-        const { value, name } = e.target;
-        this.setState({ [name]: value });
-    };
+    // handleChange = (e) => {
+    //     //  console.log(this.state);
+    //     const { value, name } = e.target;
+    //     this.setState({ [name]: value });
+    // };
+    nameHandler = (e) => { console.log("name "); this.props.nameHandler(e.target.value); }
+    emailHandler = (e) => { this.props.emailHandler(e.target.value); }
+    passwordHandler = (e) => { this.props.passwordHandler(e.target.value); }
+    confirmPasswordHandler = (e) => { this.props.confirmPasswordHandler(e.target.value); }
+    birthdayHandler = (e) => { this.props.birthdayHandler(e.target.value); }
+    aboutHandler = (e) => { this.props.aboutHandler(e.target.value); }
+    phoneHandler = (e) => { this.props.phoneHandler(e.target.value); }
+    userTypeHandler = (e) => { this.props.userTypeHandler(e.target.value); }
+    thingsLovedHandler = (e) => { this.props.thingsLovedHandler(e.target.value); }
+    findMeHandler = (e) => { this.props.findMeHandler(e.target.value); }
+    blogsHandler = (e) => { this.props.blogsHandler(e.target.value); }
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const { password, confirmPassword } = this.state;
+        const { password, confirmPassword } = this.props;
 
         if (password !== confirmPassword) {
             alert("Passwords don't match");
@@ -87,15 +105,15 @@ class CreateUser extends Component {
 
         try {
             const userdetails = {
-                NAME: this.state.name,
-                EMAIL: this.state.email,
-                PASSWORD: this.state.password,
-                BIRTHDAY: this.state.birthday,
-                PHONE: this.state.phone,
-                ABOUT: this.state.about,
-                THINGS_LOVED: this.state.thingsLoved,
-                FIND_ME: this.state.findMe,
-                BLOG_REF: this.state.blogs
+                NAME: this.props.name,
+                EMAIL: this.props.email,
+                PASSWORD: this.props.password,
+                BIRTHDAY: this.props.birthday,
+                PHONE: this.props.phone,
+                ABOUT: this.props.about,
+                THINGS_LOVED: this.props.thingsLoved,
+                FIND_ME: this.props.findMe,
+                BLOG_REF: this.props.blogs
             };
 
             console.log(userdetails);
@@ -150,83 +168,83 @@ class CreateUser extends Component {
                     <div className="signUpForm">
                         <form onSubmit={this.handleSubmit}>
                             <div className="inputs">
-                                <CustomInput
+                                Name: <input
                                     type="text"
                                     label="Name"
                                     name="name"
-                                    value={this.state.name}
-                                    handleChange={this.handleChange}
+                                    //value={this.props.name}
+                                    handleChange={this.nameHandler}
                                     required
                                 />
-                                <CustomInput
+                                Email:<input
                                     type="email"
                                     label="Email"
                                     name="email"
-                                    value={this.state.email}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.email}
+                                    handleChange={this.emailHandler}
                                     required
                                 />
-                                <CustomInput
+                                Password:<input
                                     type="password"
                                     label="Password"
                                     name="password"
-                                    value={this.state.password}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.password}
+                                    handleChange={this.passwordHandler}
                                     required
                                 />
-                                <CustomInput
+                                Confirm Password:<input
                                     type="password"
                                     label="Confirm Password"
                                     name="confirmPassword"
-                                    value={this.state.confirmPassword}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.confirmPassword}
+                                    handleChange={this.confirmPasswordHandler}
                                     required
                                 />
-                                <CustomInput
+                                Phone:<input
                                     type="text"
                                     label="Phone Number"
                                     name="phone"
-                                    value={this.state.phone}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.phone}
+                                    handleChange={this.phoneHandler}
                                     required
                                 />
-                                <CustomInput
+                                Birthday:<input
                                     type="text"
                                     label="Birthday YYYY-MM-DD"
                                     name="birthday"
-                                    value={this.state.birthday}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.birthday}
+                                    handleChange={this.birthdayHandler}
                                     required
                                 />
-                                <CustomInput
+                                About:<input
                                     type="text"
                                     label="About"
                                     name="about"
-                                    value={this.state.about}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.about}
+                                    handleChange={this.aboutHandler}
                                     required
                                 />
-                                <CustomInput
+                                Things Loved:<input
                                     type="text"
                                     label="Things Loved"
                                     name="thingsLoved"
-                                    value={this.state.thingsLoved}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.thingsLoved}
+                                    handleChange={this.thingsLovedHandler}
                                 />
 
-                                <CustomInput
+                                Find Me @:<input
                                     type="text"
                                     label="Find Me @"
                                     name="findMe"
-                                    value={this.state.findMe}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.findMe}
+                                    handleChange={this.findMeHandler}
                                 />
-                                <CustomInput
+                                Blogs:<input
                                     type="text"
                                     label="Blogs"
                                     name="blogs"
-                                    value={this.state.blogs}
-                                    handleChange={this.handleChange}
+                                    // value={this.props.blogs}
+                                    handleChange={this.blogsHandler}
                                 />
                             </div>
                             <CustomButton type="submit">SignUp</CustomButton>
@@ -239,4 +257,40 @@ class CreateUser extends Component {
     }
 }
 //export Login Component
-export default CreateUser;
+
+const mapStateToProps = (state) => {
+    return {
+        name: state.SignUpReducer.signup.name,
+        email: state.SignUpReducer.signup.email_id,
+        password: state.SignUpReducer.signup.password,
+        confirmPassword: state.SignUpReducer.signup.confirmPassword,
+        birthday: state.SignUpReducer.signup.birthday,
+        about: state.SignUpReducer.signup.about,
+        phone: state.SignUpReducer.signup.phone,
+        userType: state.SignUpReducer.signup.user,
+        thingsLoved: state.SignUpReducer.signup.thingsLoved,
+        findMe: state.SignUpReducer.signup.findMe,
+        blogs: state.SignUpReducer.signup.blogs
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+        nameHandler: (name) => dispatch(nameHandler(name)),
+        emailHandler: (email_id) => dispatch(emailHandler(email_id)),
+        passwordHandler: (password) => dispatch(passwordHandler(password)),
+        confirmPasswordHandler: (confirmPassword) => dispatch(confirmPasswordHandler(confirmPassword)),
+        birthdayHandler: (birthday) => dispatch(birthdayHandler(birthday)),
+        aboutHandler: (about) => dispatch(aboutHandler(about)),
+        phoneHandler: (phone) => dispatch(phoneHandler(phone)),
+        userTypeHandler: (userType) => dispatch(userTypeHandler(userType)),
+        thingsLovedHandler: (thingsLoved) => dispatch(thingsLovedHandler(thingsLoved)),
+        findMeHandler: (findMe) => dispatch(findMeHandler(findMe)),
+        blogsHandler: (blogs) => dispatch(blogsHandler(blogs)),
+
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateUser);
