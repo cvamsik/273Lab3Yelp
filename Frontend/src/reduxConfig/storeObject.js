@@ -18,5 +18,12 @@ export const initialState = {
         thingsLoved: "",
         findMe: "",
         blogs: ""
+    },
+    profile: {
+        _id: 0,
+        MODIFIED: "",
+        disabled: true,
+        editstate: false,
+        oldDetails: {},
     }
 }

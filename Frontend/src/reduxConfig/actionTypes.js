@@ -24,4 +24,10 @@ module.exports = {
     SIGNUP_FIND_ME: "findMe",
     SIGNUP_BLOGS: "blogs",
 
+    PROFILE_LOAD_DETAILS: "profileLoadDetails",
+    PROFILE_UPDATE_OLD_DETAILS: "profileUpdateOldDetails",
+    PROFILE_EDIT_STATE: "profileEditState",
+    PROFILE_CANCEL_EDIT: "profileCancelEdit",
+
+
 }

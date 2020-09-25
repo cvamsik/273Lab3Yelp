@@ -3,7 +3,7 @@ import actionTypes from './actionTypes'
 import { initialState } from './storeObject'
 
 const SignUpReducer = (state = initialState, action) => {
-    console.log("signup reducer " + JSON.stringify(action));
+    // console.log("signup reducer " + JSON.stringify(action));
     switch (action.type) {
         case actionTypes.SIGNUP_NAME:
             // let temp = {
