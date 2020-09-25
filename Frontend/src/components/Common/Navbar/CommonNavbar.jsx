@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
+import { login, logout } from '../../../reduxConfig/LoginActions'
+import { connect } from 'react-redux';
 
 //create the Navbar Component
 class CommonNavbar extends Component {
@@ -16,7 +18,7 @@ class CommonNavbar extends Component {
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        if (cookie.load('cookie')) {
+        if (cookie.load('cookie') && this.props.loggedIn) {
             console.log("Able to read cookie");
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
@@ -57,4 +59,21 @@ class CommonNavbar extends Component {
     }
 }
 
-export default CommonNavbar;
+
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.loginReducer.loggedIn,
+
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+        login: (loggedIn) => dispatch(login(loggedIn)),
+        logout: (loggedIn) => dispatch(logout(loggedIn)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommonNavbar);

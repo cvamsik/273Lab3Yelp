@@ -13,6 +13,7 @@ import UserProfileRedux from './components/Customer/Profile/CustomerProfileRedux
 
 import RestaurantHome from './components/Restaurant/Home/RestaurantHome';
 import RestaurantSignUp from './components/Restaurant/SignUp/RestaurantSignup';
+import LandingPage from './components/Common/LandingPage/LandingPage';
 
 
 
@@ -22,10 +23,12 @@ class Main extends Component {
         return (
             <div>
                 {/*Render Different Component based on Route*/}
-                {/* <Route exact path="/" component={CommonNavbar} /> */}
+                <Route exact path="/" component={CommonNavbar} />
+                <Route exact path="/" component={LandingPage} />
+
                 <Route exact path="/login" component={Login} />
 
-                {/* <Route path="/customer" component={UserNavbar} /> */}
+                <Route path="/customer" component={UserNavbar} />
                 <Route exact path='/customer/home' component={UserHome} />
                 <Route exact path="/customer/signup" component={CreateUser} />
                 <Route exact path='/customer/profile' component={UserProfileRedux} />

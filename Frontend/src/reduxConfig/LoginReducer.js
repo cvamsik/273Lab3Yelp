@@ -7,12 +7,16 @@ const loginReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.USER_LOGIN:
             console.log("logging in");
-            return state;
-            break;
+            return {
+                ...state,
+                loggedIn: true
+            };
         case actionTypes.USER_LOGOUT:
             console.log("logging out");
-            return state;
-            break;
+            return {
+                ...state,
+                loggedIn: false
+            };
         case actionTypes.LOGIN_EMAIL_HANDLER:
             return {
                 ...state,

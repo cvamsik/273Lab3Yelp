@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-
+import { connect } from 'react-redux';
+import { login, logout } from '../../../reduxConfig/LoginActions'
 //create the Navbar Component
 class UserNavbar extends Component {
     constructor(props) {
@@ -11,16 +12,20 @@ class UserNavbar extends Component {
     }
     //handle logout to destroy the cookie
     handleLogout = () => {
-        cookie.remove('cookie', { path: '/' })
+        cookie.remove('cookie', { path: '/' });
+        this.props.logout();
     }
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        if (cookie.load('cookie')) {
+        if (cookie.load('cookie') && this.props.loggedIn) {
             console.log("Able to read cookie");
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
+                    <li><Link to="/customer/profile">Profile</Link></li>
+
                     <li><Link to="/" onClick={this.handleLogout}><span class="glyphicon glyphicon-user"></span>Logout</Link></li>
+
                 </ul>
             );
         } else {
@@ -58,4 +63,20 @@ class UserNavbar extends Component {
     }
 }
 
-export default UserNavbar;
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.loginReducer.loggedIn,
+
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+        login: (loggedIn) => dispatch(login(loggedIn)),
+        logout: (loggedIn) => dispatch(logout(loggedIn)),
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserNavbar);

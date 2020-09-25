@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 import RouteConstants, { POST_LOGIN } from '../../../Config/routeConstants';
 import store from '../../../reduxConfig/store';
 import { connect } from 'react-redux';
-import { emailHandler, passwordHandler, authFlagHandler } from '../../../reduxConfig/LoginActions';
+import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
 
 //Define a Login Component
 class Login extends Component {
@@ -121,11 +121,13 @@ class Login extends Component {
                         if (user_type === "1") {
                             console.log("cust redirect");
                             cookie.save('cookie');
+                            this.props.login();
                             this.props.history.push('/customer/home');
                         }
                         else if (user_type === "2") {
                             console.log("rest redirect");
                             cookie.save('cookie');
+                            this.props.login();
                             this.props.history.push('/restaurant/home');
                         }
                     })
@@ -182,7 +184,8 @@ const mapStateToProps = (state) => {
     return {
         email_id: state.loginReducer.login.email_id,
         password: state.loginReducer.login.password,
-        authFlag: state.loginReducer.login.authFlag
+        authFlag: state.loginReducer.login.authFlag,
+        loggedIn: state.loginReducer.loggedIn
     };
 }
 
@@ -191,7 +194,8 @@ const mapDispatchToProps = (dispatch) => {
         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
         emailHandler: (email_id) => dispatch(emailHandler(email_id)),
         passwordHandler: (password) => dispatch(passwordHandler(password)),
-        authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag))
+        authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
+        login: (loggedIn) => dispatch(login(loggedIn))
 
     }
 }
