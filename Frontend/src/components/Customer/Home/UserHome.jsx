@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import loginAction from '../../../reduxConfig/LoginActions';
-
+import {counterIncrement}  from '../../../reduxConfig/LoginActions';
+import {connect} from 'react-redux';
 
 
 class UserHome extends Component {
-    state = {
 
-    }
     componentWillMount = () => {
 
     }
 
     handleClick = (e) => {
-         const isLogged = useSelector(state => state.loggedIn);
-         console.log(isLogged+"---");
+         
+         console.log("---");
+         console.log(this.props);
+         let temp=this.props.counterState
+         console.log("temp val before->"+temp)
+
+         temp=temp+1;
+         console.log("temp val->"+temp)
+         this.props.counterIncrement(temp)
         // useDispatch(loginAction);
 
     }
     render() {
 
         return (
-            <div>            <h1>
+            <div> 
+                           <h1>
                 User Home
               
             </h1>
@@ -31,4 +37,18 @@ class UserHome extends Component {
     }
 }
 
-export default UserHome;
+
+const mapStateToProps = (state) => {
+    return {
+        // counterState: state.loginReducer.counter,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+       
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);

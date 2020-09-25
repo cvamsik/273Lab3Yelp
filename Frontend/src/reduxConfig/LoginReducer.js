@@ -1,11 +1,17 @@
 import actionTypes from './actionTypes'
 
 let initialState = {
-    loggedIn: false
+    counter: 1,
+    loggedIn: false,
+    login: {
+        email_id: "",
+        password: "",
+        authFlag: ""
+    }
 }
 
 const loginReducer = (state = initialState, action) => {
-    console.log("In login Reducer");
+    console.log("In login Reducer" + JSON.stringify(action));
     switch (action.type) {
         case actionTypes.USER_LOGIN:
             console.log("logging in");
@@ -15,8 +21,32 @@ const loginReducer = (state = initialState, action) => {
             console.log("logging out");
             return state;
             break;
+        case actionTypes.LOGIN_EMAIL_HANDLER:
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    email_id: action.payload
+                }
+            }
+        case actionTypes.LOGIN_PASSWORD_HANDLER:
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    password: action.payload
+                }
+            }
+        case actionTypes.LOGIN_AUTHFLAG_HANDLER:
+            return {
+                ...state,
+                login: {
+                    ...state.login,
+                    authFlag: action.payload
+                }
+            }
         default:
-            return state;
+            return initialState;
             break;
     }
 }

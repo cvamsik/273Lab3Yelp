@@ -1,9 +1,13 @@
 import actionTypes from './actionTypes'
 let initialState = {
-    loggedIn: false
+    counter: 1,
+    loggedIn: false,
+    login: {
+        email_id: "",
+        password: "",
+        authFlag: ""
+    }
 }
-
-
 const ProfileReducer = (state = initialState, action) => {
     console.log("In Profile Reducer");
     switch (action.type) {
@@ -16,7 +20,7 @@ const ProfileReducer = (state = initialState, action) => {
             return state;
             break;
         default:
-            return state;
+            return initialState;
             break;
     }
 }
