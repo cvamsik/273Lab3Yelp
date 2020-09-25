@@ -14,6 +14,7 @@ import {
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
 } from '../../../reduxConfig/SignUpActions'
 import { connect } from 'react-redux';
+import Login from '../../Common/Login/Login';
 
 
 //Define a Login Component
@@ -123,6 +124,8 @@ class CreateUser extends Component {
                 .post(`${Constants.BACKEND_SERVER.URL}/customer${routeConstants.POST_CUSTOMER_SIGNUP}`, userdetails)
                 .then((response) => {
                     console.log(response);
+                    window.alert("Profile created successfully. Please Login.");
+                    this.props.history.push('/login');
                 }).catch((err) => {
                     window.alert("Invalid Details. Please Re-enter");
 

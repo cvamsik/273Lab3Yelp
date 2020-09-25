@@ -13,12 +13,14 @@ class CommonNavbar extends Component {
     }
     //handle logout to destroy the cookie
     handleLogout = () => {
+        this.props.logout();
         cookie.remove('cookie', { path: '/' })
     }
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        if (cookie.load('cookie') && this.props.loggedIn) {
+        console.log(this.props)
+        if (this.props.loggedIn) {
             console.log("Able to read cookie");
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
@@ -35,7 +37,7 @@ class CommonNavbar extends Component {
             )
         }
         let redirectVar = null;
-        if (cookie.load('cookie') === undefined) {
+        if (this.props.loggedIn === false) {
 
             redirectVar = <Redirect to="/" />
         }
@@ -48,6 +50,8 @@ class CommonNavbar extends Component {
                             <a class="navbar-brand">Yelp!</a>
                         </div>
                         <ul class="nav navbar-nav">
+                            <li><Link to="/customer/signup">Customer SignUp</Link></li>
+                            <li><Link to="/restaurant/signup">Restaurant SignUp</Link></li>
 
 
                         </ul>

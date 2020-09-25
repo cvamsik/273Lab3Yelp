@@ -6,10 +6,10 @@ import { connect } from 'react-redux';
 import { login, logout } from '../../../reduxConfig/LoginActions'
 //create the Navbar Component
 class UserNavbar extends Component {
-    constructor(props) {
-        super(props);
-        this.handleLogout = this.handleLogout.bind(this);
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.handleLogout = this.handleLogout.bind(this);
+    // }
     //handle logout to destroy the cookie
     handleLogout = () => {
         cookie.remove('cookie', { path: '/' });
@@ -18,8 +18,9 @@ class UserNavbar extends Component {
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        if (cookie.load('cookie') && this.props.loggedIn) {
-            console.log("Able to read cookie");
+        console.log(this.props);
+
+        if (this.props.loggedIn) {
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
                     <li><Link to="/customer/profile">Profile</Link></li>
@@ -38,7 +39,7 @@ class UserNavbar extends Component {
             )
         }
         let redirectVar = null;
-        if (cookie.load('cookie') === undefined) {
+        if (cookie.load('cookie') === undefined && this.props.loggedIn === false) {
 
             redirectVar = <Redirect to="/" />
         }
@@ -65,7 +66,7 @@ class UserNavbar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.loginReducer.loggedIn,
+        loggedIn: state.ProfileReducer.loggedIn || state.loginReducer.loggedIn,
 
     };
 }

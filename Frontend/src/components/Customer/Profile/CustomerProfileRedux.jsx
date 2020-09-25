@@ -116,7 +116,8 @@ class UserProfile extends Component {
 
 
         const req = {
-            ...this.props
+            ...this.props,
+            birthday: this.props.birthday.split("T")[0]
         };
         console.log(req)
         axios

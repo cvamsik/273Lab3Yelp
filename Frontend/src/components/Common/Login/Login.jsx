@@ -149,8 +149,8 @@ class Login extends Component {
     render() {
         //redirect based on successful login
         let redirectVar = null;
-        if (cookie.load('cookie')) {
-            redirectVar = <Redirect to="/home" />
+        if (this.props.loggedIn) {
+            redirectVar = <Redirect to="/" />
         }
         return (
             <div>

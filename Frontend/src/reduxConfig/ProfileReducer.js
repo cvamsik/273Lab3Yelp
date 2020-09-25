@@ -23,6 +23,7 @@ const ProfileReducer = (state = initialState, action) => {
                 console.log("In Profile load");
                 return {
                     ...state,
+                    loggedIn: true,
                     signup: {
                         ...action.payload
                     },
@@ -70,7 +71,7 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 signup: {
                     ...state.signup,
-                    name: action.payload
+                    customer_name: action.payload
                 }
             }
 
@@ -96,7 +97,7 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 signup: {
                     ...state.signup,
-                    phone: action.payload
+                    contact_number: action.payload
                 }
             }
         case actionTypes.SIGNUP_USERTYPE:
@@ -104,7 +105,7 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 signup: {
                     ...state.signup,
-                    userType: action.payload
+                    user_type: action.payload
                 }
             }
         case actionTypes.SIGNUP_THINGS_LOVED:
@@ -128,7 +129,7 @@ const ProfileReducer = (state = initialState, action) => {
                 ...state,
                 signup: {
                     ...state.signup,
-                    findMe: action.payload
+                    find_me: action.payload
                 }
             }
         case actionTypes.SIGNUP_BLOGS:

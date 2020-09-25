@@ -28,7 +28,7 @@ class Main extends Component {
 
                 <Route exact path="/login" component={Login} />
 
-                <Route path="/customer" component={UserNavbar} />
+                <Route path="/customer/" component={UserNavbar} />
                 <Route exact path='/customer/home' component={UserHome} />
                 <Route exact path="/customer/signup" component={CreateUser} />
                 <Route exact path='/customer/profile' component={UserProfileRedux} />
