@@ -18,9 +18,9 @@ class UserNavbar extends Component {
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        console.log(this.props);
+        // console.log(this.props);
 
-        if (this.props.loggedIn) {
+        if (cookie.load('cookie')) {
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
                     <li><Link to="/customer/profile">Profile</Link></li>
@@ -39,7 +39,7 @@ class UserNavbar extends Component {
             )
         }
         let redirectVar = null;
-        if (cookie.load('cookie') === undefined && this.props.loggedIn === false) {
+        if (cookie.load('cookie') === undefined) {
 
             redirectVar = <Redirect to="/" />
         }

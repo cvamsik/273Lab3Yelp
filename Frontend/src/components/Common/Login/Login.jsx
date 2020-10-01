@@ -4,8 +4,8 @@ import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import RouteConstants, { POST_LOGIN } from '../../../Config/routeConstants';
 import store from '../../../reduxConfig/store';
-import { connect } from 'react-redux';
-import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
+// import { connect } from 'react-redux';
+// import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
 
 //Define a Login Component
 class Login extends Component {
@@ -98,8 +98,8 @@ class Login extends Component {
         //prevent page from refresh
         e.preventDefault();
         const data = {
-            username: this.props.email_id,
-            password: this.props.password
+            username: this.state.username,
+            password: this.state.password
         }
         let user_type;
         //set the with credentials to true
@@ -121,13 +121,13 @@ class Login extends Component {
                         if (user_type === "1") {
                             console.log("cust redirect");
                             cookie.save('cookie');
-                            this.props.login();
+                            // this.props.login();
                             this.props.history.push('/customer/home');
                         }
                         else if (user_type === "2") {
                             console.log("rest redirect");
                             cookie.save('cookie');
-                            this.props.login();
+                            // this.props.login();
                             this.props.history.push('/restaurant/home');
                         }
                     })
@@ -149,7 +149,7 @@ class Login extends Component {
     render() {
         //redirect based on successful login
         let redirectVar = null;
-        if (this.props.loggedIn) {
+        if (cookie.load("cookie")) {
             redirectVar = <Redirect to="/" />
         }
         return (
@@ -165,10 +165,10 @@ class Login extends Component {
                             </div>
 
                             <div className="form-group">
-                                <input onChange={this.emailChangeHandler} required type="text" className="form-control" name="username" placeholder="Username" />
+                                <input onChange={this.inputChangeHandler} required type="text" className="form-control" name="username" placeholder="Username" />
                             </div>
                             <div className="form-group">
-                                <input onChange={this.passwordChangeHandler} required type="password" className="form-control" name="password" placeholder="Password" />
+                                <input onChange={this.inputChangeHandler} required type="password" className="form-control" name="password" placeholder="Password" />
                             </div>
                             <button onClick={this.submitLogin} className="btn btn-primary">Login</button>
                             {this.state.loginStatus}
@@ -180,24 +180,25 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        email_id: state.loginReducer.login.email_id,
-        password: state.loginReducer.login.password,
-        authFlag: state.loginReducer.login.authFlag,
-        loggedIn: state.loginReducer.loggedIn
-    };
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         email_id: state.loginReducer.login.email_id,
+//         password: state.loginReducer.login.password,
+//         authFlag: state.loginReducer.login.authFlag,
+//         loggedIn: state.loginReducer.loggedIn
+//     };
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-        emailHandler: (email_id) => dispatch(emailHandler(email_id)),
-        passwordHandler: (password) => dispatch(passwordHandler(password)),
-        authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
-        login: (loggedIn) => dispatch(login(loggedIn))
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+//         emailHandler: (email_id) => dispatch(emailHandler(email_id)),
+//         passwordHandler: (password) => dispatch(passwordHandler(password)),
+//         authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
+//         login: (loggedIn) => dispatch(login(loggedIn))
 
-    }
-}
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

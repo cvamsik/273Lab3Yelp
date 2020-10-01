@@ -29,5 +29,8 @@ module.exports = {
     PROFILE_EDIT_STATE: "profileEditState",
     PROFILE_CANCEL_EDIT: "profileCancelEdit",
 
+    CART_ADD_ITEM: "cartAddItem",
+    CART_REMOVE_ITEM: "cartRemoveItem",
+    CART_CLEAR: "clearCart"
 
 }

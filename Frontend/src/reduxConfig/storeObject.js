@@ -1,6 +1,7 @@
 export const initialState = {
     counter: 1,
     loggedIn: false,
+    cart: [],
     login: {
         email_id: "",
         password: "",

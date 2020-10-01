@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 import './CreateCustomer.styles.css';
 import Constants from '../../../Config/Constants'
 import routeConstants from '../../../Config/routeConstants';
-import signupReducer from '../../../reduxConfig/SignUpReducer';
+// import signupReducer from '../../../reduxConfig/SignUpReducer';
 import {
     nameHandler, emailHandler, passwordHandler, confirmPasswordHandler, birthdayHandler
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
 } from '../../../reduxConfig/SignUpActions'
 import { connect } from 'react-redux';
 import Login from '../../Common/Login/Login';
-
+import CommonNavbar from '../../Common/Navbar/CommonNavbar';
 
 //Define a Login Component
 class CreateUser extends Component {
@@ -159,6 +159,10 @@ class CreateUser extends Component {
         // }
         return (
             <div>
+                <div className='navbar'>
+                    <h4>Navbar</h4>
+                    {CommonNavbar}
+                </div>
                 {/* {redirectVar} */}
 
                 <div className="signUp">

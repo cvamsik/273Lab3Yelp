@@ -13,14 +13,14 @@ class CommonNavbar extends Component {
     }
     //handle logout to destroy the cookie
     handleLogout = () => {
-        this.props.logout();
+        // this.props.logout();
         cookie.remove('cookie', { path: '/' })
     }
     render() {
         //if Cookie is set render Logout Button
         let navLogin = null;
-        console.log(this.props)
-        if (this.props.loggedIn) {
+        // console.log(this.props)
+        if (cookie.load('cookie')) {
             console.log("Able to read cookie");
             navLogin = (
                 <ul class="nav navbar-nav navbar-right">
@@ -37,20 +37,20 @@ class CommonNavbar extends Component {
             )
         }
         let redirectVar = null;
-        if (this.props.loggedIn === false) {
+        if (cookie.load('cookie')) {
 
             redirectVar = <Redirect to="/" />
         }
         return (
             <div>
-                {redirectVar}
+                {/* {redirectVar} */}
                 <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a class="navbar-brand">Yelp!</a>
                         </div>
                         <ul class="nav navbar-nav">
-                            <li><Link to="/customer/signup">Customer SignUp</Link></li>
+                            <li><Link to="/customerSignup">Customer SignUp</Link></li>
                             <li><Link to="/restaurant/signup">Restaurant SignUp</Link></li>
 
 
@@ -64,20 +64,22 @@ class CommonNavbar extends Component {
 }
 
 
-const mapStateToProps = (state) => {
-    return {
-        loggedIn: state.loginReducer.loggedIn,
+// const mapStateToProps = (state) => {
+//     return {
+//         loggedIn: state.loginReducer.loggedIn,
 
-    };
-}
+//     };
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-        login: (loggedIn) => dispatch(login(loggedIn)),
-        logout: (loggedIn) => dispatch(logout(loggedIn)),
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+//         login: (loggedIn) => dispatch(login(loggedIn)),
+//         logout: (loggedIn) => dispatch(logout(loggedIn)),
 
-    }
-}
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommonNavbar);
+// export default connect(mapStateToProps, mapDispatchToProps)(CommonNavbar);
+
+export default CommonNavbar;

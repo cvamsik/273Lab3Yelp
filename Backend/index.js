@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
 
 app.use('/', loginRoutes);
 app.use('/customer', customerRoutes);
-// app.use('/restaurant/', restaurantRoutes);
+app.use('/restaurant', restaurantRoutes);
 // app.use('/orders', orderRoutes);
 // app.use('/events', eventRoutes);
 

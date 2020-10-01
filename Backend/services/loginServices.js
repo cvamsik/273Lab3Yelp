@@ -35,10 +35,13 @@ module.exports.login = (req, res) => {
                 });
             }
             else {
+                console.log("else 1" + result[0].user_password + " " + (req.body.password));
                 res.status(RES_BAD_REQUEST).end(JSON.stringify(error));
             }
         }
         else {
+            console.log("else 2" + result);
+
             res.status(RES_BAD_REQUEST).end(JSON.stringify(error));
         }
 

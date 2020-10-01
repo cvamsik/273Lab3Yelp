@@ -14,6 +14,8 @@ import UserProfileRedux from './components/Customer/Profile/CustomerProfileRedux
 import RestaurantHome from './components/Restaurant/Home/RestaurantHome';
 import RestaurantSignUp from './components/Restaurant/SignUp/RestaurantSignup';
 import LandingPage from './components/Common/LandingPage/LandingPage';
+import Menu from './components/Restaurant/Menu/Menu';
+import CheckOut from './components/Customer/Checkout/Checkout';
 
 
 
@@ -30,11 +32,15 @@ class Main extends Component {
 
                 <Route path="/customer/" component={UserNavbar} />
                 <Route exact path='/customer/home' component={UserHome} />
-                <Route exact path="/customer/signup" component={CreateUser} />
+                <Route exact path="/customerSignup" component={CreateUser} />
                 <Route exact path='/customer/profile' component={UserProfileRedux} />
+
+                <Route exact path="/checkout" component={CheckOut} />
 
                 <Route exact path="/restaurant/signup" component={RestaurantSignUp} />
                 <Route exact path="/restaurant/home" component={RestaurantHome} />
+                <Route exact path="/restaurant/menu" component={Menu} />
+
 
             </div>
         )

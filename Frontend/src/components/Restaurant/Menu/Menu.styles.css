@@ -1,0 +1,6 @@
+.menuList {
+  display: grid;
+  width: 70%;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+}

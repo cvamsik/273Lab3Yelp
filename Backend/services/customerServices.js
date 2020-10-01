@@ -36,6 +36,7 @@ module.exports.getCustomer = (req, res) => {
         if (error) {
             console.log(error);
             //res.setHeader(CONTENT_TYPE, APP_JSON);
+            con.rollback();
             res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
         }
         else {
@@ -62,6 +63,7 @@ module.exports.createCustomer = (req, res) => {
             if (error) {
                 console.log(error);
                 //res.setHeader(CONTENT_TYPE, APP_JSON);
+                con.rollback();
                 res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
             }
             else {
@@ -110,12 +112,13 @@ module.exports.updateCustomerProfile = (req, res) => {
 
     con.query(
         `BEGIN;
-        UPDATE customer_primary_data SET birthday="${req.body.birthday}", contact_number="${req.body.contact_number}",about="${req.body.about}";
-        UPDATE customer_secondary_data SET things_loved="${req.body.things_loved}",find_me="${req.body.find_me}",blog_ref="${req.body.blog_ref}";
+        UPDATE customer_primary_data SET birthday="${req.body.birthday}", contact_number="${req.body.contact_number}",about="${req.body.about}" WHERE email_id="req.body.email_id";
+        UPDATE customer_secondary_data SET things_loved="${req.body.things_loved}",find_me="${req.body.find_me}",blog_ref="${req.body.blog_ref}"  WHERE email_id="req.body.email_id";
         COMMIT; `
         , (error, result) => {
             if (error) {
                 console.log(error);
+                con.rollback();
                 //res.setHeader(CONTENT_TYPE, APP_JSON);
                 res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
             }
