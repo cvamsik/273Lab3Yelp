@@ -59,3 +59,24 @@ module.exports.getMenuByEmail = (req, res) => {
         });
 
 }
+
+
+module.exports.getAllRestaurants = (req, res) => {
+    console.log("Inside Restaurant GET menu service");
+    console.log(req.query)
+    con.query(`SELECT * FROM  restaurant_data r LIMIT 10`
+        , (error, result) => {
+            if (error) {
+                console.log(error);
+                //res.setHeader(CONTENT_TYPE, APP_JSON);
+                // con.rollback();
+                res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+            }
+            else {
+                console.log(JSON.stringify(result));
+                //res.setHeader(CONTENT_TYPE, APP_JSON);
+                res.status(RES_SUCCESS).send(JSON.stringify(result));
+            }
+        });
+
+}

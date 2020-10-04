@@ -2,10 +2,14 @@ export const initialState = {
     counter: 1,
     loggedIn: false,
     cart: [],
+    cartTotal: 0,
+    order_type: "",
+    user_email: "",
+    user_type: 0,
     login: {
         email_id: "",
         password: "",
-        authFlag: ""
+        authFlag: "",
     },
     signup: {
         name: "",

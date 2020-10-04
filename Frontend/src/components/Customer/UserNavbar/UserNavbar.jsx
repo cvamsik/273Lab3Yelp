@@ -13,7 +13,10 @@ class UserNavbar extends Component {
     //handle logout to destroy the cookie
     handleLogout = () => {
         cookie.remove('cookie', { path: '/' });
+        cookie.remove('email', { path: '/' });
+        cookie.remove('user_type', { path: '/' });
         this.props.logout();
+        this.props.history.push('/');
     }
     render() {
         //if Cookie is set render Logout Button

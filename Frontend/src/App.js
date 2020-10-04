@@ -4,7 +4,14 @@ import Main from './Main';
 import { BrowserRouter } from 'react-router-dom';
 // import { CookiesProvider } from 'react-cookie';
 import { Provider } from 'react-redux'
-import store from './reduxConfig/store'
+import storeAndPersistor from './reduxConfig/store'
+// import persistor from './reduxConfig/store'
+
+import { PersistGate } from 'redux-persist/integration/react'
+
+const { store } = storeAndPersistor;
+const { persistor } = storeAndPersistor;
+
 //App Component
 class App extends Component {
   render() {
@@ -14,10 +21,9 @@ class App extends Component {
       <Provider store={store}>
 
         <BrowserRouter>
-          <div>
-            {/* App Component Has a Child Component called Main*/}
+          <PersistGate persistor={persistor}>
             <Main />
-          </div>
+          </PersistGate>
         </BrowserRouter>
       </Provider>
 

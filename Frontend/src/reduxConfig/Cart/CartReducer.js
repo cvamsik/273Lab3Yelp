@@ -10,7 +10,7 @@ const CartReducer = (state = initialState, action) => {
         let i = 0;
         for (i = 0; i < cart.length; i++) {
             if (cart[i].dish_id === action.payload.dish_id) {
-                console.log("--" + i);
+                //console.log("--" + i);
                 cart[i].count = cart[i].count + 1;
                 return cart;
             }
@@ -23,40 +23,54 @@ const CartReducer = (state = initialState, action) => {
         let i = 0;
         for (i = 0; i < cart.length; i++) {
             if (cart[i].dish_id === action.payload.dish_id) {
-                console.log("--" + i);
-                cart[i].count = cart[i].count - 1;
-                return cart;
+                // console.log("--" + i);
+                if (cart[i].count > 1) {
+                    cart[i].count = cart[i].count - 1;
+                    return cart;
+                }
+                else {
+                    cart.splice(i, 1);
+                    return cart;
+                }
             }
         }
         return cart
     }
+
     switch (action.type) {
         case actionTypes.CART_ADD_ITEM:
             {
                 let temp = addToCart(state.cart, action);
-                // console.log("adding item" + JSON.stringify(temp));
-                let temp3 = {
-                    ...state,
-                    cart: [...temp]
+                console.log("adding item" + (state.cartTotal + action.payload.price));
 
+                return {
+                    ...state,
+                    cart: [...temp],
+                    cartTotal: state.cartTotal + action.payload.price
                 }
-                console.log(temp3)
-                return temp3;
 
             };
 
         case actionTypes.CART_REMOVE_ITEM:
             let temp2 = removeFromCart(state.cart, action);
             // console.log("deleting item" + JSON.stringify(temp2));
+            let deduction = 0;
+            if (state.cartTotal > 0) {
+                deduction = action.payload.price;
+            }
+            // console.log(deduction + "--->" + state.cartTotal)
             return {
                 ...state,
-                cart: [...temp2]
+                cart: [...temp2],
+                cartTotal: (state.cartTotal - deduction)
+
             };
         case actionTypes.CART_CLEAR:
 
             return {
                 ...state,
-                cart: []
+                cart: [],
+                cartTotal: 0
             };
 
 

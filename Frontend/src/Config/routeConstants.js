@@ -6,6 +6,7 @@ module.exports = {
     GET_ALL_CUSTOMER_PROFILES: '/allcustomers',
     POST_CUSTOMER_SIGNUP: '/signup',
     UPDATE_CUSTOMER_PROFILE: '/profile',
+    POST_CUSTOMER_IMAGE: '/image',
     UPDATE_CUSTOMER_IMAGE: '/image',
 
     POST_CUSTOMER_REVIEW: '/review',
@@ -15,8 +16,11 @@ module.exports = {
 
     //RestaurantRoutes
     // GET_RESTAURANT_BY_ID:'/restaurant/id/',
-    // GET_RESTAURANT_BY_LOCATION:'/restaurant/location',
-    // GET_RESTAURANT_PROFILE:'restaurant/profile',
+    GET_RESTAURANT_BY_LOCATION: '/restaurant/location',
+    GET_ALL_RESTAURANTS: '/restaurants',
+
+    GET_RESTAURANT_PROFILE: 'restaurant/profile',
+
     POST_RESTAURANT_SIGNUP: '/signup',
     GET_RESTAURANT_PROFILE: '/profile',
     GET_RESTAURANT_MENU: '/menu',
@@ -35,6 +39,8 @@ module.exports = {
     GET_ORDER_BY_RESTAURANT: '/restaurantId',
     POST_ORDER: '/order',
     UPDATE_ORDER: '/order',
+
+
 
     //Events
     GET_EVENTS_BY_NAME: '/name',

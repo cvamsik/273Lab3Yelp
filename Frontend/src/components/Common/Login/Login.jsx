@@ -4,9 +4,10 @@ import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import RouteConstants, { POST_LOGIN } from '../../../Config/routeConstants';
 import store from '../../../reduxConfig/store';
-// import { connect } from 'react-redux';
-// import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
-
+import { connect } from 'react-redux';
+import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
+import loginImage from '../../../Assets/BackgroundImages/LoginImage.jpg'
+import './Login.styles.css'
 //Define a Login Component
 class Login extends Component {
     state = {
@@ -93,7 +94,7 @@ class Login extends Component {
 
 
     submitLogin = (e) => {
-        var headers = new Headers();
+        // var headers = new Headers();
         console.log(this.state);
         //prevent page from refresh
         e.preventDefault();
@@ -117,17 +118,26 @@ class Login extends Component {
                         cookie.save("email", response.data.email_id, {
                             path: '/'
                         });
+                        cookie.save("user_type", response.data.user_type, {
+                            path: '/'
+                        });
                         console.log("Updated state");
                         if (user_type === "1") {
                             console.log("cust redirect");
                             cookie.save('cookie');
-                            // this.props.login();
+                            this.props.login({
+                                username: this.state.username,
+                                user_type: user_type
+                            });
                             this.props.history.push('/customer/home');
                         }
                         else if (user_type === "2") {
                             console.log("rest redirect");
                             cookie.save('cookie');
-                            // this.props.login();
+                            this.props.login({
+                                username: this.state.username,
+                                user_type: user_type
+                            });
                             this.props.history.push('/restaurant/home');
                         }
                     })
@@ -149,56 +159,58 @@ class Login extends Component {
     render() {
         //redirect based on successful login
         let redirectVar = null;
-        if (cookie.load("cookie")) {
+        if (this.props.loggedIn) {
             redirectVar = <Redirect to="/" />
         }
         return (
-            <div>
-                {redirectVar}
+            <div className="loginPage">
 
-                <div className="container">
-
-                    <div className="login-form">
-                        <div className="main-div">
-                            <div className="panel">
-                                <p>Please enter your username and password</p>
-                            </div>
-
-                            <div className="form-group">
-                                <input onChange={this.inputChangeHandler} required type="text" className="form-control" name="username" placeholder="Username" />
-                            </div>
-                            <div className="form-group">
-                                <input onChange={this.inputChangeHandler} required type="password" className="form-control" name="password" placeholder="Password" />
-                            </div>
-                            <button onClick={this.submitLogin} className="btn btn-primary">Login</button>
-                            {this.state.loginStatus}
-                        </div>
-                    </div>
+                <div className="loginImage">
+                    <img src={loginImage} alt="loginImage" width='400px' height='550px' />
                 </div>
+                <div className="loginContainer">
+                    {redirectVar}
+
+                    <div className="panel">
+                        <p>Enter your username and password</p>
+                    </div>
+
+                    <div className="form-group">
+                        <input onChange={this.inputChangeHandler} required type="text" className="form-control" name="username" placeholder="Username" />
+                    </div>
+                    <div className="form-group">
+                        <input onChange={this.inputChangeHandler} required type="password" className="form-control" name="password" placeholder="Password" />
+                    </div>
+                    <button onClick={this.submitLogin} className="btn btn-danger">Login</button>
+                    {this.state.loginStatus}
+
+
+                </div>
+
             </div>
         )
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         email_id: state.loginReducer.login.email_id,
-//         password: state.loginReducer.login.password,
-//         authFlag: state.loginReducer.login.authFlag,
-//         loggedIn: state.loginReducer.loggedIn
-//     };
-// }
+const mapStateToProps = (state) => {
+    return {
+        email_id: state.loginReducer.login.email_id,
+        password: state.loginReducer.login.password,
+        authFlag: state.loginReducer.login.authFlag,
+        loggedIn: state.loginReducer.loggedIn
+    };
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-//         emailHandler: (email_id) => dispatch(emailHandler(email_id)),
-//         passwordHandler: (password) => dispatch(passwordHandler(password)),
-//         authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
-//         login: (loggedIn) => dispatch(login(loggedIn))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+        emailHandler: (email_id) => dispatch(emailHandler(email_id)),
+        passwordHandler: (password) => dispatch(passwordHandler(password)),
+        authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
+        login: (loggedIn) => dispatch(login(loggedIn))
 
-//     }
-// }
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);
-export default Login;
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+// export default Login;

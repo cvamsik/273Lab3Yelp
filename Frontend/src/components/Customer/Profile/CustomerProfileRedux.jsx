@@ -144,7 +144,9 @@ class UserProfile extends Component {
 
     render() {
         console.log("props from react--> ")
-        console.log(this.props.birthday.split("T")[0])
+        if (this.props.birthday) {
+            console.log(this.props.birthday.split("T")[0])
+        }
         return (
 
             <div className="profile">

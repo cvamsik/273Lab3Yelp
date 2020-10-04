@@ -4,14 +4,19 @@ import constants from '../../../Config/routeConstants'
 import cookie from 'react-cookies'
 import MenuItem from '../MenuItem/MenuItem';
 import './Menu.styles.css'
+import Checkout from '../../Customer/Checkout/Checkout';
+
 class Menu extends Component {
     state = {
         res: []
     }
     componentDidMount() {
+        console.log("card loaded")
+
+        console.log(this.props)
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
             params:
-                { email: cookie.load('email') }
+                { email: this.props.location.state.restaurant_email }
         }).then((res) => {
             this.setState({ res: res.data });
             console.log(res.data);
@@ -26,9 +31,12 @@ class Menu extends Component {
             <MenuItem menuItem={dish} />
         )
         return (
-            <div className="menuList">
-                {dishes}
+            <div className="menuPage">
+                <div className="menuList">
+                    {dishes}
 
+                </div>
+                <Checkout props={this.props} />
 
             </div>
         );

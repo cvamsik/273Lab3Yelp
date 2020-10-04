@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-// import { login, logout } from '../../../reduxConfig/LoginActions'
-// import { connect } from 'react-redux';
+import { logout } from '../../../reduxConfig/LoginActions'
+import { connect } from 'react-redux';
 
 //create the Navbar Component
-class CommonNavbar extends Component {
+class RestaurantNavbar extends Component {
     // constructor(props) {
     //     super(props);
     //     this.handleLogout = this.handleLogout.bind(this);
     // }
+    handleLogout = () => {
+        cookie.remove('cookie', { path: '/' });
+        cookie.remove('email', { path: '/' });
+        cookie.remove('user_type', { path: '/' });
+        this.props.logout();
+        this.props.history.push('/')
+        // <Redirect to="/somewhere/else" />
 
+    }
     render() {
 
 
@@ -37,8 +45,12 @@ class CommonNavbar extends Component {
                                 <a class="nav-link" href="#">Restaurant Sign Up</a>
                             </li> */}
                             <li class="nav-item">
-                                <a class="nav-link" href="/events">Events</a>
+                                <a class="nav-link" href="/restaurant/events">Events</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="restaurant/orders">Orders</a>
+                            </li>
+                            {/* 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Join Us!
@@ -49,7 +61,7 @@ class CommonNavbar extends Component {
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
-                            </li>
+                            </li> */}
                             {/* <li class="nav-item">
                                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                             </li> */}
@@ -59,7 +71,13 @@ class CommonNavbar extends Component {
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form> */}
-                        <a class="nav-link" style={{ color: "black" }} href="/login">Login <span class="sr-only">(current)</span></a>
+                        < button class="nav-link" style={{
+                            backgroundColor: "Transparent",
+                            border: "none",
+                            cursor: "pointer",
+                            overflow: "hidden",
+                            outline: "none"
+                        }} onClick={this.handleLogout}>Logout </button>
 
                     </div>
                 </nav>
@@ -71,22 +89,20 @@ class CommonNavbar extends Component {
 }
 
 
-// const mapStateToProps = (state) => {
-//     return {
-//         loggedIn: state.loginReducer.loggedIn,
+const mapStateToProps = (state) => {
+    return {
 
-//     };
-// }
+    };
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-//         login: (loggedIn) => dispatch(login(loggedIn)),
-//         logout: (loggedIn) => dispatch(logout(loggedIn)),
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
+        logout: (loggedIn) => dispatch(logout(loggedIn)),
 
-//     }
-// }
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(CommonNavbar);
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantNavbar);
 
-export default CommonNavbar;
+// export default RestaurantNavbar;
