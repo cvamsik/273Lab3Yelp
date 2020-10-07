@@ -126,7 +126,7 @@ class Login extends Component {
                             console.log("cust redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                username: this.state.username,
+                                user_email: this.state.username,
                                 user_type: user_type
                             });
                             this.props.history.push('/customer/home');
@@ -135,7 +135,7 @@ class Login extends Component {
                             console.log("rest redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                username: this.state.username,
+                                user_email: this.state.username,
                                 user_type: user_type
                             });
                             this.props.history.push('/restaurant/home');

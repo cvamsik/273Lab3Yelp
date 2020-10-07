@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import constants from '../../../Config/routeConstants'
 import cookie from 'react-cookies'
-import MenuItem from '../MenuItem/MenuItem';
+import MenuItem from './MenuItem/MenuItem';
 import './Menu.styles.css'
 import Checkout from '../../Customer/Checkout/Checkout';
 

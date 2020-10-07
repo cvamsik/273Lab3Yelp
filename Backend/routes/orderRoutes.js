@@ -9,6 +9,7 @@ orderRouter.route(POST_ORDER).post(orderServices.createOrder);
 orderRouter.route(GET_ORDER_BY_CUSTOMER).get(orderServices.getOrdersByCustomerID);
 orderRouter.route(GET_ORDER_BY_RESTAURANT).get(orderServices.getOrdersByRestaurantID);
 orderRouter.route(GET_ORDER_BY_ID).get(orderServices.getOrdersByOrderID);
+orderRouter.route(UPDATE_ORDER).put(orderServices.updateOrderStatus);
 
 
 module.exports = orderRouter;

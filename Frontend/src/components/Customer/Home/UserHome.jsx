@@ -3,26 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import {counterIncrement}  from '../../../reduxConfig/LoginActions';
 import {connect} from 'react-redux';
 
-
+import RestaurantList from '../RestaurantList/RestaurantList'
 class UserHome extends Component {
 
-    componentWillMount = () => {
 
-    }
 
-    handleClick = (e) => {
-         
-         console.log("---");
-         console.log(this.props);
-         let temp=this.props.counterState
-         console.log("temp val before->"+temp)
-
-         temp=temp+1;
-         console.log("temp val->"+temp)
-         this.props.counterIncrement(temp)
-        // useDispatch(loginAction);
-
-    }
+   
     render() {
 
         return (
@@ -31,8 +17,8 @@ class UserHome extends Component {
                 User Home
               
             </h1>
-            <button onClick={this.handleClick}>click</button></div>
-
+            <RestaurantList/>
+</div>
         );
     }
 }

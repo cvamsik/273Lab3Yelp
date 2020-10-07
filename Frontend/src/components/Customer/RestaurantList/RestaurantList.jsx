@@ -2,7 +2,7 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import routeConstants from '../../../Config/routeConstants'
 import RestaurantCard from './RestaurantCard/RestaurantCard';
-
+import './RestaurantList.styles.css'
 class RestaurantList extends Component {
     state = {
         resData: []
@@ -29,10 +29,13 @@ class RestaurantList extends Component {
             })
 
         }
-        return (<div>
-            {/* <RestaurantCard props={this.state.resData[0]} /> */}
-            {resList}
-        </div>);
+        return (
+            <div className="cont">
+                <div className="resList">
+                    {/* <RestaurantCard props={this.state.resData[0]} /> */}
+                    {resList}
+                </div>
+            </div>);
     }
 }
 

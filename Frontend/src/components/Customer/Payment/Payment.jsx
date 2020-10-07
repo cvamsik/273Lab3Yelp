@@ -42,7 +42,7 @@ class Payment extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(this.props);
         const postObj = {
             delivery_address: this.state.delivery_address,
             address_city: this.state.address_city,
@@ -52,15 +52,16 @@ class Payment extends Component {
             address_longitude: this.state.address_longitude,
             primary_phone: this.state.primary_phone,
             payment_card_digits: this.state.cardno.slice(this.state.cardno.length - 4, this.state.cardno.length),
-
+            cart_items: this.props.cart.cart,
             customer_email: cookie.load('email'),
             restaurant_id: localStorage.getItem("restaurant_id"),
             order_type: localStorage.getItem("order_type"),
             order_status: 6,
             order_total_price: this.props.cart.cartTotal,
 
+
         }
-        console.log(postObj)
+        // console.log(postObj)
         axios.post(`${RouteConstants.BACKEND_URL}/orders${RouteConstants.POST_ORDER}`, postObj).then((res) => {
             window.alert("Order Placed successfully");
             this.props.clearCart();

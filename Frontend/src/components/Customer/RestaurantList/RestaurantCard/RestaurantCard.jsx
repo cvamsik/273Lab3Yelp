@@ -3,7 +3,7 @@ import './RestaurantCard.styles.css'
 import { Link } from "react-router-dom";
 import Menu from '../../../Restaurant/Menu/Menu';
 import { withRouter } from "react-router-dom";
-
+import './RestaurantCard.styles.css'
 import { Redirect } from "react-router-dom";
 
 class RestaurantCard extends Component {
@@ -37,54 +37,59 @@ class RestaurantCard extends Component {
 
         return (<div>
             {/* {JSON.stringify(this.props.props)} */}
-            <div className="restCard">
-                <img className="restImage" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563 "
-                    alt="Rest Image"
-                />
-                <h3>
-                    {restData.restaurant_name}
-                </h3>
-                <h5>
-                    {restData.restaurant_description}
-                </h5>
-                <h5>
-                    Location: {restData.restaurant_location}
-                </h5>
-                <h5>
-                    Address:{restData.restaurant_address}
-                </h5>
-                <h5>
-                    City:{restData.address_city}
-                </h5>
-                <h5>
-                    State:{restData.address_state}
-                </h5>
-                <h5>
-                    Postal Code:{restData.address_postal_code}
-                </h5>
-                <h5>
-                    Phone Numbers:{restData.primary_phone},{restData.secondary_phone}
-                </h5>
-                <h5>
-                    Email:{restData.email}
-                </h5>
-                <h5>
-                    Timings :{restData.open_time} to {restData.close_time}
-                </h5>
-                <h5>
-                    Average Rating:{restData.stars_avg}
-                </h5>
-                <h5>
-                    Open Now? : {restData.is_open}
-                </h5>
-                {/* <Link to={{
+            <div className="restaurantCard">
+                <div className="flexCont">
+                    <img className="restImage" src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563 "
+                        alt="Rest Image"
+                    />
+                    <h3 >
+                        {restData.restaurant_name}
+                    </h3>
+                    <h6 >
+                        {restData.restaurant_description}
+                    </h6>
+                    <h6 >
+                        <b> Location:</b> {restData.restaurant_location}
+                    </h6>
+                    <h6 >
+                        <b> Timings:</b>{restData.open_time} to {restData.close_time}
+                    </h6>
+                    <h6 >
+                        <b> Average Rating:</b>{restData.stars_avg}
+                    </h6>
+                    <h6 >
+                        <b> Open Now?:</b> {restData.is_open ? "Yes" : "No"}
+                    </h6>
+                </div>
+                <div className="flexCont">
+                    <h6 >
+                        <b>Address:</b>{restData.restaurant_address}
+                    </h6>
+                    <h6 >
+                        <b>City:</b>{restData.address_city}
+                    </h6>
+                    <h6 >
+                        <b> State:</b>{restData.address_state}
+                    </h6>
+                    <h6 >
+                        <b> Postal Code:</b>{restData.address_postal_code}
+                    </h6>
+                    <h6 >
+                        <b> Phone Numbers:</b>{restData.primary_phone},{restData.secondary_phone}
+                    </h6>
+                    <h6 >
+                        <b> Email:</b>{restData.email}
+                    </h6>
+
+                    {/* <Link to={{
                     pathname: 'menu',
                     state: {
                         restaurant_email: this.props.props.res.email,
                         restaurant_id: this.props.props.res.restaurant_id
                     }
                 }} component={Menu}><button >Check the Menu</button></Link> */}
-                <button onClick={this.handleClick}>Check the Menu</button>
+                    <button onClick={this.handleClick} className=" btn btn-danger">Check the Menu</button>
+                </div>
             </div>
         </div>);
     }

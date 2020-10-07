@@ -21,6 +21,11 @@ import Payment from './components/Customer/Payment/Payment';
 import Orders from './components/Customer/Orders/Orders'
 import OrderDetails from './components/Customer/OrderDetails/OrderDetails';
 import RestaurantNavbar from './components/Restaurant/RestaurantNavbar/RestaurantNavbar';
+import RestaurantProfile from './components/Restaurant/RestaurantProfile/RestaurantProfile';
+import RestaurantMenu from './components/Restaurant/RestaurantMenu/RestaurantMenu';
+import CreateMenuItem from './components/Restaurant/CreateMenuItem/CreateMenuItem'
+import RestaurantOrders from './components/Restaurant/Orders/RestaurantOrders';
+import RestaurantOrderDetails from './components/Restaurant/Orders/OrderDetails/RestaurantOrderDetails';
 
 
 //Create a Main Component
@@ -48,7 +53,6 @@ class Main extends Component {
 
                 <Route exact path="/login" component={Login} />
 
-                <Route path="/customer/" component={UserNavbar} />
                 <Route exact path='/customer/home' component={UserHome} />
                 <Route exact path="/customerSignup" component={CreateUser} />
                 <Route exact path='/customer/profile' component={UserProfile} />
@@ -61,13 +65,13 @@ class Main extends Component {
 
 
 
-
-                {/* <Route exact path="/checkout" component={CheckOut} /> */}
-
-
                 <Route exact path="/restaurant/signup" component={RestaurantSignUp} />
                 <Route exact path="/restaurant/home" component={RestaurantHome} />
-                <Route exact path="/restaurant/menu" component={Menu} />
+                <Route exact path="/restaurant/profile" component={RestaurantProfile} />
+                <Route exact path="/restaurant/createMenuItem" component={CreateMenuItem} />
+                <Route exact path="/restaurant/orders" component={RestaurantOrders} />
+                <Route exact path="/restaurant/orderDetails" component={RestaurantOrderDetails} />
+                <Route exact path="/restaurant/menu" component={RestaurantMenu} />
 
 
             </div>

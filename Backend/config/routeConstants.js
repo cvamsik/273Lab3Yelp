@@ -30,6 +30,8 @@ module.exports = {
     GET_RESTAURANT_REVIEWS: '/reviews',
 
     UPDATE_RESTAURANT_PROFILE: '/profile',
+    POST_MENU_ITEM: '/menuItem',
+    UPDATE_MENU_ITEM: '/menuItem',
     POST_RESTAURANT_MENU: '/menu',
 
 

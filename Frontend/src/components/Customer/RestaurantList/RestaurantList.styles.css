@@ -1,0 +1,15 @@
+.resList {
+  display: flex;
+  flex-direction: column;
+
+  width: 60%;
+
+  justify-content: space-evenly;
+}
+
+.cont {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  align-items: center;
+}

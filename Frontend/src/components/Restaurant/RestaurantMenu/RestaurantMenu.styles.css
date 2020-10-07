@@ -1,0 +1,8 @@
+.menuList {
+  display: flex;
+  flex-direction: column;
+}
+
+.menuPage {
+  display: flex;
+}

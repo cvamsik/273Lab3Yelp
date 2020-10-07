@@ -21,7 +21,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import './MenuItem.styles.css'
 
 import { connect } from 'react-redux';
-import { addToCart, removeFromCart } from '../../../reduxConfig/Cart/CartActions';
+import { addToCart, removeFromCart } from '../../../../reduxConfig/Cart/CartActions';
 // import {CART_ADD_ITEM,CART_REMOVE_ITEM} from '../../../reduxConfig/actionTypes'
 
 // const [expanded, setExpanded] = React.useState(false);

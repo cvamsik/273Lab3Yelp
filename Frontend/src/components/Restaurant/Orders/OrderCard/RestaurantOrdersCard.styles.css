@@ -1,0 +1,9 @@
+.restCard {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0px 20px;
+  border: solid 1px rgb(204, 204, 204);
+  border-radius: 3px;
+  padding: 10px;
+  width: 650px;
+}

@@ -17,26 +17,30 @@ class RestaurantNavbar extends Component {
         cookie.remove('user_type', { path: '/' });
         this.props.logout();
         this.props.history.push('/')
-        // <Redirect to="/somewhere/else" />
 
     }
     render() {
 
+        let redirectVar = null;
+        if (cookie.load('cookie') === undefined) {
 
+            redirectVar = <Redirect to="/" />
+        }
 
         return (
             <div>
+                {redirectVar}
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-                    <a class="navbar-brand" href="/">Yelp!</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                <nav className="navbar navbar-expand-lg navbar-light bg-danger">
+                    <a className="navbar-brand" href="/restaurant/home">Yelp!</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item active">
+                                <a className="nav-link" href="/restaurant/home">Home <span className="sr-only">(current)</span></a>
                             </li>
                             {/* <li class="nav-item">
                                 <a class="nav-link" href="#">Customer Sign Up</a>
@@ -44,11 +48,11 @@ class RestaurantNavbar extends Component {
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Restaurant Sign Up</a>
                             </li> */}
-                            <li class="nav-item">
-                                <a class="nav-link" href="/restaurant/events">Events</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/restaurant/events">Events</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="restaurant/orders">Orders</a>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/restaurant/orders">Orders</a>
                             </li>
                             {/* 
                             <li class="nav-item dropdown">
@@ -71,7 +75,8 @@ class RestaurantNavbar extends Component {
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form> */}
-                        < button class="nav-link" style={{
+                        <a className="nav-link" style={{ color: "black" }} href="/restaurant/profile">Profile</a>
+                        < button className="nav-link" style={{
                             backgroundColor: "Transparent",
                             border: "none",
                             cursor: "pointer",
