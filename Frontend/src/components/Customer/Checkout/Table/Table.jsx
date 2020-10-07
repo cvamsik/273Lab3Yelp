@@ -223,7 +223,7 @@ export default function EnhancedTable(props) {
     const rows = props.props.rows.cart;
 
 
-    console.log(props)
+    // console.log(props)
 
     const classes = useStyles();
     const [order, setOrder] = React.useState('asc');

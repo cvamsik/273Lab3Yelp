@@ -14,15 +14,21 @@ class RestaurantCard extends Component {
     handleClick = () => {
         // console.log(this.props);
         localStorage.setItem('restaurant_id', this.props.props.res.restaurant_id)
+        localStorage.setItem('restaurant_name', this.props.props.res.restaurant_name)
+        localStorage.setItem('latitude', this.props.props.res.address_latitude)
+        localStorage.setItem('longitude', this.props.props.res.address_longitude)
+
         this.props.history.push({
             pathname: 'restaurant/menu',
             state: {
                 restaurant_email: this.props.props.res.email,
-                restaurant_id: this.props.props.res.restaurant_id
+                restaurant_id: this.props.props.res.restaurant_id,
+                res: this.props.props.res
             }
         })
     }
     render() {
+        console.log(this.props)
         if (this.state.redirect) {
             return <Redirect to={
                 {
@@ -88,7 +94,7 @@ class RestaurantCard extends Component {
                         restaurant_id: this.props.props.res.restaurant_id
                     }
                 }} component={Menu}><button >Check the Menu</button></Link> */}
-                    <button onClick={this.handleClick} className=" btn btn-danger">Check the Menu</button>
+                    <button onClick={this.handleClick} className=" btn btn-danger">Check it out!</button>
                 </div>
             </div>
         </div>);

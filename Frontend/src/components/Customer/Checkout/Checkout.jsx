@@ -23,7 +23,7 @@ class CheckOut extends Component {
                 window.alert("Select order Type")
             }
             else {
-                console.log(localStorage.getItem('order_type'))
+                // console.log(localStorage.getItem('order_type'))
                 this.props.props.history.push('/customer/payment')
             }
         }
@@ -49,7 +49,7 @@ class CheckOut extends Component {
             remove: this.props.removeFromCart
         }
 
-        console.log(this.props.cart)
+        // console.log(this.props.cart)
 
         return (<div >
             {/* {JSON.stringify(this.props.cart)}

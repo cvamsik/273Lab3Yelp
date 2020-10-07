@@ -16,8 +16,8 @@ class RestaurantMenu extends Component {
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
             params:
             {
-                email: "Gustavo_Monk@example.com"
-                // this.props.location.state.restaurant_email
+                // email: "Gustavo_Monk@example.com"
+                email: this.props.location.state.restaurant_email
             }
         }).then((res) => {
             console.log("Test data")

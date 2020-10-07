@@ -28,7 +28,7 @@ import { addToCart, removeFromCart } from '../../../../reduxConfig/Cart/CartActi
 const useStyles = theme => ({
     root: {
         maxWidth: 345,
-        minHeight: "500px"
+        minHeight: "300px"
     },
 
     media: {
@@ -65,7 +65,7 @@ class MenuItem extends Component {
 
     render() {
         const { classes, menuItem } = this.props;
-        console.log(menuItem)
+        // console.log(menuItem)
         const dish_dispatch = {
 
             dish_id: menuItem.dish_id,
@@ -93,11 +93,7 @@ class MenuItem extends Component {
                         image="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563 "
                         title={menuItem.dish_name}
                     />
-                    <CardContent >
-                        <Typography variant="body1" color="textSecondary" component="p" styles={{ overflow: "scroll" }}>
-                            {menuItem.description}
-                        </Typography>
-                    </CardContent>
+
                     <CardActions disableSpacing >
                         <IconButton aria-label="Add to Cart" onClick={() => { console.log("addtocart"); this.props.addToCart(dish_dispatch) }}>
                             <AddIcon />
@@ -120,6 +116,12 @@ class MenuItem extends Component {
                         </IconButton>
                     </CardActions>
                     <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                        <CardContent >
+                            <Typography variant="body1" color="textSecondary" component="p" styles={{ overflow: "scroll" }}>
+                                Description:
+                                {menuItem.description}
+                            </Typography>
+                        </CardContent>
                         <CardContent>
                             <Typography paragraph>Ingredients:</Typography>
                             <Typography paragraph>

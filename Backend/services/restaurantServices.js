@@ -217,3 +217,30 @@ module.exports.createMenuItem = (req, res) => {
         });
 
 }
+
+
+module.exports.getRestaurantSearch = (req, res) => {
+    console.log("Inside Restaurant GET Search service");
+    console.log(req.query)
+    con.query(`
+        SELECT address_city,address_latitude,address_longitude,address_postal_code,address_state,close_time,email,is_open,open_time,primary_phone,profile_image_link,restaurant_address,restaurant_description,r.restaurant_id,restaurant_location,restaurant_name,review_count,secondary_phone,stars_avg
+        FROM restaurant_data as r
+        INNER JOIN menus as m ON m.restaurant_id=r.restaurant_id
+        INNER JOIN dishes as d ON d.menu_id=m.menu_id
+        WHERE CONCAT_WS(" ",r.restaurant_name,r.restaurant_address,d.dish_name,r.address_postal_code) LIKE '%${req.query.search_string}%' GROUP BY r.restaurant_id;
+    `
+        , (error, result) => {
+            if (error) {
+                console.log(error);
+                //res.setHeader(CONTENT_TYPE, APP_JSON);
+                // con.rollback();
+                res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+            }
+            else {
+                console.log(JSON.stringify(result));
+                //res.setHeader(CONTENT_TYPE, APP_JSON);
+                res.status(RES_SUCCESS).send(JSON.stringify(result));
+            }
+        });
+
+}

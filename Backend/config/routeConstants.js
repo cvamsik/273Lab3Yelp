@@ -9,7 +9,6 @@ module.exports = {
     POST_CUSTOMER_IMAGE: '/image',
     UPDATE_CUSTOMER_IMAGE: '/image',
 
-    POST_CUSTOMER_REVIEW: '/review',
 
     //Login Routes
     POST_LOGIN: '/login',
@@ -28,12 +27,20 @@ module.exports = {
     GET_RESTAURANT_BY_LOCATION: '/location',
     GET_RESTAURANT_BY_DISH: '/dish',
     GET_RESTAURANT_REVIEWS: '/reviews',
+    GET_RESTAURANT_SEARCH: '/search',
+
 
     UPDATE_RESTAURANT_PROFILE: '/profile',
     POST_MENU_ITEM: '/menuItem',
     UPDATE_MENU_ITEM: '/menuItem',
     POST_RESTAURANT_MENU: '/menu',
 
+    //Reviews
+    GET_REVIEWS_BY_RESTAURANT: '/restaurant',
+    GET_REVIEWS_ID_RESTAURANT: '/restaurantID',
+    GET_REVIEWS_BY_CUSTOMER: '/customer',
+    POST_REVIEW_CUSTOMER: '/customer',
+    UPDATE_REVIEW_CUSTOMER: '/customer',
 
     //Orders
     GET_ORDER_BY_ID: '/id',

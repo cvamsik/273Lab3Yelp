@@ -15,6 +15,7 @@ const loginRoutes = require('./routes/loginRoute');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
 
 
 //use cors to allow cross origin resource sharing
@@ -48,6 +49,8 @@ app.use('/', loginRoutes);
 app.use('/customer', customerRoutes);
 app.use('/restaurant', restaurantRoutes);
 app.use('/orders', orderRoutes);
+app.use('/reviews', reviewRoutes);
+
 // app.use('/events', eventRoutes);
 
 
