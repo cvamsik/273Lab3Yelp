@@ -76,7 +76,7 @@ class RestaurantMenuCard extends Component {
             <div className="menuItem">
                 <form className="formData">
                     <div className="profile">
-                        <div >
+                        <div className="restImage2">
                             <img src={this.state.image_url} alt="Dish Image" className="img-thumbnail" width='130px' height='100px' />
                         </div>
                         <div class="form-group col-md-2">

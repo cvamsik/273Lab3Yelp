@@ -5,7 +5,7 @@ import cookie from 'react-cookies'
 import CustomerReviewCard from './CustomerReviewCard/CustomerReviewCard';
 import './CustomerReviews.styles.css'
 import CustomerCreateReview from './CustomerReviewCard/CustomerCreateReview'
-class Orders extends Component {
+class CustomerReviews extends Component {
     state = {
         resData: []
     }
@@ -44,4 +44,4 @@ class Orders extends Component {
     }
 }
 
-export default Orders;
+export default CustomerReviews;

@@ -10,7 +10,7 @@ class RestaurantList extends Component {
     }
     componentDidMount = () => {
         Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_ALL_RESTAURANTS}`).then((res) => {
-            console.log(res.data[0]);
+            // console.log(res.data[0]);
             this.setState({ resData: [...res.data] })
         }).catch((err) => {
             console.log(err);
@@ -22,7 +22,7 @@ class RestaurantList extends Component {
         this.setState({ [name]: value });
     }
     searchHandler = (e) => {
-        console.log("search submitted");
+        // console.log("search submitted");
         e.preventDefault()
         Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
             params: {

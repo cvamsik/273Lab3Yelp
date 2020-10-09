@@ -26,6 +26,15 @@ import RestaurantMenu from './components/Restaurant/RestaurantMenu/RestaurantMen
 import CreateMenuItem from './components/Restaurant/CreateMenuItem/CreateMenuItem'
 import RestaurantOrders from './components/Restaurant/Orders/RestaurantOrders';
 import RestaurantOrderDetails from './components/Restaurant/Orders/OrderDetails/RestaurantOrderDetails';
+import RestaurantReviews from './components/Restaurant/RestaurantReviews/RestaurantReviews'
+import CustomerSelfReviews from './components/Customer/CustomerReviews/CustomerSelfReviews'
+import DisplayEvents from './components/Events/EventList/DisplayEvents';
+import CreateEvent from './components/Events/CreateEvent/CreateEvent';
+import DisplayRestaurantEvents from './components/Events/EventList/DisplayRestaurantEvents';
+import DisplayRegistrationsRestaurant from './components/Events/EventList/DisplayRegistrationsRestaurant';
+import DisplayRegistrationsCustomer from './components/Events/EventList/DisplayRegistrationsCustomer';
+import EventsHome from './components/Restaurant/Home/EventsHome';
+
 
 
 //Create a Main Component
@@ -62,6 +71,9 @@ class Main extends Component {
                 <Route exact path="/customer/restaurant/menu" component={Menu} />
                 <Route exact path="/customer/orders" component={Orders} />
                 <Route exact path="/customer/order" component={OrderDetails} />
+                <Route exact path="/customer/reviews" component={CustomerSelfReviews} />
+                <Route exact path="/customer/events" component={DisplayEvents} />
+                <Route exact path="/customer/events/registrations" component={DisplayRegistrationsCustomer} />
 
 
 
@@ -72,6 +84,12 @@ class Main extends Component {
                 <Route exact path="/restaurant/orders" component={RestaurantOrders} />
                 <Route exact path="/restaurant/orderDetails" component={RestaurantOrderDetails} />
                 <Route exact path="/restaurant/menu" component={RestaurantMenu} />
+                <Route exact path="/restaurant/reviews" component={RestaurantReviews} />
+                <Route exact path="/restaurant/events/create" component={CreateEvent} />
+                <Route exact path="/restaurant/events/list" component={DisplayRestaurantEvents} />
+                <Route exact path="/restaurant/events/all" component={DisplayEvents} />
+                <Route exact path="/restaurant/events/registrations" component={DisplayRegistrationsRestaurant} />
+                <Route exact path="/restaurant/events/home" component={EventsHome} />
 
 
             </div>

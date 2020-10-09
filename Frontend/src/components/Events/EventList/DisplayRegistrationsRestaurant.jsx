@@ -2,23 +2,24 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
-import RestaurantOrdersCard from './OrderCard/RestaurantOrdersCard';
-import './RestaurantOrders.styles.css';
-class RestaurantOrders extends Component {
+import RegistrationCard from './EventCard/RegistrationCard'
+import './EventList.styles.css'
+class DisplayRegistrationsRestaurant extends Component {
     state = {
         resData: []
     }
 
 
     componentDidMount = () => {
-        console.log("Orders")
-        Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_RESTAURANT}`, {
+        // console.log(this.props)
+        Axios.get(`${routeConstants.BACKEND_URL}/events${routeConstants.GET_REGISTRATIONS_EVENT}`, {
             params: {
-                email_id: cookie.load("email")
+                event_id: this.props.history.location.state.event_id
             }
+
         }).then((res) => {
             this.setState({ resData: [...res.data] })
-            console.log(res)
+            // console.log(res)
         }).catch((err) => {
             console.log(err);
         })
@@ -31,15 +32,16 @@ class RestaurantOrders extends Component {
                     res: res,
                     props: this.props
                 }
-                return <RestaurantOrdersCard props={obj} />
+                return <RegistrationCard props={obj} />
 
             })
 
         }
-        return (<div className="ordersList">
+        return (<div className="eventList">
+            <h4> Current Registrations </h4>
             {resList}
         </div>);
     }
 }
 
-export default RestaurantOrders;
+export default DisplayRegistrationsRestaurant;

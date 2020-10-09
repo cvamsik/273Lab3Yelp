@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
 import CustomerReviewCard from './CustomerReviewCard/CustomerReviewCard';
-import './CustomerReviews.styles.css'
+import './RestaurantReviews.styles.css'
 import CustomerCreateReview from './CustomerReviewCard/CustomerCreateReview'
-class Orders extends Component {
+class RestaurantReviews extends Component {
     state = {
         resData: []
     }
 
 
     componentDidMount = () => {
-        Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_BY_RESTAURANT}`, {
+        Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_ID_RESTAURANT}`, {
             params: {
-                restaurant_id: localStorage.getItem("restaurant_id")
+                email: cookie.load('email')
             }
         }).then((res) => {
             this.setState({ resData: [...res.data] })
@@ -36,12 +36,11 @@ class Orders extends Component {
             })
 
         }
-        return (<div className="reviewList">
+        return (<div className="reviewListRest">
             <h4>Reviews</h4>
-            <CustomerCreateReview />
             {resList}
         </div>);
     }
 }
 
-export default Orders;
+export default RestaurantReviews;

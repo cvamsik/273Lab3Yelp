@@ -51,7 +51,7 @@ app.use('/restaurant', restaurantRoutes);
 app.use('/orders', orderRoutes);
 app.use('/reviews', reviewRoutes);
 
-// app.use('/events', eventRoutes);
+app.use('/events', eventRoutes);
 
 
 

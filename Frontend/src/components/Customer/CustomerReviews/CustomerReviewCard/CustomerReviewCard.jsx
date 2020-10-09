@@ -8,29 +8,11 @@ class CustomerReviewCard extends Component {
         redirect: false
     }
 
-    handleClick = () => {
-        console.log(this.props);
-        localStorage.setItem('order_id', this.props.props.res.order_id)
-        this.props.history.push({
-            pathname: '/customer/order',
-            state: {
-                order_id: this.props.props.res.order_id
-            }
-        })
-    }
+
     render() {
-        // if (this.state.redirect) {
-        //     return <Redirect to={
-        //         {
-        //             pathname: 'menu',
-        //             state: {
-        //                 restaurant_email: this.props.props.res.email,
-        //                 restaurant_id: this.props.props.res.restaurant_id
-        //             }
-        //         }} />
-        // }
+
         const restData = { ...this.props.props.res }
-        // console.log(restData)
+        console.log(restData)
 
         return (<div>
             {/* {JSON.stringify(this.props.props)} */}
@@ -41,10 +23,9 @@ class CustomerReviewCard extends Component {
 
                     </h4>
 
-                    {/* <p>
-                        {restData.stars}
-
-                    </p> */}
+                    <p>
+                        {restData.review_date.split('T')[0]}
+                    </p>
                     <h3><StarRatingComponent
                         name="rating"
                         starCount={5}
@@ -52,8 +33,11 @@ class CustomerReviewCard extends Component {
                         starColor="#ff1c1c"
                     />
                     </h3>
-                </div>
 
+                </div>
+                <h4>
+                    {restData.restaurant_name}
+                </h4>
                 <p>
                     {restData.review_text}
                 </p>

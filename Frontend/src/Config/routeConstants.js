@@ -37,10 +37,10 @@ module.exports = {
 
     //Reviews
     GET_REVIEWS_BY_RESTAURANT: '/restaurant',
+    GET_REVIEWS_ID_RESTAURANT: '/restaurantID',
     GET_REVIEWS_BY_CUSTOMER: '/customer',
     POST_REVIEW_CUSTOMER: '/customer',
     UPDATE_REVIEW_CUSTOMER: '/customer',
-    GET_REVIEWS_ID_RESTAURANT: '/restaurantID',
 
     //Orders
     GET_ORDER_BY_ID: '/id',
@@ -53,15 +53,18 @@ module.exports = {
 
     //Events
     GET_EVENTS_BY_NAME: '/name',
-    GET_ALL_EVENTS: '/all',
+    GET_ALL_EVENTS: '/events',
     GET_EVENT_DETAILS: '/event',
+    GET_EVENT_BY_RESTAURANT: '/restaurantId',
     GET_CUSTOMERS_BY_EVENTS: '/allCustomers',
     GET_EVENTS_BY_CUSTOMER: '/customerId',
-    POST_EVENT: 'event',
+    POST_EVENT_REGISTRATION: '/register',
+    POST_EVENT: '/event',
     UPDATE_EVENT: '/event',
 
 
-
+    GET_REGISTRATIONS_CUSTOMER: '/customerRegistrations',
+    GET_REGISTRATIONS_EVENT: '/eventRegistrations',
 
     /**Response status codes */
     RES_UNKNOWN_ERROR: 502,

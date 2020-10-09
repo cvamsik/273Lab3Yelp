@@ -122,7 +122,7 @@ module.exports.getOrdersByCustomerID = (req, res) => {
 module.exports.getOrdersByRestaurantID = (req, res) => {
     console.log("Inside Orders GET restaurant all orders service");
     console.log(req.query);
-    con.query(`SELECT o.order_id,o.order_type,o.order_status,o.order_date,o.order_time,o.customer_email
+    con.query(`SELECT o.order_id,o.order_type,o.order_status,o.order_date,o.order_time,o.customer_email,o.order_total_price
                 FROM  orders as o 
                 INNER JOIN restaurant_data as r ON o.restaurant_id=r.restaurant_id
                 WHERE r.email="${req.query.email_id}"

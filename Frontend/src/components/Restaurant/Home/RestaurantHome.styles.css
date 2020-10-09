@@ -1,0 +1,28 @@
+.homeGrid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 15px;
+  width: 50%;
+  align-self: center;
+  margin: 30px;
+}
+
+/* .grp {
+  width: 120px;
+} */
+
+.homeLayout {
+  /* display: flex;
+  justify-content: space-between; */
+  align-items: center;
+  height: 100%;
+}
+.sq {
+  text-align: center;
+  text-decoration: none;
+
+  padding-top: 25%;
+  min-width: 140px;
+  min-height: 140px;
+  max-width: 140px;
+}

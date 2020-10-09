@@ -1,8 +1,10 @@
 .menuList {
   display: flex;
   flex-direction: column;
+  width: 70%;
 }
 
 .menuPage {
   display: flex;
+  align-items: center;
 }

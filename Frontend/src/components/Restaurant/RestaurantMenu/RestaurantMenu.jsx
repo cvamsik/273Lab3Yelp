@@ -17,7 +17,7 @@ class RestaurantMenu extends Component {
             params:
             {
                 // email: "Gustavo_Monk@example.com"
-                email: this.props.location.state.restaurant_email
+                email: cookie.load('email')
             }
         }).then((res) => {
             console.log("Test data")

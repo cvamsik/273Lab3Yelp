@@ -7,7 +7,17 @@ import { Redirect } from "react-router-dom";
 
 class RestaurantOrdersCard extends Component {
     state = {
-        redirect: false
+        redirect: false,
+        cat: [
+            "",
+            "Pick Up Ready",
+            "Picked Up",
+            "On the way",
+            "Delivered",
+            "In the making",
+            "Order Placed",
+            "Cancelled"
+        ]
     }
 
     handleClick = () => {
@@ -44,7 +54,7 @@ class RestaurantOrdersCard extends Component {
                     {restData.restaurant_name}
                 </h3>
                 <h5>
-                    Status:{restData.order_status}
+                    Status:{this.state.cat[restData.order_status]}
                 </h5>
                 <h5>
                     Time: {restData.order_time}
@@ -63,7 +73,7 @@ class RestaurantOrdersCard extends Component {
                         restaurant_id: this.props.props.res.restaurant_id
                     }
                 }} component={Menu}><button >Check the Menu</button></Link> */}
-                <button onClick={this.handleClick}>Order Details</button>
+                <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Order Details</button>
             </div>
         </div>);
     }

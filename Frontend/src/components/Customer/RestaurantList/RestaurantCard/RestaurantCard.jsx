@@ -28,7 +28,7 @@ class RestaurantCard extends Component {
         })
     }
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         if (this.state.redirect) {
             return <Redirect to={
                 {
