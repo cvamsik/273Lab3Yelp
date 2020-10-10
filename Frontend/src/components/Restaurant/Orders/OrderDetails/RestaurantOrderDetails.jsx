@@ -52,7 +52,7 @@ class RestaurantOrderDetails extends Component {
     render() {
         let restData = { ...this.state.resData }
         // console.log(restData)
-        if (restData.order_date != undefined) {
+        if (restData) {
             restData.order_date = restData.order_date.split('T')[0]
         }
 

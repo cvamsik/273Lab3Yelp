@@ -49,7 +49,7 @@ class RestaurantNavbar extends Component {
                                 <a class="nav-link" href="#">Restaurant Sign Up</a>
                             </li> */}
                             <li className="nav-item">
-                                <a className="nav-link" href="/restaurant/events">Events</a>
+                                <a className="nav-link" href="/restaurant/events/home">Events</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/restaurant/orders">Orders</a>
