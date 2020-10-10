@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import CustomInput from "../../Common/CustomInput/CustomInput";
 import axios from "axios";
-import RouteConstants from "../../../Config/routeConstants";
 import "./CustomerProfile.styles.css";
 import CustomButton from "../../Common/CustomButton/CustomButton";
 import { Route } from "react-router";
 import cookie from 'react-cookies';
+import routeConstants from "../../../Config/routeConstants";
 class UserProfile extends Component {
     state = {
         customer_id: 0,
@@ -17,8 +17,8 @@ class UserProfile extends Component {
         things_loved: "",
         find_me: "",
         blog_ref: "",
-        selected_file: {},
-
+        selected_file: null,
+        img: null,
         MODIFIED: "",
 
         disabled: true,
@@ -44,7 +44,7 @@ class UserProfile extends Component {
         console.log("in edit profile")
         let body;
         console.log(cookie.load("email"));
-        axios.get(`${RouteConstants.BACKEND_URL}/customer${RouteConstants.GET_CUSTOMER_PROFILE}`,
+        axios.get(`${routeConstants.BACKEND_URL}/customer${routeConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
                     email_id: cookie.load("email")
@@ -59,22 +59,27 @@ class UserProfile extends Component {
 
             })
 
-        // axios
-        //   .get(
-        //     `${Constants.BACKEND_SERVER}/users/getuser`,
-        //     localStorage.getItem("userId")
-        //   )
-        //   .then((res) => {
-        //     const body = res.body;
-        //     if (body._id) {
-        //       this.setState({
-        //         ...body
-        //       });
 
-        //     } else {
-        //       console.log("Error fetching user data");
-        //     }
-        //   });
+
+
+        // fetch(`${routeConstants.BACKEND_URL}/imageData/TestImage.jpg`)
+            // .then((res) => {
+            //     this.setState({ img: res }, () => {
+            //         console.log(this.state)
+            //     })
+            // }).catch((err) => {
+            //     console.log(err)
+            // })
+            let outside;
+            fetch(`${routeConstants.BACKEND_URL}/imageData/TestImage.jpg`)
+            .then(response => response.blob())
+            .then(images => {
+                // Then create a local URL for that image and print it 
+                outside = URL.createObjectURL(images)
+                this.setState({img:outside})
+                console.log(outside)
+            })
+
     }
 
     handleEdit = (e) => {
@@ -109,7 +114,7 @@ class UserProfile extends Component {
         };
         console.log(req)
         axios
-            .put(`${RouteConstants.BACKEND_URL}/customer${RouteConstants.UPDATE_CUSTOMER_PROFILE}`, req)
+            .put(`${routeConstants.BACKEND_URL}/image${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
             .then((res) => {
                 console.log(res)
                 if (res.status === 200) {
@@ -124,21 +129,25 @@ class UserProfile extends Component {
 
     onFileUpload = e => {
         e.preventDefault();
+        console.log(this.state)
         //  this.setState({ projectId: this.props.match.params.projectId })
         let formData = new FormData();
         formData.append("file", this.state.selectedFile);
         formData.append('customer_id', this.state.customer_id)
         formData.append('customer_name', this.state.customer_name)
+        formData.append('email_id',cookie.load('email'))
+
         console.log(this.state)
-        console.log(JSON.stringify(formData))
+        console.log(JSON.stringify(formData.get("customer_id")))
         axios
             .post(
-                `${RouteConstants.BACKEND_URL}/customer${RouteConstants.POST_CUSTOMER_IMAGE}`,
-                {
-                    file: formData,
-                    customer_id: this.state.customer_id,
-                    customer_name: this.state.customer_name
-                }
+                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_USER_PROFILE}`,
+                // {
+                //     file: formData,
+                //     customer_id: this.state.customer_id,
+                //     customer_name: this.state.customer_name
+                // }
+                formData
             )
             .then(response => {
                 if (response.status === 201) {
@@ -177,9 +186,7 @@ class UserProfile extends Component {
 
 
     onFileChange = event => {
-        //  event.preventDefault();
 
-        // Update the state
         this.setState({ selectedFile: event.target.files[0] });
         if (this.state.selectedFile) {
             this.setState({ app: this.state.selectedFile.name });
@@ -188,57 +195,14 @@ class UserProfile extends Component {
 
 
     render() {
-        // let addresschange
-        // if (this.state.oldDetails.ADDRESS) {
-        //     addresschange = <div className='addressOptions'>
-        //         <div className="option">
-        //             Street Address:{" "}
-        //             <input
-        //                 label={this.state.oldDetails.ADDRESS.STREET}
-        //                 disabled={this.state.disabled}
-        //                 value={this.state.ADDRESS.STREET}
-        //                 onChange={this.handleAddressChange}
-        //                 name="STREET"
-        //             />
-        //         </div>
-        //         <div className="option">
-        //             State:{" "}
-        //             <input
-        //                 label={this.state.oldDetails.ADDRESS.STATE}
-        //                 disabled={this.state.disabled}
-        //                 value={this.state.ADDRESS.STATE}
-        //                 onChange={this.handleAddressChange}
-        //                 name="STATE"
-        //             />
-        //         </div>
-        //         <div className="option">
-        //             Country:{" "}
-        //             <input
-        //                 //  label={this.state.oldDetails.ADDRESS.COUNTRY}
-        //                 disabled={this.state.disabled}
-        //                 value={this.state.ADDRESS.COUNTRY}
-        //                 onChange={this.handleAddressChange}
-        //                 name="COUNTRY"
-        //             />
-        //         </div>
-        //         <div className="option">
-        //             Zip Code:{" "}
-        //             <input
-        //                 // label={this.state.oldDetails.ADDRESS.PIN}
-        //                 disabled={this.state.disabled}
-        //                 value={this.state.ADDRESS.PIN}
-        //                 onChange={this.handleAddressChange}
-        //                 name="PIN"
-        //             />
-        //         </div>
-        //     </div>
 
-        // }
+        console.log(this.state)
         return (
 
             <div className="profile">
-                <form className="userdetails">
+                <form className="userdetails" encType="multipart/form-data">
                     <h2>Edit Profile Details</h2>
+                    <img src={this.state.img} width='100px' height='100px' />
                     <div className="option">
                         Name:{" "}
                         <input
@@ -344,10 +308,10 @@ class UserProfile extends Component {
                     </div>
                     {/* {addresschange} */}
                     <div className="option" style={{ justifyContent: "space-around", marginLeft: '20%' }}>
-                        <CustomButton type="submit" onClick={this.handleEdit}>
-                            Edit Details
+                        <button className="btn btn-danger" type="submit" onClick={this.handleEdit}>
+                            Toggle Edit
               {/* {this.state.editstate ? "Cancel Edit" : "Edit Details"}{" "} */}
-                        </CustomButton>
+                        </button>
                         {/* <button type="submit" onClick={this.handleCancelEdit}>
               Restore Changes
               {this.state.editstate ? "Cancel Edit" : "Edit Details"}{" "}
@@ -356,10 +320,10 @@ class UserProfile extends Component {
                         {/* </div>
 
           <div className="option"> */}
-                        <CustomButton type="submit" onClick={this.handleSave}>
+                        <button className="btn btn-danger" type="submit" onClick={this.handleSave}>
                             Save Changes
               {/* {this.state.editstate ? "Cancel Edit" : "Edit Details"}{" "} */}
-                        </CustomButton>
+                        </button>
 
 
                     </div>

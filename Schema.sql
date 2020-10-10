@@ -71,7 +71,7 @@ CREATE TABLE reviews
     customer_id int NOT NULL,
     restaurant_id int NOT NULL,
     stars int NOT NULL DEFAULT 0,
-    review_date date,
+    review_date date NOT NULL,
     review_text varchar(1000),
     FOREIGN KEY(customer_id) REFERENCES customer_primary_data(customer_id),
     FOREIGN KEY(restaurant_id) REFERENCES restaurant_data(restaurant_id)

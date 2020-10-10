@@ -13,10 +13,9 @@ class CustomerReviewCard extends Component {
 
         const restData = { ...this.props.props.res }
         console.log(restData)
-
-        return (<div>
-            {/* {JSON.stringify(this.props.props)} */}
-            <div className="reviewCard">
+        let renderItem;
+        if (restData) {
+            renderItem = <div className="reviewCard">
                 <div className="reviewHeader" >
                     <h4>
                         {restData.customer_name}
@@ -43,6 +42,13 @@ class CustomerReviewCard extends Component {
                 </p>
 
             </div>
+        }
+        else {
+            renderItem = <h4>Unable to load</h4>
+        }
+        return (<div>
+            {/* {JSON.stringify(this.props.props)} */}
+            {renderItem}
         </div>
         );
     }

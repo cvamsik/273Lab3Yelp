@@ -66,6 +66,12 @@ module.exports = {
     GET_REGISTRATIONS_CUSTOMER: '/customerRegistrations',
     GET_REGISTRATIONS_EVENT: '/eventRegistrations',
 
+
+    //Images
+    GET_IMAGE_USER_PROFILE:'/userProfile',
+    POST_IMAGE_USER_PROFILE: '/userProfile',
+    UPDATE_USER_IMAGE: '/userProfile',
+
     /**Response status codes */
     RES_UNKNOWN_ERROR: 502,
     RES_BAD_REQUEST: 400,

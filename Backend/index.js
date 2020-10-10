@@ -7,6 +7,12 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 app.set('view engine', 'ejs');
+const path = require('path');
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
+app.use('/imageData', express.static(path.join(__dirname, 'imageData')))
+
+// app.use(express.static(path.join(__dirname, 'imageData')));
 
 
 
@@ -16,10 +22,8 @@ const restaurantRoutes = require('./routes/restaurantRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
+const imageRoutes = require('./routes/imageRoutes');
 
-
-//use cors to allow cross origin resource sharing
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 //use express session to maintain session data
 app.use(session({
@@ -50,6 +54,7 @@ app.use('/customer', customerRoutes);
 app.use('/restaurant', restaurantRoutes);
 app.use('/orders', orderRoutes);
 app.use('/reviews', reviewRoutes);
+app.use('/images', imageRoutes);
 
 app.use('/events', eventRoutes);
 

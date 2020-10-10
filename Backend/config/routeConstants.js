@@ -6,8 +6,7 @@ module.exports = {
     GET_ALL_CUSTOMER_PROFILES: '/allcustomers',
     POST_CUSTOMER_SIGNUP: '/signup',
     UPDATE_CUSTOMER_PROFILE: '/profile',
-    POST_CUSTOMER_IMAGE: '/image',
-    UPDATE_CUSTOMER_IMAGE: '/image',
+   
 
 
     //Login Routes
@@ -66,6 +65,11 @@ module.exports = {
     GET_REGISTRATIONS_EVENT: '/eventRegistrations',
 
 
+
+    //Images
+    GET_IMAGE_USER_PROFILE:'/userProfile',
+    POST_IMAGE_USER_PROFILE: '/userProfile',
+    UPDATE_USER_IMAGE: '/userProfile',
 
     /**Response status codes */
     RES_UNKNOWN_ERROR: 502,
