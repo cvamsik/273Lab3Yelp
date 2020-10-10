@@ -9,6 +9,10 @@ var cors = require('cors');
 app.set('view engine', 'ejs');
 const path = require('path');
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+// const formidable = require('express-formidable');
+// app.use(formidable());
+
+
 
 app.use('/imageData', express.static(path.join(__dirname, 'imageData')))
 
