@@ -165,14 +165,15 @@ class UserProfile extends Component {
 
                 </div>
             );
-        } else {
-            return (
-                <div>
-                    <br />
-                    <p>Choose before Pressing the Upload button</p>
-                </div>
-            );
         }
+        // else {
+        //     return (
+        //         <div>
+        //             <br />
+        //             <p>Choose before Pressing the Upload button</p>
+        //         </div>
+        //     );
+        // }
     };
 
 
@@ -196,15 +197,9 @@ class UserProfile extends Component {
             <div className="profile">
                 <div className="imageDiv">
                     <img src={profileURL} width='250px' height='250px' className="imageCont" />
-
                     <input type="file" onChange={this.onFileChange} />
-
-
                     <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
-
                     {this.fileData()}
-
-
                 </div>
 
                 <form className="userdetails" encType="multipart/form-data">

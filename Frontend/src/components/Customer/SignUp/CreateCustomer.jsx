@@ -20,69 +20,66 @@ import CommonNavbar from '../../Common/Navbar/CommonNavbar';
 //Define a Login Component
 class CreateUser extends Component {
 
-    // state = {
-    //     name: "",
-    //     email: "",
-    //     password: "",
-    //     confirmPassword: "",
-    //     birthday: "",
-    //     about: "",
-    //     phone: "",
-    //     userType: "1",
-    //     thingsLoved: "",
-    //     findMe: "",
-    //     blogs: ""
-    // };
-    //Bind the handlers to this class
-    // this.usernameChangeHandler = this.usernameChangeHandler.bind(this);
-    // this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
-    // this.submitLogin = this.submitLogin.bind(this);
+    state = {
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        birthday: "",
+        about: "",
+        phone: "",
+        userType: "1",
+        thingsLoved: "",
+        findMe: "",
+        blogs: ""
+    };
 
-    //Call the Will Mount to set the auth Flag to false
-    // componentWillMount() {
-    //     this.setState({
-    //         authFlag: false
-    //     })
-    // }
 
-    //submit Login handler to send a request to the node backend
-    // submitLogin = (e) => {
-    //     var headers = new Headers();
-    //     //prevent page from refresh
-    //     e.preventDefault();
-    //     const data = {
-    //         username: this.state.username,
-    //         password: this.state.password
-    //     }
-    //     //set the with credentials to true
-    //     axios.defaults.withCredentials = true;
-    //     //make a post request with the user data
-    //     axios.post('http://localhost:3001/login', data)
-    //         .then(response => {
-    //             console.log("Status Code : ", response.status);
-    //             if (response.status === 200) {
-    //                 this.setState({
-    //                     authFlag: true
-    //                 })
-    //             } else {
-    //                 this.setState({
-    //                     authFlag: false
-    //                 })
-    //             }
-    //         }).catch((err) => {
-    //             console.log(err);
-    //             this.setState({
-    //                 loginStatus: "Login Failed"
-    //             });
-    //             //window.alert("Login Failed");
-    //         });
-    // }
+    // Call the Will Mount to set the auth Flag to false
+    componentWillMount() {
+        this.setState({
+            authFlag: false
+        })
+    }
 
-    // handleChange = (e) => {
-    //     //  console.log(this.state);
-    //     const { value, name } = e.target;
-    //     this.setState({ [name]: value });
-    // };
+    // submit Login handler to send a request to the node backend
+    submitLogin = (e) => {
+        var headers = new Headers();
+        //prevent page from refresh
+        e.preventDefault();
+        const data = {
+            username: this.state.username,
+            password: this.state.password
+        }
+        //set the with credentials to true
+        axios.defaults.withCredentials = true;
+        //make a post request with the user data
+        axios.post('http://localhost:3001/login', data)
+            .then(response => {
+                console.log("Status Code : ", response.status);
+                if (response.status === 200) {
+                    this.setState({
+                        authFlag: true
+                    })
+                } else {
+                    this.setState({
+                        authFlag: false
+                    })
+                }
+            }).catch((err) => {
+                console.log(err);
+                this.setState({
+                    loginStatus: "Login Failed"
+                });
+                //window.alert("Login Failed");
+            });
+    }
+
+    handleChange = (e) => {
+        //  console.log(this.state);
+        const { value, name } = e.target;
+        this.setState({ [name]: value });
+    };
     nameHandler = (e) => { console.log("name "); this.props.nameHandler(e.target.value); }
     emailHandler = (e) => { this.props.emailHandler(e.target.value); }
     passwordHandler = (e) => { this.props.passwordHandler(e.target.value); }

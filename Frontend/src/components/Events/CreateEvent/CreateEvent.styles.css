@@ -3,19 +3,24 @@
   grid-template-columns: auto auto;
   justify-content: space-around;
   gap: 0px 20px;
+  margin-top: 50px;
   border: solid 1px rgb(204, 204, 204);
   border-radius: 3px;
   padding: 20px;
-  width: 700px;
   margin: 10px;
 }
 .cont {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
+  display: grid;
+  margin-top: 30px;
+
+  justify-items: center;
 }
 .form-group1 {
   width: 250px;
   align-content: center;
   justify-content: center;
+}
+.imageDiv {
+  grid-area: 1/1/5/1;
+  margin-top: 30px;
 }

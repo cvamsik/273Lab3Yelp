@@ -95,3 +95,124 @@ module.exports.uploadUserProfile = async (req, res) => {
 
 
 }
+
+
+module.exports.uploadMenuItem = async (req, res) => {
+    console.log("Inside image POST Dish Item service");
+    let email_id;
+    let filename = `Dish_${Date.now()}.jpg`;
+    let pathname = '/imageData/Dishes/'
+
+    try {
+
+        const storage = multer.diskStorage({
+            destination(req, file, cb) {
+                cb(null, './imageData/Dishes/');
+            },
+            filename(req, file, cb) {
+                console.log(req.body)
+                cb(null, `${filename}`);
+            },
+        });
+
+        const upload = multer({
+            storage
+        }).single('file');
+
+        await upload(req, res, (err) => {
+            // email_id = req.body.email_id
+            // filename = `${email_id}_${Date.now()}.jpg`;
+            // console.log(filename)
+            if (err instanceof multer.MulterError) {
+                return res.status(500);
+            }
+            if (err) {
+                return res.status(500);
+            }
+            console.log(`${pathname}${filename}`)
+            res.status(RES_SUCCESS).end(`${pathname}${filename}`);
+            //         con.query(`
+            //         INSERT INTO profile_images(user_email,image_path) VALUES ("${req.body.email_id}","${pathname}${filename}")
+            //  `, (error, result) => {
+            //             if (error) {
+            //                 console.log(error);
+            //                 //res.setHeader(CONTENT_TYPE, APP_JSON);
+            //                 con.rollback();
+            //                 res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+            //             }
+            //             else {
+            //                 console.log(JSON.stringify(result));
+            //                 //res.setHeader(CONTENT_TYPE, APP_JSON);
+            //                 res.status(RES_SUCCESS).end(JSON.stringify(result));
+            //             }
+            //         });
+
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+    }
+
+
+}
+
+
+module.exports.uploadEvent = async (req, res) => {
+    console.log("Inside image POST Event Item service");
+    let email_id;
+    let filename = `Dish_${Date.now()}.jpg`;
+    let pathname = '/imageData/Events/'
+    try {
+
+        const storage = multer.diskStorage({
+            destination(req, file, cb) {
+                cb(null, './imageData/Events/');
+            },
+            filename(req, file, cb) {
+                console.log(req.body)
+                cb(null, `${filename}`);
+            },
+        });
+
+        const upload = multer({
+            storage
+        }).single('file');
+
+        await upload(req, res, (err) => {
+            event_id = req.body.event_id
+            // filename = `${event_id}_${Date.now()}.jpg`;
+            console.log(filename)
+            if (err instanceof multer.MulterError) {
+                return res.status(500);
+            }
+            if (err) {
+                return res.status(500);
+            }
+            console.log(`${pathname}${filename}`)
+            res.status(RES_SUCCESS).end(`${pathname}${filename}`);
+            con.query(`
+                    INSERT INTO event_images(event_id,image_url) VALUES ("${req.body.event_id}","${pathname}${filename}")
+             `, (error, result) => {
+                if (error) {
+                    console.log(error);
+                    //res.setHeader(CONTENT_TYPE, APP_JSON);
+                    con.rollback();
+                    res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+                }
+                else {
+                    console.log(JSON.stringify(result));
+                    //res.setHeader(CONTENT_TYPE, APP_JSON);
+                    res.status(RES_SUCCESS).end(JSON.stringify(result));
+                }
+            });
+
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+    }
+
+
+}

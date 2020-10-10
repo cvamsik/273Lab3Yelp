@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import routeConstants, { UPDATE_RESTAURANT_PROFILE } from '../../../Config/routeConstants';
 import './RestaurantProfile.styles.css'
+import { cookie } from 'react-cookies';
 
 
 
@@ -64,10 +65,81 @@ class RestaurantProfile extends Component {
 
         })
     }
+
+
+
+    onFileUpload = e => {
+        // e.preventDefault();
+        console.log(this.state)
+        //  this.setState({ projectId: this.props.match.params.projectId })
+        let formData = new FormData();
+
+        formData.append("file", this.state.selectedFile);
+        formData.append('customer_id', this.state.customer_id)
+        formData.append('customer_name', this.state.customer_name)
+        formData.append('email_id', cookie.load('email'))
+
+        console.log(this.state)
+        console.log(JSON.stringify(formData.get("customer_id")))
+        Axios
+            .post(
+                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_USER_PROFILE}`,
+                // {
+                //     file: formData,
+                //     customer_id: this.state.customer_id,
+                //     customer_name: this.state.customer_name
+                // }
+                formData
+            )
+            .then(response => {
+                window.location.reload(false)
+            });
+    };
+
+
+    fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+
+                    <p>File Name: {this.state.selectedFile.name}</p>
+
+                </div>
+            );
+        }
+        // else {
+        //     return (
+        //         <div>
+        //             <br />
+        //             <p>Choose before Pressing the Upload button</p>
+        //         </div>
+        //     );
+        // }
+    };
+
+
+
+
+    onFileChange = event => {
+
+        this.setState({ selectedFile: event.target.files[0] });
+        if (this.state.selectedFile) {
+            this.setState({ app: this.state.selectedFile.name });
+        }
+    };
     render() {
+        let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
+
         return (
-            <div>
-                <form className="formData">
+            <div className="resProfile">
+
+                <form className="formData6">
+                    <div className="imageDiv">
+                        <img src={profileURL} width='250px' height='250px' className="imageCont" />
+                        <input type="file" onChange={this.onFileChange} />
+                        <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
+                        {this.fileData()}
+                    </div>
                     <div className="profile">
                         {/* <div class="form-row"> */}
                         <div class="form-group col-md-3">
@@ -138,6 +210,7 @@ class RestaurantProfile extends Component {
                     </div>
                     {/* </div> */}
                     {/* <div class="form-row"> */}
+                    <div></div>
                     <div >
                         <button type="submit" onClick={this.handleSubmit} class="btn btn-danger">Update Details</button>
                     </div>

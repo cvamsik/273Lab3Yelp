@@ -7,10 +7,11 @@
 .formData {
   display: grid;
   grid-template-columns: auto auto;
-  gap: 0px 2px;
+  justify-content: space-around;
+  gap: 2px 4px;
   border: solid 1px rgb(204, 204, 204);
   border-radius: 3px;
   padding: 10px;
   margin: 20px;
-  /* width: 650px; */
+  /* width: 850px; */
 }

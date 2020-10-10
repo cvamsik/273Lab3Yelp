@@ -7,7 +7,7 @@ import './RestaurantMenuCard.styles.css'
 import { connect } from 'react-redux';
 import { addToCart, removeFromCart } from '../../../../reduxConfig/Cart/CartActions';
 import Axios from 'axios';
-import { BACKEND_URL, UPDATE_MENU_ITEM } from '../../../../Config/routeConstants';
+import routeConstants from '../../../../Config/routeConstants';
 // import {CART_ADD_ITEM,CART_REMOVE_ITEM} from '../../../reduxConfig/actionTypes'
 
 // const [expanded, setExpanded] = React.useState(false);
@@ -52,7 +52,7 @@ class RestaurantMenuCard extends Component {
             ...temp
         }
         console.log(postData)
-        Axios.put(`${BACKEND_URL}/restaurant${UPDATE_MENU_ITEM}`, temp).then((res) => {
+        Axios.put(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.UPDATE_MENU_ITEM}`, temp).then((res) => {
             console.log(res);
             window.alert("Updated Successfully");
         }).catch((err) => {
@@ -71,13 +71,14 @@ class RestaurantMenuCard extends Component {
             count: 1
 
         }
+        let imageURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
 
         return (
             <div className="menuItem">
                 <form className="formData">
                     <div className="profile">
                         <div className="restImage2">
-                            <img src={this.state.image_url} alt="Dish Image" className="img-thumbnail" width='130px' height='100px' />
+                            <img src={imageURL} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
                         </div>
                         <div class="form-group col-md-2">
                             <label >Name</label>

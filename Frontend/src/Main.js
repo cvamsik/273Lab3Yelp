@@ -80,10 +80,10 @@ class Main extends Component {
                 <Route exact path="/restaurant/signup" component={RestaurantSignUp} />
                 <Route exact path="/restaurant/home" component={RestaurantHome} />
                 <Route exact path="/restaurant/profile" component={RestaurantProfile} />
-                <Route exact path="/restaurant/createMenuItem" component={CreateMenuItem} />
+                <Route exact path="/restaurant/menu/create" component={CreateMenuItem} />
                 <Route exact path="/restaurant/orders" component={RestaurantOrders} />
                 <Route exact path="/restaurant/orderDetails" component={RestaurantOrderDetails} />
-                <Route exact path="/restaurant/menu" component={RestaurantMenu} />
+                <Route exact path="/restaurant/menu/list" component={RestaurantMenu} />
                 <Route exact path="/restaurant/reviews" component={RestaurantReviews} />
                 <Route exact path="/restaurant/events/create" component={CreateEvent} />
                 <Route exact path="/restaurant/events/list" component={DisplayRestaurantEvents} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { BACKEND_URL, POST_MENU_ITEM } from '../../../Config/routeConstants';
+import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
 
 class CreateMenuItem extends Component {
@@ -24,7 +24,7 @@ class CreateMenuItem extends Component {
             ...this.state
         }
         console.log(postData)
-        Axios.post(`${BACKEND_URL}/restaurant${POST_MENU_ITEM}`, postData).then((res) => {
+        Axios.post(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`, postData).then((res) => {
             console.log(res);
             window.alert("Created Successfully");
         }).catch((err) => {
@@ -32,12 +32,82 @@ class CreateMenuItem extends Component {
             window.alert("Unable to create");
         })
     }
+
+
+
+    onFileUpload = e => {
+        e.preventDefault();
+        console.log(this.state)
+        //  this.setState({ projectId: this.props.match.params.projectId })
+        let formData = new FormData();
+
+        formData.append("file", this.state.selectedFile);
+        formData.append('customer_id', this.state.customer_id)
+        formData.append('customer_name', this.state.customer_name)
+        formData.append('email_id', cookie.load('email'))
+
+        console.log(this.state)
+        console.log(JSON.stringify(formData.get("customer_id")))
+        Axios
+            .post(
+                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_MENU_ITEM}`,
+                // {
+                //     file: formData,
+                //     customer_id: this.state.customer_id,
+                //     customer_name: this.state.customer_name
+                // }
+                formData
+            )
+            .then(response => {
+                this.setState({ image_url: response.data })
+            });
+    };
+
+
+    fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+
+                    <p>File Name: {this.state.selectedFile.name}</p>
+
+                </div>
+            );
+        }
+        // else {
+        //     return (
+        //         <div>
+        //             <br />
+        //             <p>Choose before Pressing the Upload button</p>
+        //         </div>
+        //     );
+        // }
+    };
+
+
+
+
+    onFileChange = event => {
+
+        this.setState({ selectedFile: event.target.files[0] });
+        if (this.state.selectedFile) {
+            this.setState({ app: this.state.selectedFile.name });
+        }
+    };
+
     render() {
+        let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
         return (<div className="menuItem">
+
             <form className="formData">
                 <div className="profile">
                     <div >
-                        <img src={this.state.image_url} alt="Dish Image" className="img-thumbnail" width='130px' height='100px' />
+                        <div className="imageDiv">
+                            <img src={profileURL} width='130px' height='130px' className="imageCont" />
+                            <input type="file" onChange={this.onFileChange} />
+                            <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
+                            {this.fileData()}
+                        </div>
                     </div>
                     <div class="form-group col-md-2">
                         <label >Name</label>

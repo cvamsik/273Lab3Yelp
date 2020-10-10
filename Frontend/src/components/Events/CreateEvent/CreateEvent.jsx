@@ -56,11 +56,78 @@ class CreateEvent extends Component {
             // this.setState({ redirectA: true })
         }
     }
+    onFileUpload = e => {
+        // e.preventDefault();
+        console.log(this.state)
+        //  this.setState({ projectId: this.props.match.params.projectId })
+        let formData = new FormData();
+
+        formData.append("file", this.state.selectedFile);
+        formData.append('customer_id', this.state.customer_id)
+        formData.append('customer_name', this.state.customer_name)
+        formData.append('email_id', cookie.load('email'))
+
+        console.log(this.state)
+        console.log(JSON.stringify(formData.get("customer_id")))
+        Axios
+            .post(
+                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_EVENT}`,
+                // {
+                //     file: formData,
+                //     customer_id: this.state.customer_id,
+                //     customer_name: this.state.customer_name
+                // }
+                formData
+            )
+            .then(response => {
+                window.location.reload(false)
+            });
+    };
+
+
+    fileData = () => {
+        if (this.state.selectedFile) {
+            return (
+                <div>
+
+                    <p>File Name: {this.state.selectedFile.name}</p>
+
+                </div>
+            );
+        }
+        // else {
+        //     return (
+        //         <div>
+        //             <br />
+        //             <p>Choose before Pressing the Upload button</p>
+        //         </div>
+        //     );
+        // }
+    };
+
+
+
+
+    onFileChange = event => {
+
+        this.setState({ selectedFile: event.target.files[0] });
+        if (this.state.selectedFile) {
+            this.setState({ app: this.state.selectedFile.name });
+        }
+    };
     render() {
+        let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
 
         return (<div className="cont">
             <h4>Create Event</h4>
+            {/* <div className="imageDiv">
+                <img src={profileURL} width='150px' height='150px' className="imageCont" />
+                <input type="file" onChange={this.onFileChange} />
+                <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
+                {this.fileData()}
+            </div> */}
             <form className="formData2" onSubmit={this.handleSubmit}>
+
                 <div class="form-group1 ">
                     <label>Name</label>
                     <input onChange={this.inputChangeHandler} required type="text" class="form-control" name="event_name" value={this.state.event_name} /></div>
