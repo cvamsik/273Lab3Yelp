@@ -45,7 +45,7 @@ class RestaurantMenuCard extends Component {
         this.setState({ ...stateData })
     }
     handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         let { catMapping, ...temp } = this.state;
         const postData = {
@@ -74,41 +74,41 @@ class RestaurantMenuCard extends Component {
         let imageURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
 
         return (
-            <div className="menuItem">
-                <form className="formData">
-                    <div className="profile">
-                        <div className="restImage2">
-                            <img src={imageURL} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label >Name</label>
-                            <input type="text" onChange={this.inputChangeHandler} className="form-control" name="dish_name" value={this.state.dish_name} />
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label >Description</label>
-                            <input onChange={this.inputChangeHandler} type="text" className="form-control" name="description" value={this.state.description} />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label >Ingredients</label>
-                            <input type="text" onChange={this.inputChangeHandler} className="form-control" name="ingredients" value={this.state.ingredients} />
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            <label>Price</label>
-                            <input type="text" onChange={this.inputChangeHandler} className="form-control" name="price" value={this.state.price} />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >Category</label>
-                            <select value={this.state.category_id} onChange={this.inputChangeHandler} selected={this.state.category_id} name="category_id" class="form-control" >
-                                <option value="1">Desserts</option>
-                                <option value="2">Salads</option>
-                                <option value="3">Beverages</option>
-                                <option value="4">Appetizers</option>
-                                <option value="5">Main Course</option>
-
-                            </select>
-                        </div>
+            <div className="menuItemRes">
+                <form className="formDataRes">
+                    {/* <div className="profile"> */}
+                    <div className="restImage2">
+                        <img src={imageURL} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
                     </div>
+                    <div class="form-group ">
+                        <label >Name</label>
+                        <input type="text" onChange={this.inputChangeHandler} className="form-control" name="dish_name" value={this.state.dish_name} />
+                    </div>
+                    <div class="form-group ">
+                        <label >Description</label>
+                        <input onChange={this.inputChangeHandler} type="text" className="form-control" name="description" value={this.state.description} />
+                    </div>
+                    <div class="form-group ">
+                        <label >Ingredients</label>
+                        <input type="text" onChange={this.inputChangeHandler} className="form-control" name="ingredients" value={this.state.ingredients} />
+                    </div>
+
+                    <div class="form-group ">
+                        <label>Price</label>
+                        <input type="text" onChange={this.inputChangeHandler} className="form-control" name="price" value={this.state.price} />
+                    </div>
+                    <div class="form-group ">
+                        <label >Category</label>
+                        <select value={this.state.category_id} onChange={this.inputChangeHandler} selected={this.state.category_id} name="category_id" class="form-control" >
+                            <option value="1">Desserts</option>
+                            <option value="2">Salads</option>
+                            <option value="3">Beverages</option>
+                            <option value="4">Appetizers</option>
+                            <option value="5">Main Course</option>
+
+                        </select>
+                    </div>
+                    {/* </div> */}
                     {/* </div> */}
                     {/* <div class="form-row"> */}
                     <div >

@@ -63,7 +63,7 @@ class Main extends Component {
                 <Route exact path="/login" component={Login} />
 
                 <Route exact path='/customer/home' component={UserHome} />
-                <Route exact path="/customerSignup" component={CreateUser} />
+                <Route exact path="/customer/signup" component={CreateUser} />
                 <Route exact path='/customer/profile' component={UserProfile} />
                 <Route exact path='/customer/restaurants' component={RestaurantList} />
                 <Route exact path='/customer/checkout' component={CheckOut} />

@@ -28,19 +28,83 @@ class Menu extends Component {
         })
     }
     render() {
-        let dishes = this.state.res.map((dish) =>
-            <MenuItem menuItem={dish} />
+        let desserts = [];
+        let salads = [];
+        let beverages = [];
+        let appetizers = [];
+        let mains = [];
+        let dishes = this.state.res.map((dish) => {
+            // <MenuItem menuItem={dish} />
+            // console.log(dish.category_id)
+            switch (dish.category_id) {
+                case 1:
+                    {
+                        desserts.push(<MenuItem menuItem={dish} />)
+                        break;
+                    }
+                case 2:
+                    {
+                        salads.push(<MenuItem menuItem={dish} />)
+                        break;
+                    }
+                case 3:
+                    {
+                        beverages.push(<MenuItem menuItem={dish} />)
+                        break;
+                    }
+                case 4:
+                    {
+                        appetizers.push(<MenuItem menuItem={dish} />)
+                        break;
+                    }
+                case 5:
+                    {
+                        mains.push(<MenuItem menuItem={dish} />)
+                        break;
+                    }
+                default:
+                    {
+
+                    }
+            }
+        }
         )
         // console.log(this.props)
         return (
-            <div className="menuPage">
+            <div className="menuPage1">
                 <h3>{localStorage.getItem('restaurant_name')}</h3>
                 <h4>Menu</h4>
-                <div className="menuCheckout">
+                <div className="menuCheckout1">
 
-                    <div className="menuList2">
+                    <div className="menuListFlex">
 
-                        {dishes}
+                        {/* {dishes} */}
+                        <h5>Appetizers</h5>
+                        <div className="menuList11">
+
+                            {appetizers}
+                        </div>
+                        <h5>Salads</h5>
+                        <div className="menuList11">
+
+
+                            {salads}
+                        </div>
+                        <h5>Mains</h5>
+                        <div className="menuList11">
+
+                            {mains}
+                        </div>
+                        <h5>Desserts</h5>
+                        <div className="menuList11">
+
+                            {desserts}
+                        </div>
+                        <h5>Beverages</h5>
+                        <div className="menuList11">
+
+                            {beverages}
+                        </div>
 
                     </div>
                     <Checkout props={this.props} />

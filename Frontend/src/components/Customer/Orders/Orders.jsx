@@ -36,6 +36,7 @@ class Orders extends Component {
 
         }
         return (<div className="ordersList">
+            <h4>Your Orders</h4>
             {resList}
         </div>);
     }

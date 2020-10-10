@@ -17,7 +17,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
-
+import routeConstants from '../../../../Config/routeConstants'
 import './MenuItem.styles.css'
 
 import { connect } from 'react-redux';
@@ -74,6 +74,7 @@ class MenuItem extends Component {
             count: 1
 
         }
+        // console.log(menuItem)
         return (
             <div className="menuItem">
                 <Card className={classes.root}>
@@ -90,7 +91,7 @@ class MenuItem extends Component {
                     />
                     <CardMedia
                         className={classes.media}
-                        image="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?webp=true&quality=90&resize=620%2C563 "
+                        image={`${routeConstants.BACKEND_URL}${menuItem.image_url}`}
                         title={menuItem.dish_name}
                     />
 

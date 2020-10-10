@@ -64,7 +64,7 @@ class OrderCard extends Component {
                         restaurant_id: this.props.props.res.restaurant_id
                     }
                 }} component={Menu}><button >Check the Menu</button></Link> */}
-                <button onClick={this.handleClick}>Order Details</button>
+                <button className='btn btn-danger' onClick={this.handleClick}>Order Details</button>
             </div>
         </div>);
     }

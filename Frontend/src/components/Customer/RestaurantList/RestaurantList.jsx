@@ -9,12 +9,30 @@ class RestaurantList extends Component {
         search_string: ""
     }
     componentDidMount = () => {
-        Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_ALL_RESTAURANTS}`).then((res) => {
-            // console.log(res.data[0]);
-            this.setState({ resData: [...res.data] })
-        }).catch((err) => {
-            console.log(err);
-        })
+        console.log(localStorage.getItem('search_string'))
+        if (localStorage.getItem('search_string')) {
+            console.log("In search part")
+            Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
+                params: {
+                    search_string: localStorage.getItem('search_string')
+                }
+            }).then((res) => {
+                console.log(res.data);
+                this.setState({ resData: [...res.data] })
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+        else {
+            console.log("not search part")
+
+            Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_ALL_RESTAURANTS}`).then((res) => {
+                // console.log(res.data[0]);
+                this.setState({ resData: [...res.data] })
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
     }
 
     inputChangeHandler = (e) => {
@@ -54,8 +72,8 @@ class RestaurantList extends Component {
 
                 <div className="searchComp">
                     <form class="form-inline" onSubmit={this.searchHandler}>
-                        <input class="form-control mr-sm-2" type="text" name="search_string" placeholder="Search" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <input class="form-control mr-sm-2" type="text" name="search_string" style={{ width: '450px' }} placeholder="Search for Restaurants, Locations and Dishes" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
 
