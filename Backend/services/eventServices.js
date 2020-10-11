@@ -17,13 +17,14 @@ module.exports.getAllEvents = (req, res) => {
 
     console.log("Inside Events GET all service");
     console.log(req.query)
+    //  INNER JOIN event_images i ON i.event_id=e.event_id 
     con.query(`
     SELECT e.event_id, event_name, event_description, event_date,
  event_time, event_creator_id, event_latitude, event_longitude, 
- event_hashtags, restaurant_name,restaurant_address,image_url  
+ event_hashtags, restaurant_name,restaurant_address
  FROM events e 
  INNER JOIN restaurant_data  r ON e.event_creator_id=r.restaurant_id
- INNER JOIN event_images i ON i.event_id=e.event_id 
+
  WHERE e.event_date>curdate() ORDER BY event_date DESC ;
         `
         , (error, result) => {

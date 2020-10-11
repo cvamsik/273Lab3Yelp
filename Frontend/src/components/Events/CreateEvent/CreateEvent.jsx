@@ -120,17 +120,11 @@ class CreateEvent extends Component {
 
         return (<div className="cont">
             <h4>Create Event</h4>
-            {/* <div className="imageDiv">
-                <img src={profileURL} width='150px' height='150px' className="imageCont" />
-                <input type="file" onChange={this.onFileChange} />
-                <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
-                {this.fileData()}
-            </div> */}
             <form className="formData2" onSubmit={this.handleSubmit}>
 
                 <div class="form-group1 ">
                     <label>Name</label>
-                    <input onChange={this.inputChangeHandler} required type="text" class="form-control" name="event_name" value={this.state.event_name} /></div>
+                    <input onChange={this.inputChangeHandler} required type="text" id="event_name" class="form-control" name="event_name" value={this.state.event_name} /></div>
                 <div class="form-group1 ">
                     <label>Description</label><input required onChange={this.inputChangeHandler} type="text" class="form-control" name="event_description" value={this.state.event_description} /></div>
                 <div class="form-group1 ">
@@ -140,7 +134,7 @@ class CreateEvent extends Component {
                 <div class="form-group1 ">
                     <label>Latitude</label><input required onChange={this.inputChangeHandler} type="text" class="form-control" name="event_latitude" value={this.state.event_latitude} /></div>
                 <div class="form-group1 ">
-                    <label>Longitude</label><input required onChange={this.inputChangeHandler} type="text" class="form-control" name="event_longitude" value={this.state.event_longitude} /></div>
+                    <label>Longitude</label><input required onChange={this.inputChangeHandler} type="text" id="event_longitude" class="form-control" name="event_longitude" value={this.state.event_longitude} /></div>
                 <div class="form-group1 ">
                     <label>Hashtags</label> <input required onChange={this.inputChangeHandler} type="text" class="form-control" name="event_hashtags" value={this.state.event_hashtags} /></div>
                 <div class="form-group1 ">
@@ -151,5 +145,4 @@ class CreateEvent extends Component {
     }
 }
 
-// export default RestaurantCard;
-export default withRouter(CreateEvent);
+export default CreateEvent;

@@ -19,6 +19,7 @@ class UserProfile extends Component {
         blog_ref: "",
         selected_file: null,
         img: null,
+        email_id: "",
         MODIFIED: "",
         image_path: "",
         disabled: true,
@@ -41,9 +42,9 @@ class UserProfile extends Component {
     // };
     componentWillMount() {
 
-        console.log("in edit profile")
+        // console.log("in edit profile")
         let body;
-        console.log(cookie.load("email"));
+        // console.log(cookie.load("email"));
         axios.get(`${routeConstants.BACKEND_URL}/customer${routeConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
@@ -51,9 +52,9 @@ class UserProfile extends Component {
                 }
             }).then((res) => {
 
-                console.log(this.state);
+                // console.log(this.state);
                 this.setState({ oldDetails: { ...res.data[0] }, ...res.data[0] }, () => {
-                    console.log(this.state);
+                    // console.log(this.state);
                 });
 
 
@@ -77,7 +78,7 @@ class UserProfile extends Component {
                 // Then create a local URL for that image and print it 
                 outside = URL.createObjectURL(images)
                 this.setState({ img: outside })
-                console.log(outside)
+                // console.log(outside)
             })
 
     }
@@ -112,7 +113,7 @@ class UserProfile extends Component {
         const req = {
             ...userDetails,
         };
-        console.log(req)
+        // console.log(req)
         axios
             .put(`${routeConstants.BACKEND_URL}/image${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
             .then((res) => {
@@ -129,7 +130,7 @@ class UserProfile extends Component {
 
     onFileUpload = e => {
         // e.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
         //  this.setState({ projectId: this.props.match.params.projectId })
         let formData = new FormData();
 
@@ -138,8 +139,8 @@ class UserProfile extends Component {
         formData.append('customer_name', this.state.customer_name)
         formData.append('email_id', cookie.load('email'))
 
-        console.log(this.state)
-        console.log(JSON.stringify(formData.get("customer_id")))
+        // console.log(this.state)
+        // console.log(JSON.stringify(formData.get("customer_id")))
         axios
             .post(
                 `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_USER_PROFILE}`,
@@ -190,14 +191,14 @@ class UserProfile extends Component {
 
     render() {
 
-        console.log(this.state)
+        // console.log(this.state)
         let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
         return (
 
             <div className="profile">
                 <div className="imageDiv">
                     <img src={profileURL} width='250px' height='250px' className="imageCont" />
-                    <input type="file" onChange={this.onFileChange} />
+                    <input type="file" onChange={this.onFileChange} id="fileinput" />
                     <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
                     {this.fileData()}
                 </div>
@@ -233,10 +234,11 @@ class UserProfile extends Component {
                             value={this.state.contact_number}
                             onChange={this.handleChange}
                             name="contact_number"
+                            id="contact"
                         />
                     </div>
                     <div className="option">
-                        Email: <input disabled value={this.state.email_id} name="email_id" />
+                        Email: <input disabled value={this.state.email_id} name="email_id" id="email_id" />
                     </div>
                     <div className="option">
                         Contact:{" "}
