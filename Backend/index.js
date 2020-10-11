@@ -1,5 +1,6 @@
 //import the require dependencies
 require('dotenv').config({ path: __dirname + '/.env' })
+let routeConstants = require('./config/routeConstants');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -27,7 +28,6 @@ const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const imageRoutes = require('./routes/imageRoutes');
-const routeConstants = require('../Frontend/src/Config/routeConstants');
 
 
 //use express session to maintain session data
