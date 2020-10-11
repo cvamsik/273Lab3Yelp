@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 app.set('view engine', 'ejs');
 const path = require('path');
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: `${routeConstants.FRONTEND_URL}`, credentials: true }));
 // const formidable = require('express-formidable');
 // app.use(formidable());
 
@@ -27,6 +27,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const imageRoutes = require('./routes/imageRoutes');
+const routeConstants = require('../Frontend/src/Config/routeConstants');
 
 
 //use express session to maintain session data
