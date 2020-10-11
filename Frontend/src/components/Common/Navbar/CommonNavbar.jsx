@@ -38,17 +38,16 @@ class CommonNavbar extends Component {
                                 <a className="nav-link" href="#">Restaurant Sign Up</a>
                             </li> */}
                             <li className="nav-item">
-                                <a className="nav-link" href="/events">Events</a>
+                                <a className="nav-link" href="/restaurant/events/all">Events</a>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Join Us!
                                   </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Customer</a>
-                                    <a className="dropdown-item" href="#">Restaurant</a>
-                                    <div className="dropdown-divider"></div>
-                                    <a className="dropdown-item" href="#">Something else here</a>
+                                    <a className="dropdown-item" href="/customer/signup">Customer</a>
+                                    <a className="dropdown-item" href="/restaurant/signup">Restaurant</a>
+
                                 </div>
                             </li>
                             {/* <li className="nav-item">
