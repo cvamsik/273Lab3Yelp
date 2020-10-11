@@ -55,13 +55,13 @@ class RegistrationCard extends Component {
         // if (restData.order_date != undefined) {
         //     restData.order_date = restData.order_date.split('T')[0]
         // }
-        // console.log(this.props);
+        // console.log(`${routeConstants.BACKEND_URL}${restData.image_url}`);
         return (<div>
             {/* {JSON.stringify(this.props.props)} */}
             {/* {redirectVar} */}
             <div className="restCard3">
                 <div className="eventImage">
-                    <img className="img-thumbnail" style={{ "marginBottom": '15px' }} src={restData.image_url} width='200px' height='150px' />
+                    <img className="img-thumbnail" style={{ borderRadius: '50%', objectFit: 'cover' }} src={`${routeConstants.BACKEND_URL}${restData.image_path}`} />
                 </div>
                 <h5>Name: {restData.customer_name}</h5>
                 <p>Email: {restData.email_id}</p>

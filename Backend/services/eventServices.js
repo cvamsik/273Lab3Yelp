@@ -177,9 +177,11 @@ module.exports.getRegistrationsByEventId = (req, res) => {
     console.log("Inside Events GET registrations by eventid service");
     console.log(req.query)
     con.query(`
-    SELECT event_id, registration_date, registration_time, c.customer_id, customer_name, contact_number, email_id FROM registrations as r 
+    SELECT event_id, registration_date, registration_time, c.customer_id, customer_name, contact_number, email_id,image_path
+     FROM registrations as r 
     INNER JOIN customer_primary_data c ON r.customer_id=c.customer_id
-    WHERE r.event_id=${req.query.event_id};
+    INNER JOIN profile_images p ON p.user_email=c.email_id
+    WHERE r.event_id=${req.query.event_id} ORDER BY p.image_path DESC LIMIT 1;
         `
         , (error, result) => {
             if (error) {

@@ -17,7 +17,7 @@ class RestaurantCard extends Component {
         localStorage.setItem('restaurant_name', this.props.props.res.restaurant_name)
         localStorage.setItem('latitude', this.props.props.res.address_latitude)
         localStorage.setItem('longitude', this.props.props.res.address_longitude)
-
+        localStorage.setItem('restaurant_email', this.props.props.res.email)
         this.props.history.push({
             pathname: 'restaurant/menu',
             state: {

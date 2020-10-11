@@ -11,7 +11,7 @@ class RestaurantList extends Component {
     componentDidMount = () => {
         console.log(localStorage.getItem('search_string'))
         if (localStorage.getItem('search_string')) {
-            console.log("In search part")
+            // console.log("In search part")
             Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
                 params: {
                     search_string: localStorage.getItem('search_string')

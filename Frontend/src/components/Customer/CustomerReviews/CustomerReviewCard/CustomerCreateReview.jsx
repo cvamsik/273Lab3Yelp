@@ -12,7 +12,7 @@ class CustomerReviewCard extends Component {
     }
 
     handleSubmit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         console.log(this.state);
         Axios.post(`${routeConstants.BACKEND_URL}/reviews${routeConstants.POST_REVIEW_CUSTOMER}`, {
             ...this.state,
@@ -21,6 +21,7 @@ class CustomerReviewCard extends Component {
         }).then((res) => {
             window.alert("Review Posted")
             console.log(res)
+            window.location.reload(false);
         }).catch((err) => {
             window.alert("Unable to post")
             console.log(err)

@@ -10,9 +10,12 @@
   margin: 20px;
 }
 .eventImage {
-  grid-row: 1 / span 8;
-  align-self: center;
+  grid-row: 1 / 6;
+  /* align-self: center; */
   justify-self: center;
   text-align: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  width: 150px;
+  height: 150px;
+  padding-bottom: 15px;
 }

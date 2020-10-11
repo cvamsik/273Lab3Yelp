@@ -4,6 +4,7 @@ import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 // import { login, logout } from '../../../reduxConfig/LoginActions'
 // import { connect } from 'react-redux';
+import yelpLogo from '../../../Assets/YelpLogo.svg.png'
 
 //create the Navbar Component
 class CommonNavbar extends Component {
@@ -20,7 +21,7 @@ class CommonNavbar extends Component {
             <div>
 
                 <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-                    <a class="navbar-brand" href="/">Yelp!</a>
+                    <a class="navbar-brand" href="/"><img src={yelpLogo} height='40px' /></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>

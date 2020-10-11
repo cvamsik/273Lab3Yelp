@@ -2,7 +2,7 @@
   background-image: url("../../../Assets/BackgroundImages/UserHomeJumbotron.jpg");
   background-size: cover;
   /* height: 100%; */
-  height: 500px;
+  height: 650px;
   display: flex;
   justify-content: center;
 }

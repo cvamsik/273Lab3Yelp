@@ -38,7 +38,7 @@ module.exports.createRestaurant = (req, res) => {
 
 
 module.exports.getMenuByEmail = (req, res) => {
-    console.log("Inside Restaurant GET menu service");
+    console.log("Inside Restaurant GET menu by res email service");
     console.log(req.query)
     con.query(`SELECT dish_id,dish_name,price,description,c.category_id,ingredients,image_url,m.menu_id FROM  restaurant_data as r  
                     INNER JOIN menus as m ON r.restaurant_id=m.restaurant_id 

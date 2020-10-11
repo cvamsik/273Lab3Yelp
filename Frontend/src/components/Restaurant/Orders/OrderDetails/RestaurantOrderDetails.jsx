@@ -53,7 +53,7 @@ class RestaurantOrderDetails extends Component {
         let restData = { ...this.state.resData }
         // console.log(restData)
         if (restData) {
-            restData.order_date = restData.order_date.split('T')[0]
+            restData.order_date = restData.order_date
         }
 
 

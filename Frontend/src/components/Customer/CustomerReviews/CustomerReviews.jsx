@@ -25,6 +25,7 @@ class CustomerReviews extends Component {
     }
     render() {
         let resList = []
+        console.log(this.state.resData)
         if (this.state.resData.length > 0) {
             resList = this.state.resData.map((res) => {
                 let obj = {
