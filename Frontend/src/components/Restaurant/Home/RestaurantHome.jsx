@@ -6,11 +6,28 @@ class RestaurantHome extends Component {
         return (
             <div className="homeLayout">
                 <div className="homeGrid">
-                    <a href="/restaurant/menu" class="sq list-group-item list-group-item-danger ">Menu</a>
-                    <a href="/restaurant/reviews" class="sq  list-group-item list-group-item-danger ">Reviews</a>
-                    <a href="/restaurant/orders" class="sq list-group-item list-group-item-danger ">Orders</a>
-                    <a href="/restaurant/events/home" class="sq list-group-item list-group-item-danger ">Events</a>
-                    <a href="/restaurant/profile" class="sq list-group-item list-group-item-danger ">Profile</a>
+                    <div className="sq zoom">
+                        <h4>Menu</h4>
+                        <a href="/restaurant/menu/list" >View and Update</a>
+                        <a href="/restaurant/menu/create">Add a Dish</a>
+                    </div>
+                    <div className="sq zoom">
+                        <h4>Reviews</h4>
+                        <a href="/restaurant/reviews" >View</a>
+                    </div>
+
+                    <div className="sq zoom">
+                        <h4>Orders</h4>
+                        <a href="/restaurant/orders" >View and Update</a>
+                    </div>
+                    <div className="sq zoom">
+                        <h4>Events</h4>
+                        <a href="/restaurant/events/create" >Create</a>
+                        <a href="/restaurant/events/list" >View your Events</a>
+                        <a href="/restaurant/events/all" >View all Events</a>
+
+                    </div>
+
                 </div>
             </div>
         );

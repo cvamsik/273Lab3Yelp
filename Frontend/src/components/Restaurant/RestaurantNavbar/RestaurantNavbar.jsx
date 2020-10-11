@@ -4,6 +4,7 @@ import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import { logout } from '../../../reduxConfig/LoginActions'
 import { connect } from 'react-redux';
+import yelpLogo from '../../../Assets/YelpLogo.svg.png'
 
 //create the Navbar Component
 class RestaurantNavbar extends Component {
@@ -31,8 +32,8 @@ class RestaurantNavbar extends Component {
             <div>
                 {redirectVar}
 
-                <nav className="navbar navbar-expand-lg navbar-light bg-danger">
-                    <a className="navbar-brand" href="/restaurant/home">Yelp!</a>
+                <nav className="navbar navbar-expand-lg navbar-light bg-danger ">
+                    <a className="navbar-brand" href="/restaurant/home"><img src={yelpLogo} width='90px' /></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -40,32 +41,37 @@ class RestaurantNavbar extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item active">
-                                <a className="nav-link" href="/restaurant/home">Home <span className="sr-only">(current)</span></a>
+                                <a className="nav-link text-light" href="/restaurant/home">Home <span className="sr-only">(current)</span></a>
                             </li>
-                            {/* <li class="nav-item">
-                                <a class="nav-link" href="#">Customer Sign Up</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Restaurant Sign Up</a>
-                            </li> */}
-                            <li className="nav-item">
-                                <a className="nav-link" href="/restaurant/events/home">Events</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/restaurant/orders">Orders</a>
-                            </li>
-                            {/* 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Join Us!
+                            <li class="nav-item dropdown ">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Menu
                                   </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Customer</a>
-                                    <a class="dropdown-item" href="#">Restaurant</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-danger" href="/restaurant/menu/list">View and Update</a>
+                                    <a class="dropdown-item text-danger" href="/restaurant/menu/create">Add a dish</a>
                                 </div>
-                            </li> */}
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Events
+                                  </a>
+                                <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-danger" href="/restaurant/events/create">Create</a>
+                                    <a class="dropdown-item text-danger" href="/restaurant/events/list">View Your Events</a>
+                                    <a class="dropdown-item text-danger" href="/restaurant/events/all" >View All Events</a>
+
+                                    {/* <div class="dropdown-divider"></div> */}
+                                </div>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-light" href="/restaurant/reviews">Reviews</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link text-light" href="/restaurant/orders">Orders</a>
+                            </li>
+
+
                             {/* <li class="nav-item">
                                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                             </li> */}
@@ -75,8 +81,8 @@ class RestaurantNavbar extends Component {
                             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form> */}
-                        <a className="nav-link" style={{ color: "black" }} href="/restaurant/profile">Profile</a>
-                        < button className="nav-link" style={{
+                        <a className="nav-link text-light" style={{ color: "black" }} href="/restaurant/profile">Profile</a>
+                        < button className="nav-link text-light" style={{
                             backgroundColor: "Transparent",
                             border: "none",
                             cursor: "pointer",

@@ -1,10 +1,9 @@
 .homeGrid {
   display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 15px;
-  width: 50%;
-  align-self: center;
-  margin: 30px;
+  grid-auto-flow: column;
+  grid-template-rows: auto;
+  gap: 40px;
+  position: absolute;
 }
 
 /* .grp {
@@ -15,14 +14,46 @@
   /* display: flex;
   justify-content: space-between; */
   align-items: center;
-  height: 100%;
+  background-image: url("../../../Assets//BackgroundImages/RestaurantHome.jpg");
+  background-size: cover;
+  height: 92vh;
+  align-items: center;
+  justify-items: center;
+  display: flex;
+  justify-content: center;
 }
 .sq {
   text-align: center;
   text-decoration: none;
+  color: white;
+  min-width: 150px;
+  min-height: 150px;
+  max-width: 150px;
+  /* font-size: 20px; */
+  border-radius: 15px;
+  background-color: rgba(255, 43, 43, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
 
-  padding-top: 25%;
-  min-width: 140px;
-  min-height: 140px;
-  max-width: 140px;
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.zoom {
+  transition: transform 0.4s; /* Animation */
+  width: 170px;
+  height: 170px;
+}
+
+.zoom:hover {
+  transform: scale(
+    1.2
+  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
