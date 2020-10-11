@@ -194,7 +194,6 @@ CREATE TABLE events
 
 CREATE TABLE event_images
 (
-    image_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
     event_id int NOT NULL,
     image_url varchar(400) NOT NULL,
     FOREIGN KEY(event_id) REFERENCES events(event_id)
@@ -215,3 +214,8 @@ CREATE TABLE registrations
 
 
 
+CREATE TABLE profile_images
+(
+    user_email varchar(255) NOT NULL,
+    image_path varchar(255) NOT NULL
+);
