@@ -62,7 +62,7 @@ module.exports.createCustomer = (req, res) => {
         INSERT INTO login_credentials (email_id,user_password,user_type) VALUES ("${req.body.EMAIL}","${req.body.PASSWORD}","1");
         INSERT INTO customer_primary_data (customer_name, birthday, contact_number,email_id,about) VALUES ("${req.body.NAME}", "${req.body.BIRTHDAY}",${req.body.PHONE},"${req.body.EMAIL}","${req.body.ABOUT}");
         INSERT INTO customer_secondary_data (customer_id,things_loved,find_me,blog_ref,singup_date ) VALUES(LAST_INSERT_ID(),"${req.body.THINGS_LOVED}","${req.body.FIND_ME}","${req.body.BLOG_REF}",CURDATE());
-        INSERT INTO profile_images (user_email) VALUES (${req.body.EMAIL});
+        INSERT INTO profile_images (user_email,image_path) VALUES ("${req.body.EMAIL}"," ");
         COMMIT; `
         , (error, result) => {
             if (error) {
