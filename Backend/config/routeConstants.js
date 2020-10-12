@@ -1,5 +1,6 @@
 module.exports = {
     FRONTEND_URL: "http://localhost:3000",
+    BACKEND_URL: "http://localhost:3001",
 
     //CustomerRoutes
     GET_CUSTOMER_PROFILE: '/profile',
