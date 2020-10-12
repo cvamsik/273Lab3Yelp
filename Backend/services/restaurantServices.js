@@ -18,7 +18,15 @@ module.exports.createRestaurant = (req, res) => {
     con.query(
         `BEGIN;
         INSERT INTO login_credentials (email_id,user_password,user_type) VALUES ("${req.body.email}","${req.body.password}","2");
-        INSERT INTO restaurant_data (restaurant_name,restaurant_location, restaurant_description,restaurant_address,address_city,address_state,address_postal_code,address_latitude,address_longitude,primary_phone,secondary_phone,open_time,close_time,email) VALUES ("${req.body.restaurant_name}","${req.body.restaurant_location}", "${req.body.restaurant_description}","${req.body.restaurant_address}","${req.body.address_city}","${req.body.address_state}","${req.body.address_postal_code}","${req.body.address_latitude}","${req.body.address_longitude}","${req.body.primary_phone}","${req.body.secondary_phone}","${req.body.open_time}","${req.body.close_time}","${req.body.email}");
+        INSERT INTO restaurant_data 
+        (restaurant_name,restaurant_location, restaurant_description,restaurant_address,address_city,address_state,
+            address_postal_code,address_latitude,address_longitude,primary_phone,secondary_phone,open_time,close_time,email) 
+            VALUES ("${req.body.restaurant_name}","${req.body.restaurant_location}", "${req.body.restaurant_description}",
+            "${req.body.restaurant_address}","${req.body.address_city}","${req.body.address_state}","${req.body.address_postal_code}",
+            "${req.body.address_latitude}","${req.body.address_longitude}","${req.body.primary_phone}","${req.body.secondary_phone}",
+            "${req.body.open_time}","${req.body.close_time}","${req.body.email}");
+
+        INSERT INTO menus (restaurant_id) VALUES(LAST_INSERT_ID());
         COMMIT; `
         , (error, result) => {
             if (error) {

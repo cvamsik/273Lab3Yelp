@@ -71,15 +71,15 @@ class UserProfile extends Component {
         // }).catch((err) => {
         //     console.log(err)
         // })
-        let outside;
-        fetch(`${routeConstants.BACKEND_URL}/imageData/TestImage.jpg`)
-            .then(response => response.blob())
-            .then(images => {
-                // Then create a local URL for that image and print it 
-                outside = URL.createObjectURL(images)
-                this.setState({ img: outside })
-                // console.log(outside)
-            })
+        // let outside;
+        // fetch(`${routeConstants.BACKEND_URL}/imageData/TestImage.jpg`)
+        //     .then(response => response.blob())
+        //     .then(images => {
+        //         // Then create a local URL for that image and print it 
+        //         outside = URL.createObjectURL(images)
+        //         this.setState({ img: outside })
+        //         // console.log(outside)
+        //     })
 
     }
 
