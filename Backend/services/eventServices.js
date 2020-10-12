@@ -149,10 +149,9 @@ module.exports.getRegistrationsByCustomerID = (req, res) => {
     con.query(`
     SELECT e.event_id, event_name, event_description, event_date,
  event_time, event_creator_id, event_latitude, event_longitude, 
- event_hashtags, restaurant_name,restaurant_address,image_url,registration_date,registration_time
+ event_hashtags, restaurant_name,restaurant_address,registration_date,registration_time
  FROM events e 
  INNER JOIN restaurant_data  r ON e.event_id=r.restaurant_id
- INNER JOIN event_images i ON i.event_id=e.event_id 
  INNER JOIN registrations reg ON reg.event_id=e.event_id
  WHERE e.event_date>curdate() AND reg.customer_id IN (SELECT customer_id from customer_primary_data WHERE email_id="${req.query.email_id}") ORDER BY event_date DESC ;
         `
