@@ -20,16 +20,26 @@ const dbConfig = {
     password: process.env.SQL_PASSWORD,
     database: process.env.SQL_DATABASE
 }
-const con = mysql.createConnection({ ...dbConfig, multipleStatements: true });
+// const con = mysql.createConnection({ ...dbConfig, multipleStatements: true });
 
 
-con.connect(function (err) {
+// con.connect(function (err) {
+//     //console.log(process.env);
+//     if (err) throw err;
+//     console.log('Connected to DB!');
+// });
+
+
+
+
+const pool = mysql.createPool({ ...dbConfig, multipleStatements: true });
+pool.getConnection(function (err) {
     //console.log(process.env);
     if (err) throw err;
-    console.log('Connected to DB!');
+    console.log("Connected to DB!");
 });
 
-
+module.exports = pool;
 
 
 
@@ -88,4 +98,4 @@ con.connect(function (err) {
 
 
 
-module.exports = con;
+// module.exports = con;
