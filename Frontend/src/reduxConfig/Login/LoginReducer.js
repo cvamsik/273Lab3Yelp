@@ -1,26 +1,29 @@
-import actionTypes from './actionTypes'
+import actionTypes from '../actionTypes'
 
-import { initialState } from './storeObject'
+import { initialState } from '../storeObject'
 
 const loginReducer = (state = initialState, action) => {
-    // console.log("In login Reducer" + JSON.stringify(action));
+
     switch (action.type) {
         case actionTypes.USER_LOGIN:
             console.log("logging in");
-            return {
-                ...state,
+            console.log("In login Reducer" + JSON.stringify(action));
+            console.log(
+                state)
+            return Object.assign({},
+                state, {
                 loggedIn: true,
                 user_email: action.payload.user_email,
                 user_type: action.payload.user_type
-            };
+            }
+            );
         case actionTypes.USER_LOGOUT:
             console.log("logging out");
             return {
                 ...state,
                 loggedIn: false,
                 user_email: "",
-                user_type: 0
-
+                user_type: 99
             };
         case actionTypes.LOGIN_EMAIL_HANDLER:
             return {
@@ -47,7 +50,7 @@ const loginReducer = (state = initialState, action) => {
                 }
             }
         default:
-            return initialState;
+            return state;
     }
 }
 

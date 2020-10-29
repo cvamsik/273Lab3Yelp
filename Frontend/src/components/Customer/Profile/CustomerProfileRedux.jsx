@@ -9,8 +9,8 @@ import cookie from 'react-cookies';
 import {
     nameHandler, emailHandler, passwordHandler, confirmPasswordHandler, birthdayHandler
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
-} from '../../../reduxConfig/SignUpActions';
-import { oldDetailsHandler, cancelEditHandler, editStateHandler, loadDetailsHandler } from '../../../reduxConfig/ProfileActions';
+} from '../../../reduxConfig/CustomerSignUp/SignUpActions';
+import { oldDetailsHandler, cancelEditHandler, editStateHandler, loadDetailsHandler } from '../../../reduxConfig/CustomerProfile/ProfileActions';
 import { connect } from 'react-redux';
 
 

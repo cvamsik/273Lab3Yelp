@@ -28,14 +28,14 @@ class UserHome extends Component {
 
         return (
             <div>
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container2">
+                <div className="jumbotron jumbotron-fluid">
+                    <div className="container2">
 
                         <img src={yelpLogo} width='200px' height='100px' />
                         <div className="searchComp">
-                            <form class="form-inline" onSubmit={this.searchHandler}>
-                                <input class="form-control mr-sm-2 " type="text" name="search_string" style={{ width: '550px' }} placeholder="Search for Restaurants, Locations and Dishes" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
-                                <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
+                            <form className="form-inline" onSubmit={this.searchHandler}>
+                                <input className="form-control mr-sm-2 " type="text" name="search_string" style={{ width: '550px' }} placeholder="Search for Restaurants, Locations and Dishes" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
+                                <button className="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-import { logout } from '../../../reduxConfig/LoginActions'
+import { logout } from '../../../reduxConfig/Login/LoginActions'
 import { connect } from 'react-redux';
 import yelpLogo from '../../../Assets/YelpLogo.svg.png'
 

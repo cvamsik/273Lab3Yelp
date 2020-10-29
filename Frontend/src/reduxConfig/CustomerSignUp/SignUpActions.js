@@ -1,4 +1,4 @@
-import actionTypes from './actionTypes';
+import actionTypes from '../actionTypes';
 
 export const nameHandler = (payload) => {
     // console.log("actions " + payload)

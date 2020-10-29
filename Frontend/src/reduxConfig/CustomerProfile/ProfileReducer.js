@@ -1,5 +1,5 @@
-import actionTypes from './actionTypes'
-import { initialState } from './storeObject'
+import actionTypes from '../actionTypes'
+import { initialState } from '../storeObject'
 
 const ProfileReducer = (state = initialState, action) => {
     // console.log("load --------" + JSON.stringify(action))
@@ -149,7 +149,7 @@ const ProfileReducer = (state = initialState, action) => {
                 }
             }
         default:
-            return initialState;
+            return state;
     }
 }
 

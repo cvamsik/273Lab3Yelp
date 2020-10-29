@@ -9,12 +9,13 @@ var cookieParser = require('cookie-parser');
 var cors = require('cors');
 app.set('view engine', 'ejs');
 const path = require('path');
+var kafka = require('./kafka/client');
+
 app.use(cors({ origin: `${routeConstants.FRONTEND_URL}`, credentials: true }));
 // const formidable = require('express-formidable');
 // app.use(formidable());
 
-
-
+require('./config/mongoConnection');
 app.use('/imageData', express.static(path.join(__dirname, 'imageData')))
 
 // app.use(express.static(path.join(__dirname, 'imageData')));

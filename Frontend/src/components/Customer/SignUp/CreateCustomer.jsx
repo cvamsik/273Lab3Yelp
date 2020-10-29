@@ -12,7 +12,7 @@ import routeConstants from '../../../Config/routeConstants';
 import {
     nameHandler, emailHandler, passwordHandler, confirmPasswordHandler, birthdayHandler
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
-} from '../../../reduxConfig/SignUpActions'
+} from '../../../reduxConfig/CustomerSignUp/SignUpActions'
 import { connect } from 'react-redux';
 import Login from '../../Common/Login/Login';
 import CommonNavbar from '../../Common/Navbar/CommonNavbar';

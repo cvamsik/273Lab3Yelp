@@ -99,9 +99,11 @@ class Main extends Component {
 //Export The Main Component
 // export default Main;
 const mapStateToProps = (state) => {
+    console.log(state);
+
     return {
-        loggedIn: state.loginReducer.loggedIn,
-        user_type: state.loginReducer.user_type
+        loggedIn: state.loggedIn,
+        user_type: state.user_type
     };
 }
 

@@ -12,7 +12,7 @@ class CustomerReviewCard extends Component {
     render() {
 
         const restData = { ...this.props.props.res }
-        console.log(restData)
+        // console.log(restData)
         let renderItem;
         if (restData) {
             renderItem = <div className="reviewCard">

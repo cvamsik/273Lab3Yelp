@@ -6,14 +6,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
@@ -96,10 +92,10 @@ class MenuItem extends Component {
                     />
 
                     <CardActions disableSpacing >
-                        <IconButton aria-label="Add to Cart" onClick={() => { console.log("addtocart"); this.props.addToCart(dish_dispatch) }}>
+                        <IconButton aria-label="Add to Cart" onClick={() => { this.props.addToCart(dish_dispatch) }}>
                             <AddIcon />
                         </IconButton>
-                        <IconButton aria-label="Remove from Cart" onClick={() => { console.log("removecart"); this.props.removeFromCart(dish_dispatch) }}>
+                        <IconButton aria-label="Remove from Cart" onClick={() => { this.props.removeFromCart(dish_dispatch) }}>
                             <RemoveIcon />
                         </IconButton>
                         <IconButton aria-label="Price">
@@ -136,19 +132,13 @@ class MenuItem extends Component {
         );
     }
 }
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-        // emailHandler: (email_id) => dispatch(emailHandler(email_id)),
-        // passwordHandler: (password) => dispatch(passwordHandler(password)),
-        // authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
-        // login: (loggedIn) => dispatch(login(loggedIn))
         addToCart: (dish) => dispatch(addToCart(dish)),
         removeFromCart: (dish) => dispatch(removeFromCart(dish))
 

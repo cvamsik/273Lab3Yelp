@@ -1,6 +1,6 @@
-import actionTypes from './actionTypes'
+import actionTypes from '../actionTypes'
 
-import { initialState } from './storeObject'
+import { initialState } from '../storeObject'
 
 const SignUpReducer = (state = initialState, action) => {
     // console.log("signup reducer " + JSON.stringify(action));
@@ -110,7 +110,7 @@ const SignUpReducer = (state = initialState, action) => {
                 }
             }
         default:
-            return initialState;
+            return state;
     }
 }
 

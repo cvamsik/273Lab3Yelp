@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 import RouteConstants, { POST_LOGIN } from '../../../Config/routeConstants';
 import store from '../../../reduxConfig/store';
 import { connect } from 'react-redux';
-import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/LoginActions';
+import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/Login/LoginActions';
 import loginImage from '../../../Assets/BackgroundImages/LoginImage.jpg'
 import './Login.styles.css'
 //Define a Login Component
@@ -194,19 +194,20 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        email_id: state.loginReducer.login.email_id,
-        password: state.loginReducer.login.password,
-        authFlag: state.loginReducer.login.authFlag,
-        loggedIn: state.loginReducer.loggedIn
+        // loginVar: state.login,
+        // email_id: state.loginReducer.login.email_id,
+        // password: state.loginReducer.login.password,
+        // authFlag: state.loginReducer.login.authFlag,
+        // loggedIn: state.loginReducer.loggedIn
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         // counterIncrement: (counter) => dispatch(counterIncrement(counter))
-        emailHandler: (email_id) => dispatch(emailHandler(email_id)),
-        passwordHandler: (password) => dispatch(passwordHandler(password)),
-        authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
+        // emailHandler: (email_id) => dispatch(emailHandler(email_id)),
+        // passwordHandler: (password) => dispatch(passwordHandler(password)),
+        // authFlagHandler: (authFlag) => dispatch(authFlagHandler(authFlag)),
         login: (loggedIn) => dispatch(login(loggedIn))
 
     }

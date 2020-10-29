@@ -1,6 +1,6 @@
 const express = require("express");
 const restaurantRouter = express.Router();
-const restaurantServices = require("../services/restaurantServices");
+const restaurantServices = require("../servicesMongo/restaurantServices");
 
 
 const { UPDATE_RESTAURANT_PROFILE, POST_RESTAURANT_SIGNUP, GET_RESTAURANT_MENU, GET_RESTAURANT_SEARCH, GET_ALL_RESTAURANTS, GET_RESTAURANT_PROFILE, UPDATE_MENU_ITEM } = require("../config/routeConstants");

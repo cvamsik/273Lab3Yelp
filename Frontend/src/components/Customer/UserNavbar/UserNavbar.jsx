@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { login, logout } from '../../../reduxConfig/LoginActions'
+import { login, logout } from '../../../reduxConfig/Login/LoginActions'
 import yelpLogo from '../../../Assets/YelpLogo.svg.png'
 
 //create the Navbar Component
@@ -82,7 +82,8 @@ class UserNavbar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.ProfileReducer.loggedIn || state.loginReducer.loggedIn,
+        loggedIn: state.loggedIn,
+        // loggedIn: state.ProfileReducer.loggedIn || state.loginReducer.loggedIn,
 
     };
 }

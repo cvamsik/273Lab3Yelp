@@ -10,7 +10,8 @@ class RestaurantOrders extends Component {
     }
 
 
-    componentDidMount = () => {
+    componentDidMount = (e) => {
+        e.preventDefault();
         console.log("Orders")
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_RESTAURANT}`, {
             params: {

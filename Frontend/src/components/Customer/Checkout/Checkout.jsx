@@ -73,7 +73,7 @@ class CheckOut extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        cart: state.CartReducer
+        cart: state
     }
 }
 
