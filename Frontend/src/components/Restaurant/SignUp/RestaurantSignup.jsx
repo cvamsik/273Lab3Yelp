@@ -40,6 +40,9 @@ class RestaurantSignUp extends Component {
             console.log(res);
             window.alert("Account created Successfully. Please Login");
             this.props.history.push('/login');
+        }).catch((err) => {
+            console.log(err);
+            window.alert("Unable to create. Please Try again");
         })
     }
     render() {

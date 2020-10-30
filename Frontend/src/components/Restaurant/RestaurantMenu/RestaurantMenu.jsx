@@ -38,36 +38,35 @@ class RestaurantMenu extends Component {
         let mains = [];
         if (this.state.res.length > 0) {
             dishes = this.state.res.map((dish) => {
-
                 switch (dish.category_id) {
-                    case 1:
+                    case 'Desserts':
                         {
                             desserts.push(<RestaurantMenuCard menuItem={dish} />)
                             break;
                         }
-                    case 2:
+                    case 'Salads':
                         {
                             salads.push(<RestaurantMenuCard menuItem={dish} />)
                             break;
                         }
-                    case 3:
+                    case 'Beverages':
                         {
                             beverages.push(<RestaurantMenuCard menuItem={dish} />)
                             break;
                         }
-                    case 4:
+                    case 'Appetizers':
                         {
                             appetizers.push(<RestaurantMenuCard menuItem={dish} />)
                             break;
                         }
-                    case 5:
+                    case 'Main Course':
                         {
                             mains.push(<RestaurantMenuCard menuItem={dish} />)
                             break;
                         }
                     default:
                         {
-
+                            console.log("Cannot Match Category Map")
                         }
                 }
             }

@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 
 const Dish = new mongoose.Schema({
     dish_id: {

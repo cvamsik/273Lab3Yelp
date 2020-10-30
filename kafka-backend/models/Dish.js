@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 
 const Dish = new mongoose.Schema({
     dish_id: {
@@ -14,7 +15,6 @@ const Dish = new mongoose.Schema({
     },
     image_url: {
         type: String,
-        required: true,
         default: " "
     },
     price: {

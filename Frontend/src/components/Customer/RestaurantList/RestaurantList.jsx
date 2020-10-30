@@ -72,7 +72,7 @@ class RestaurantList extends Component {
 
                 <div className="searchComp">
                     <form class="form-inline" onSubmit={this.searchHandler}>
-                        <input class="form-control mr-sm-2" type="text" name="search_string" style={{ width: '450px' }} placeholder="Search for Restaurants, Locations and Dishes" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
+                        <input class="form-control mr-sm-2" type="text" name="search_string" style={{ width: '450px' }} placeholder="Search for Restaurants and Locations" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
                         <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>

@@ -10,7 +10,7 @@ import { cookie } from 'react-cookies';
 
 class RestaurantProfile extends Component {
     state = {
-
+        loaded: false,
         address_city: "",
         address_latitude: 0,
         address_longitude: 0,
@@ -38,6 +38,7 @@ class RestaurantProfile extends Component {
         }).then((res) => {
             console.log(res);
             this.setState({
+                loaded: true,
                 ...res.data[0]
             })
         }).catch((err) => {
@@ -129,97 +130,101 @@ class RestaurantProfile extends Component {
     };
     render() {
         let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
-
-        return (
-            <div className="resProfile">
-
-                <form className="formData6">
-                    <div className="imageDiv">
-                        <img src={profileURL} width='250px' height='250px' className="imageCont" />
-                        <input type="file" onChange={this.onFileChange} />
-                        <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
-                        {this.fileData()}
+        let renderVar;
+        if (this.state.loaded) {
+            renderVar = <form className="formData6">
+                <div className="imageDiv">
+                    <img src={profileURL} width='250px' height='250px' className="imageCont" />
+                    <input type="file" onChange={this.onFileChange} />
+                    <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
+                    {this.fileData()}
+                </div>
+                <div className="profile">
+                    {/* <div class="form-row"> */}
+                    <div class="form-group col-md-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" value={this.state.email} disabled />
                     </div>
-                    <div className="profile">
-                        {/* <div class="form-row"> */}
-                        <div class="form-group col-md-3">
-                            <label>Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email" value={this.state.email} disabled />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label >Restaurant Name</label>
-                            <input type="text" class="form-control" id="restaurant_name" placeholder="Password" value={this.state.restaurant_name} disabled />
-                        </div>
-                        {/* </div> */}
-                        {/* <div class="form-row"> */}
-                        <div class="form-group col-md-5">
-                            <label >Address</label>
-                            <input onChange={this.inputChangeHandler} type="text" class="form-control" id="restaurant_address" placeholder="1234 Main St" value={this.state.restaurant_address} />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label >Zip</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_postal_code" value={this.state.address_postal_code} />
-                        </div>
-                        {/* </div> */}
-
-                        {/* <div class="form-row"> */}
-                        <div class="form-group col-md-3">
-                            <label>Latitude</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_latitude" value={this.state.address_latitude} />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label >Longitude</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_longitude" value={this.state.address_longitude} />
-
-                        </div>
-                        {/* </div> */}
-
-                        {/* <div class="form-row"> */}
-                        <div class="form-group col-md-3">
-                            <label>Primary Phone</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="primary_phone" value={this.state.primary_phone} />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label >Secondary Phone</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="secondary_phone" value={this.state.secondary_phone} />
-                        </div>
-                        {/* </div> */}
-                        {/* <div class="form-row"> */}
-                        <div class="form-group col-md-3">
-                            <label >City</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_city" value={this.state.address_city} />
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label >State</label>
-                            <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_state" value={this.state.address_state} />
-
-                        </div>
-                        {/* </div> */}
-
-                        {/* <div class="form-row"> */}
-
-
-                        <div class="form-group col-md-2">
-                            <label >Open Time</label>
-                            <input type="time" onChange={this.inputChangeHandler} class="form-control" id="open_time" value={this.state.open_time} />
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label >Close Time</label>
-                            <input type="time" onChange={this.inputChangeHandler} class="form-control" id="close_time" value={this.state.close_time} />
-                        </div>
+                    <div class="form-group col-md-3">
+                        <label >Restaurant Name</label>
+                        <input type="text" class="form-control" id="restaurant_name" placeholder="Password" value={this.state.restaurant_name} disabled />
                     </div>
                     {/* </div> */}
                     {/* <div class="form-row"> */}
-                    <div></div>
-                    <div >
-                        <button type="submit" onClick={this.handleSubmit} class="btn btn-danger">Update Details</button>
+                    <div class="form-group col-md-5">
+                        <label >Address</label>
+                        <input onChange={this.inputChangeHandler} type="text" class="form-control" id="restaurant_address" placeholder="Restaurant Address" value={this.state.restaurant_address} />
                     </div>
-                    {/* <div class="form-group col-md-2">
-                            <button type="reset" class="btn btn-danger">Cancel Edit</button>
-                        </div> */}
+                    <div class="form-group col-md-2">
+                        <label >Zip</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_postal_code" value={this.state.address_postal_code} />
+                    </div>
                     {/* </div> */}
 
-                </form>
+                    {/* <div class="form-row"> */}
+                    <div class="form-group col-md-3">
+                        <label>Latitude</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_latitude" value={this.state.address_latitude} />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label >Longitude</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_longitude" value={this.state.address_longitude} />
+
+                    </div>
+                    {/* </div> */}
+
+                    {/* <div class="form-row"> */}
+                    <div class="form-group col-md-3">
+                        <label>Primary Phone</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="primary_phone" value={this.state.primary_phone} />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label >Secondary Phone</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="secondary_phone" value={this.state.secondary_phone} />
+                    </div>
+                    {/* </div> */}
+                    {/* <div class="form-row"> */}
+                    <div class="form-group col-md-3">
+                        <label >City</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_city" value={this.state.address_city} />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label >State</label>
+                        <input type="text" onChange={this.inputChangeHandler} class="form-control" id="address_state" value={this.state.address_state} />
+
+                    </div>
+                    {/* </div> */}
+
+                    {/* <div class="form-row"> */}
+
+
+                    <div class="form-group col-md-2">
+                        <label >Open Time</label>
+                        <input type="time" onChange={this.inputChangeHandler} class="form-control" id="open_time" value={this.state.open_time} />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label >Close Time</label>
+                        <input type="time" onChange={this.inputChangeHandler} class="form-control" id="close_time" value={this.state.close_time} />
+                    </div>
+                </div>
+                {/* </div> */}
+                {/* <div class="form-row"> */}
+                <div></div>
+                <div >
+                    <button type="submit" onClick={this.handleSubmit} class="btn btn-danger">Update Details</button>
+                </div>
+                {/* <div class="form-group col-md-2">
+                    <button type="reset" class="btn btn-danger">Cancel Edit</button>
+                </div> */}
+                {/* </div> */}
+
+            </form>
+        }
+
+        return (
+            <div className="resProfile">
+                {renderVar}
+
             </div>
         );
     }
@@ -228,7 +233,7 @@ class RestaurantProfile extends Component {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        email_id: state.loginReducer.user_email,
+        email_id: state.user_email,
 
     };
 }

@@ -5,8 +5,8 @@ var Books = require('./services/books.js');
 require('dotenv').config({ path: __dirname + '/.env' })
 require('./config/mongoConnection');
 
-const restaurant_signup = require('./services/restaurant/restaurant_signup')
-
+const restaurant = require('./services/restaurant')
+const login = require('./services/login')
 
 function handleTopicRequest(topic_name, fname) {
     //var topic_name = 'root_topic';
@@ -43,4 +43,6 @@ function handleTopicRequest(topic_name, fname) {
 //second argument is a function that will handle this topic request
 // handleTopicRequest("post_book", Books)
 
-handleTopicRequest("restaurant_signup", restaurant_signup)
+handleTopicRequest("restaurant", restaurant)
+handleTopicRequest("login", login)
+

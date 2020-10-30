@@ -21,6 +21,8 @@ const dbConfig = {
 mongoose.connect(dbConfig.mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 5 })
     .then(() => console.log('MongoDB Connected')).catch((err) => console.log(err))
 mongoose.Promise = global.Promise
+mongoose.set('useFindAndModify', false);
+
 let mongo = mongoose.connection
 mongo.on('error', console.error.bind(console, 'MongoDB connection error:'))
 

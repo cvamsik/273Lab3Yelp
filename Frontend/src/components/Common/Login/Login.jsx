@@ -122,7 +122,7 @@ class Login extends Component {
                             path: '/'
                         });
                         console.log("Updated state");
-                        if (user_type === "1") {
+                        if (response.data.user_type == "1") {
                             console.log("cust redirect");
                             cookie.save('cookie');
                             this.props.login({
@@ -131,7 +131,7 @@ class Login extends Component {
                             });
                             this.props.history.push('/customer/home');
                         }
-                        else if (user_type === "2") {
+                        else if (response.data.user_type == "2") {
                             console.log("rest redirect");
                             cookie.save('cookie');
                             this.props.login({
@@ -139,6 +139,9 @@ class Login extends Component {
                                 user_type: user_type
                             });
                             this.props.history.push('/restaurant/home');
+                        }
+                        else {
+                            console.log(response.data.user_type + "<----")
                         }
                     })
 

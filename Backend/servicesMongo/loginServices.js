@@ -11,22 +11,36 @@ const {
     RES_NOT_FOUND,
     RES_DUPLICATE_RESOURCE,
     TEXT_PLAIN,
-    RES_INTERNAL_SERVER_ERROR
+    RES_INTERNAL_SERVER_ERROR,
+    POST_LOGIN
 } = require("../config/routeConstants");
 
+const kafka = require('../kafka/client')
 
 
 module.exports.login = (req, res) => {
     console.log("Inside Login POST service");
     console.log("req body" + JSON.stringify(req.body));
-    login_credentials.find((err, resData) => {
-        console.log(resData);
-        console.log(err);
-        res.send(resData)
-    })
-        .catch((err) => {
-            console.log(err);
-        })
+    kafka.make_request('login', {
+        api: POST_LOGIN,
+        body: req.body
+    }, function (err, results) {
+        console.log('in result');
+        console.log(results);
+        if (err) {
+            console.log("Inside err");
+            res.json({
+                status: "error",
+                msg: "System Error, Try Again."
+            })
+        } else {
+            console.log("Inside else");
+            res.json(results);
+
+            res.end();
+        }
+
+    });
     // con.query(`SELECT * FROM login_credentials WHERE email_id="${req.body.username}"`, (error, result) => {
     //     //console.log(JSON.stringify(result[0].user_type) + " --->>> " + req.body.password);
     //     if (error) {

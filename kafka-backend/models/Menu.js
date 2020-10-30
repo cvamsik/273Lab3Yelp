@@ -1,5 +1,6 @@
 
 const mongoose = require("mongoose");
+const Dish = require('./Dish')
 
 const Menu = new mongoose.Schema({
     menu_id: {
@@ -11,7 +12,10 @@ const Menu = new mongoose.Schema({
         ref: 'Restaurants',
         required: true
     },
-    dishes: [Dish]
+    dishes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Dish'
+    }]
 
 }, { versionKey: false })
 
