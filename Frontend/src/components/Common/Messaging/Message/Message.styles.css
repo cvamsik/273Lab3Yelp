@@ -1,0 +1,30 @@
+.message-body{
+    max-width: 80%;
+    display: inline-block;
+    padding: 20px;
+    background-color: #eee;
+    border: 1px;
+    border-radius: 5px;
+    padding-right: 50px;
+}
+
+.message.isSender .message-body{
+    background-color: black;
+    color: white;
+
+
+    max-width: 80%;
+    display: inline-block;
+    padding: 20px;
+    /* background-color: #eee; */
+    border: 1px;
+    border-radius: 5px;
+    padding-right: 50px;
+}
+
+
+.message.isSender{
+display: flex;
+justify-content: flex-end;
+margin-bottom: 5px;
+}

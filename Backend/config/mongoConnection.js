@@ -14,17 +14,28 @@
 const mongoose = require("mongoose");
 
 
-const dbConfig = {
-    mongoURL: process.env.MONGO_URL
-}
+// const dbConfig = {
+//     mongoURL: process.env.MONGO_URL
+// }
 
-mongoose.connect(dbConfig.mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 5 })
-    .then(() => console.log('MongoDB Connected'))
-mongoose.Promise = global.Promise
-let mongo = mongoose.connection
-mongo.on('error', console.error.bind(console, 'MongoDB connection error:'))
+// mongoose.connect(dbConfig.mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 5 })
+//     .then(() => console.log('MongoDB Connected'))
+// mongoose.Promise = global.Promise
+// let mongo = mongoose.connection
+// mongo.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-module.exports = mongo
+// module.exports = mongo
 
 
 
+// const dbConfig = {
+//     mongoURL: 'mongodb://127.0.0.1.27017/YelpTestDB'
+// }
+
+// mongoose.connect(dbConfig.mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 5 })
+//     .then(() => console.log('MongoDB Connected'))
+// mongoose.Promise = global.Promise
+// let mongo = mongoose.connection
+// mongo.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+// module.exports = mongo

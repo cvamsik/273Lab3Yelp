@@ -75,6 +75,15 @@ module.exports = {
     POST_IMAGE_EVENT: '/eventImage',
 
 
+    //Messaging
+    GET_MESSAGES: '/messages',
+    GET_MESSAGES_LIST_CUSTOMER: '/messagesList',
+    POST_MESSAGES: '/messages',
+    // GET_MESSAGES_RESTAURANT: '/restaurant/messages',
+    // POST_MESSGAGES_RESTAURANT: '/restaurant/messages',
+    GET_MESSAGES_LIST_RESTAURANT: 'restaurant/messagesList',
+    POST_INITIATE_MESSAGE: '/initiateMessage',
+
 
 
     //KAFKA TOPICS

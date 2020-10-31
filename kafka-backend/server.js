@@ -1,12 +1,11 @@
 var connection = new require('./kafka/Connection');
 //topics files
-//var signin = require('./services/signin.js');
-var Books = require('./services/books.js');
 require('dotenv').config({ path: __dirname + '/.env' })
 require('./config/mongoConnection');
 
 const restaurant = require('./services/restaurant')
 const login = require('./services/login')
+const customer = require('./services/customer')
 
 function handleTopicRequest(topic_name, fname) {
     //var topic_name = 'root_topic';
@@ -44,5 +43,6 @@ function handleTopicRequest(topic_name, fname) {
 // handleTopicRequest("post_book", Books)
 
 handleTopicRequest("restaurant", restaurant)
+handleTopicRequest("customer", customer)
 handleTopicRequest("login", login)
 

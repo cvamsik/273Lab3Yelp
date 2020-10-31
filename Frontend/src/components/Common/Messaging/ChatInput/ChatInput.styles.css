@@ -1,0 +1,6 @@
+.chat-input{
+    position: relative;
+    overflow: hidden;
+    padding: 0 40px;
+    flex-shrink: 0;
+}

@@ -33,13 +33,7 @@ class UserProfile extends Component {
         this.setState({ [name]: value });
         // console.log(this.state);
     };
-    // handleAddressChange = (e) => {
-    //     const { value, name } = e.target;
-    //     this.setState((prevState) => ({
-    //         ADDRESS: { ...prevState.ADDRESS, [name]: value },
-    //     }));
-    //     //console.log(this.state);
-    // };
+
     componentWillMount() {
 
         // console.log("in edit profile")
@@ -53,8 +47,8 @@ class UserProfile extends Component {
             }).then((res) => {
 
                 // console.log(this.state);
-                this.setState({ oldDetails: { ...res.data[0] }, ...res.data[0] }, () => {
-                    // console.log(this.state);
+                this.setState({ oldDetails: { ...res.data }, ...res.data }, () => {
+                    console.log(res.data);
                 });
 
 
@@ -115,7 +109,7 @@ class UserProfile extends Component {
         };
         // console.log(req)
         axios
-            .put(`${routeConstants.BACKEND_URL}/image${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
+            .put(`${routeConstants.BACKEND_URL}/customer${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
             .then((res) => {
                 console.log(res)
                 if (res.status === 200) {

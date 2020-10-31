@@ -1,6 +1,6 @@
 const express = require("express");
 const customerRouter = express.Router();
-const customerServices = require("../servicesSQL/customerServices");
+const customerServices = require("../servicesMongo/customerServices");
 
 const {
     GET_CUSTOMER_PROFILE,

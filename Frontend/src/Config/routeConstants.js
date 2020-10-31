@@ -7,8 +7,7 @@ module.exports = {
     GET_ALL_CUSTOMER_PROFILES: '/allcustomers',
     POST_CUSTOMER_SIGNUP: '/signup',
     UPDATE_CUSTOMER_PROFILE: '/profile',
-    POST_CUSTOMER_IMAGE: '/image',
-    UPDATE_CUSTOMER_IMAGE: '/image',
+
 
 
     //Login Routes
@@ -63,9 +62,9 @@ module.exports = {
     POST_EVENT: '/event',
     UPDATE_EVENT: '/event',
 
-
     GET_REGISTRATIONS_CUSTOMER: '/customerRegistrations',
     GET_REGISTRATIONS_EVENT: '/eventRegistrations',
+
 
 
     //Images
@@ -74,6 +73,27 @@ module.exports = {
     UPDATE_USER_IMAGE: '/userProfile',
     POST_IMAGE_MENU_ITEM: '/dishImage',
     POST_IMAGE_EVENT: '/eventImage',
+
+
+    //Messaging
+    GET_MESSAGES: '/messages',
+    GET_MESSAGES_LIST_CUSTOMER: '/messagesList',
+    POST_MESSAGES: '/messages',
+    // GET_MESSAGES_RESTAURANT: '/restaurant/messages',
+    // POST_MESSGAGES_RESTAURANT: '/restaurant/messages',
+    GET_MESSAGES_LIST_RESTAURANT: 'restaurant/messagesList',
+    POST_INITIATE_MESSAGE: '/initiateMessage',
+
+
+
+    //KAFKA TOPICS
+    TOPIC_RESTAURANT: 'restaurant',
+    TOPIC_CUSTOMER: 'customer',
+    TOPIC_ORDERS: 'order',
+    TOPIC_REVIEWS: 'review',
+    TOPIC_EVENTS: 'event',
+    TOPIC_LOGIN: 'login',
+    TOPIC_IMAGES: 'image',
 
     /**Response status codes */
     RES_UNKNOWN_ERROR: 502,

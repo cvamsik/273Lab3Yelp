@@ -34,6 +34,7 @@ import DisplayRestaurantEvents from './components/Events/EventList/DisplayRestau
 import DisplayRegistrationsRestaurant from './components/Events/EventList/DisplayRegistrationsRestaurant';
 import DisplayRegistrationsCustomer from './components/Events/EventList/DisplayRegistrationsCustomer';
 import EventsHome from './components/Restaurant/Home/EventsHome';
+import MessageContainer from './components/Common/Messaging/MessageContainer';
 
 
 
@@ -90,6 +91,8 @@ class Main extends Component {
                 <Route exact path="/restaurant/events/all" component={DisplayEvents} />
                 <Route exact path="/restaurant/events/registrations" component={DisplayRegistrationsRestaurant} />
                 <Route exact path="/restaurant/events/home" component={EventsHome} />
+
+                <Route exact path="/message" component={MessageContainer} />
 
 
             </div>

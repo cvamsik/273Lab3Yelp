@@ -1,0 +1,12 @@
+.message-container{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+}
+.messages{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-grow: 1;
+    padding: 20px;
+}

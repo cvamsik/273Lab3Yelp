@@ -128,10 +128,6 @@ function handle_request(msg, callback) {
         }
         case "UPDATE_MENU_ITEM":
             {
-                const cat = ['Desserts', 'Salads', 'Beverages', 'Appetizers', 'Main Course']
-
-                let id = mongoose.Types.ObjectId()
-
                 let dish = {
                     description: msg.body.description,
                     dish_name: msg.body.dish_name,

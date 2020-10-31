@@ -15,7 +15,7 @@ app.use(cors({ origin: `${routeConstants.FRONTEND_URL}`, credentials: true }));
 // const formidable = require('express-formidable');
 // app.use(formidable());
 
-require('./config/mongoConnection');
+// require('./config/mongoConnection');
 app.use('/imageData', express.static(path.join(__dirname, 'imageData')))
 
 // app.use(express.static(path.join(__dirname, 'imageData')));
@@ -29,7 +29,7 @@ const orderRoutes = require('./routes/orderRoutes');
 const eventRoutes = require('./routes/eventRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const imageRoutes = require('./routes/imageRoutes');
-
+const messagingRoutes = require('./routes/messagingRoutes');
 
 //use express session to maintain session data
 app.use(session({
@@ -61,7 +61,7 @@ app.use('/restaurant', restaurantRoutes);
 app.use('/orders', orderRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/images', imageRoutes);
-
+app.use('/messages', messagingRoutes);
 app.use('/events', eventRoutes);
 
 

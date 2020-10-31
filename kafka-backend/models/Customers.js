@@ -31,7 +31,6 @@ const Customers = new mongoose.Schema({
     },
     yelping_since: {
         type: Number,
-        required: true
     },
     things_loved: {
         type: String,
@@ -47,11 +46,10 @@ const Customers = new mongoose.Schema({
     },
     singup_date: {
         type: Date,
-        required: true
+        default: Date.now()
     },
     profile_image_link: {
         type: String,
-        required: true
     },
 
 }, { versionKey: false })

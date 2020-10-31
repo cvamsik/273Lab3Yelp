@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React, { Component } from 'react';
-import Constants from '../../../Config/Constants';
 import constants from '../../../Config/routeConstants'
 import CustomInput from '../../Common/CustomInput/CustomInput';
 import CustomButton from '../../Common/CustomButton/CustomButton';

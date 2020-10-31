@@ -6,7 +6,6 @@ import CustomInput from '../../Common/CustomInput/CustomInput'
 import CustomButton from '../../Common/CustomButton/CustomButton'
 import { Link } from "react-router-dom";
 import './CreateCustomer.styles.css';
-import Constants from '../../../Config/Constants'
 import routeConstants from '../../../Config/routeConstants';
 // import signupReducer from '../../../reduxConfig/SignUpReducer';
 import {
@@ -71,15 +70,15 @@ class CreateUser extends Component {
 
         try {
             const userdetails = {
-                NAME: this.props.name,
-                EMAIL: this.props.email,
-                PASSWORD: this.props.password,
-                BIRTHDAY: this.props.birthday,
-                PHONE: this.props.phone,
-                ABOUT: this.props.about,
-                THINGS_LOVED: this.props.thingsLoved,
-                FIND_ME: this.props.findMe,
-                BLOG_REF: this.props.blogs
+                customer_name: this.props.name,
+                email_id: this.props.email,
+                user_password: this.props.password,
+                birthday: this.props.birthday,
+                contact_number: this.props.phone,
+                about: this.props.about,
+                things_loved: this.props.thingsLoved,
+                find_me: this.props.findMe,
+                blog_ref: this.props.blogs
             };
 
             console.log(userdetails);
@@ -232,17 +231,17 @@ class CreateUser extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        name: state.SignUpReducer.signup.name,
-        email: state.SignUpReducer.signup.email_id,
-        password: state.SignUpReducer.signup.password,
-        confirmPassword: state.SignUpReducer.signup.confirmPassword,
-        birthday: state.SignUpReducer.signup.birthday,
-        about: state.SignUpReducer.signup.about,
-        phone: state.SignUpReducer.signup.phone,
-        userType: state.SignUpReducer.signup.user,
-        thingsLoved: state.SignUpReducer.signup.thingsLoved,
-        findMe: state.SignUpReducer.signup.findMe,
-        blogs: state.SignUpReducer.signup.blogs
+        name: state.signup.name,
+        email: state.signup.email_id,
+        password: state.signup.password,
+        confirmPassword: state.signup.confirmPassword,
+        birthday: state.signup.birthday,
+        about: state.signup.about,
+        phone: state.signup.phone,
+        userType: state.signup.user,
+        thingsLoved: state.signup.thingsLoved,
+        findMe: state.signup.findMe,
+        blogs: state.signup.blogs
     };
 }
 

@@ -35,27 +35,27 @@ class Menu extends Component {
             // <MenuItem menuItem={dish} />
             // console.log(dish.category_id)
             switch (dish.category_id) {
-                case 1:
+                case "Desserts":
                     {
                         desserts.push(<MenuItem menuItem={dish} />)
                         break;
                     }
-                case 2:
+                case "Salads":
                     {
                         salads.push(<MenuItem menuItem={dish} />)
                         break;
                     }
-                case 3:
+                case "Beverages":
                     {
                         beverages.push(<MenuItem menuItem={dish} />)
                         break;
                     }
-                case 4:
+                case "Appetizers":
                     {
                         appetizers.push(<MenuItem menuItem={dish} />)
                         break;
                     }
-                case 5:
+                case "Main Course":
                     {
                         mains.push(<MenuItem menuItem={dish} />)
                         break;

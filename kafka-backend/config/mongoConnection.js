@@ -1,15 +1,4 @@
-// const mongoose = require("mongoose");
-// mongoose.connect("mongodb://localhost/yelp", {
-//     useMongoClient: true,
-// });
 
-// const mcon = mongoose.connection;
-// mcon
-//     .once("open", () => console.log("connected to db!!"))
-//     .on("error", (error) => {
-//         console.log("Error", error);
-//     });
-// module.exports = mcon;
 
 const mongoose = require("mongoose");
 
