@@ -84,30 +84,46 @@ async function handle_request(msg, callback) {
             }
         case "POST_EVENT_REGISTRATION":
             {
-                let date = new Date;
-                let regt = new Registrations({
-                    event_id: msg.body.event_id,
-                    customer_id: msg.body.customer_id,
-                    registration_date: date,
-                    registration_time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
-                })
-                regt.save((result) => {
-                    console.log('Registrations Created' + result)
-                    Events.findOneAndUpdate({ _id: msg.body.event_id }, { $push: { "event_registrations": regt._id } }, (err, res) => {
-                        if (err) {
-                            console.log('Error occured while pushing Registration' + err)
-                            callback(err, 'Error')
-                        }
-                        else {
-                            console.log('Registrations added to events' + res)
-                            callback(null, res)
-                        }
-                    })
+                Registrations.find({ $and: [{ event_id: msg.body.event_id }, { customer_id: msg.body.customer_id }] }, (err, res) => {
+                    console.log(res)
+
+                    if (err) {
+                        console.log('Error occured while fetching Registrations' + err)
+                        callback(err, 'Error')
+                    }
+                    else if (res.length > 0) {
+                        console.log('Already registered')
+                        callback(err, 'Error')
+                    }
+                    else {
+                        let date = new Date;
+                        let regt = new Registrations({
+                            event_id: msg.body.event_id,
+                            customer_id: msg.body.customer_id,
+                            registration_date: date,
+                            registration_time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                        })
+                        regt.save((result) => {
+                            console.log('Registrations Created' + result)
+                            Events.findOneAndUpdate({ _id: msg.body.event_id }, { $push: { "event_registrations": regt._id } }, (err, res) => {
+                                if (err) {
+                                    console.log('Error occured while pushing Registration' + err)
+                                    callback(err, 'Error')
+                                }
+                                else {
+                                    console.log('Registrations added to events' + res)
+                                    callback(null, res)
+                                }
+                            })
+
+                        })
+                    }
 
                 }).catch((err) => {
                     console.log('Error occured while fetching Registrations' + err)
                     callback(err, 'Error')
                 })
+
                 break;
             }
         case "POST_EVENT": {

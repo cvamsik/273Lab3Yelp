@@ -20,10 +20,8 @@ const loginReducer = (state = initialState, action) => {
         case actionTypes.USER_LOGOUT:
             // console.log("logging out");
             return {
-                ...state,
-                loggedIn: false,
-                user_email: "",
-                user_type: 99
+                ...initialState,
+
             };
         case actionTypes.LOGIN_EMAIL_HANDLER:
             return {

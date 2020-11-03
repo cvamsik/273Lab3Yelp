@@ -49,7 +49,7 @@ module.exports.registerEvent = (req, res) => {
     }, function (error, result) {
         console.log('in result');
         console.log(result);
-        if (error) {
+        if (result === "Error") {
             console.log("Inside err");
             res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
         } else {

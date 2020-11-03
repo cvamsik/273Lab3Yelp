@@ -98,7 +98,7 @@ function handle_request(msg, callback) {
 
                         console.log(res)
                         Restaurant.findOneAndUpdate({ _id: msg.body.restaurant_id },
-                            { $push: { "dishes": dish._id } },
+                            { $addToSet: { "dishes": res._id } },
                             (err, result) => {
                                 if (err) {
                                     console.log('Error occured while Creating Menu Items' + err)

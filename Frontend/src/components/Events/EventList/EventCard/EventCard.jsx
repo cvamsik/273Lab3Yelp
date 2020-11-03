@@ -15,13 +15,7 @@ class EventCard extends Component {
         // console.log(this.props);
         // localStorage.setItem('event_id', this.props.props.res.event_id)
         if (cookie.load('cookie')) {
-            // this.props.props.props.history.push({
-            //     pathname: '/customer/event',
-            //     state: {
-            //         order_id: this.props.props.res.order_id
-            //     }
-            // })
-            // this.setState({ redirectB: true })
+            console.log(this.props.props.res._id)
             Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT_REGISTRATION}`, {
                 customer_id: this.props.customer_id,
                 event_id: this.props.props.res._id
