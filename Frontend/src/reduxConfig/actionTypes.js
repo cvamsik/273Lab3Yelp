@@ -31,6 +31,13 @@ module.exports = {
 
     CART_ADD_ITEM: "cartAddItem",
     CART_REMOVE_ITEM: "cartRemoveItem",
-    CART_CLEAR: "clearCart"
+    CART_CLEAR: "clearCart",
+
+
+    SET_RESTAURANT_ID: "setRestaurantID",
+    SET_CUSTOMER_ID: "setCustomerID",
+    SET_SEARCH_STRING: "setSearchString",
+    SET_ORDER_ID: "setOrderID",
+
 
 }

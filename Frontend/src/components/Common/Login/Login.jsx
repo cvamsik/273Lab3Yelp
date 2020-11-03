@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 import RouteConstants, { POST_LOGIN } from '../../../Config/routeConstants';
 import store from '../../../reduxConfig/store';
 import { connect } from 'react-redux';
-import { emailHandler, passwordHandler, authFlagHandler, login } from '../../../reduxConfig/Login/LoginActions';
+import { login } from '../../../reduxConfig/Login/LoginActions';
 import loginImage from '../../../Assets/BackgroundImages/LoginImage.jpg'
 import './Login.styles.css'
 //Define a Login Component
@@ -122,21 +122,21 @@ class Login extends Component {
                             path: '/'
                         });
                         console.log("Updated state");
-                        if (response.data.user_type == "1") {
+                        if (response.data.user_type === 1) {
                             console.log("cust redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                user_email: this.state.username,
-                                user_type: user_type
+                                customer_id: response.data.customer_id,
+                                user_type: response.data.user_type
                             });
                             this.props.history.push('/customer/home');
                         }
-                        else if (response.data.user_type == "2") {
+                        else if (response.data.user_type === 2) {
                             console.log("rest redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                user_email: this.state.username,
-                                user_type: user_type
+                                restaurant_id: response.data.restaurant_id,
+                                user_type: response.data.user_type
                             });
                             this.props.history.push('/restaurant/home');
                         }

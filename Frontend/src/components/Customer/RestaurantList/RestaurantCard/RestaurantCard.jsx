@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
 import './RestaurantCard.styles.css'
-import { Link } from "react-router-dom";
-import Menu from '../../../Restaurant/Menu/Menu';
+// import { Link } from "react-router-dom";
+// import Menu from '../../../Restaurant/Menu/Menu';
 import { withRouter } from "react-router-dom";
 import './RestaurantCard.styles.css'
 import { Redirect } from "react-router-dom";
-
+import { setRestaurantID } from '../../../../reduxConfig/Common/CommonActions';
+import { connect } from 'react-redux'
 class RestaurantCard extends Component {
     state = {
         redirect: null
     }
 
     handleClick = () => {
-        // console.log(this.props);
+        console.log(this.props.props.res);
         localStorage.setItem('restaurant_id', this.props.props.res.restaurant_id)
         localStorage.setItem('restaurant_name', this.props.props.res.restaurant_name)
         localStorage.setItem('latitude', this.props.props.res.address_latitude)
         localStorage.setItem('longitude', this.props.props.res.address_longitude)
         localStorage.setItem('restaurant_email', this.props.props.res.email)
-        this.props.history.push({
-            pathname: 'restaurant/menu',
-            state: {
-                restaurant_email: this.props.props.res.email,
-                restaurant_id: this.props.props.res.restaurant_id,
-                res: this.props.props.res
-            }
-        })
+
+        this.props.setRestaurantID({ restaurant_id: this.props.props.res._id })
+        this.props.history.push('restaurant/menu')
     }
     render() {
         // console.log(this.props)
@@ -102,4 +98,19 @@ class RestaurantCard extends Component {
 }
 
 // export default RestaurantCard;
-export default withRouter(RestaurantCard);
+// export default withRouter(RestaurantCard);
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setRestaurantID: (restaurant_id) => dispatch(setRestaurantID(restaurant_id))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RestaurantCard));

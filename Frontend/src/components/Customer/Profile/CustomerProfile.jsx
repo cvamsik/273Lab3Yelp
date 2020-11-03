@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import CustomInput from "../../Common/CustomInput/CustomInput";
 import axios from "axios";
 import "./CustomerProfile.styles.css";
-import CustomButton from "../../Common/CustomButton/CustomButton";
-import { Route } from "react-router";
 import cookie from 'react-cookies';
 import routeConstants from "../../../Config/routeConstants";
+import { connect } from 'react-redux'
 class UserProfile extends Component {
     state = {
         customer_id: 0,
@@ -37,12 +35,11 @@ class UserProfile extends Component {
     componentWillMount() {
 
         // console.log("in edit profile")
-        let body;
         // console.log(cookie.load("email"));
         axios.get(`${routeConstants.BACKEND_URL}/customer${routeConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
-                    email_id: cookie.load("email")
+                    customer_id: this.props.customer_id
                 }
             }).then((res) => {
 
@@ -101,11 +98,13 @@ class UserProfile extends Component {
             editstate,
             oldDetails,
             ...userDetails
+
         } = this.state;
 
 
         const req = {
             ...userDetails,
+            customer_id: this.props.customer_id
         };
         // console.log(req)
         axios
@@ -191,7 +190,7 @@ class UserProfile extends Component {
 
             <div className="profile">
                 <div className="imageDiv">
-                    <img src={profileURL} width='250px' height='250px' className="imageCont" />
+                    <img src={profileURL} width='250px' alt="profileImage   " height='250px' className="imageCont" />
                     <input type="file" onChange={this.onFileChange} id="fileinput" />
                     <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
                     {this.fileData()}
@@ -315,4 +314,17 @@ class UserProfile extends Component {
     }
 }
 
-export default UserProfile;
+// export default UserProfile;
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

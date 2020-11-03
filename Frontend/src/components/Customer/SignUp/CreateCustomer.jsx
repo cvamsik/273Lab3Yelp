@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import cookie from 'react-cookies';
-import { Redirect } from 'react-router';
-import CustomInput from '../../Common/CustomInput/CustomInput'
+// import cookie from 'react-cookies';
+// import { Redirect } from 'react-router';
+// import CustomInput from '../../Common/CustomInput/CustomInput'
 import CustomButton from '../../Common/CustomButton/CustomButton'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import './CreateCustomer.styles.css';
 import routeConstants from '../../../Config/routeConstants';
 // import signupReducer from '../../../reduxConfig/SignUpReducer';
@@ -13,7 +13,7 @@ import {
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
 } from '../../../reduxConfig/CustomerSignUp/SignUpActions'
 import { connect } from 'react-redux';
-import Login from '../../Common/Login/Login';
+// import Login from '../../Common/Login/Login';
 import CommonNavbar from '../../Common/Navbar/CommonNavbar';
 
 //Define a Login Component
@@ -116,7 +116,7 @@ class CreateUser extends Component {
 
     render() {
         //redirect based on successful login
-        let redirectVar = null;
+        // let redirectVar = null;
         // if (cookie.load('cookie')) {
         //     redirectVar = <Redirect to="/home" />
         // }

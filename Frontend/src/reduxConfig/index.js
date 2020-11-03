@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import loginReducer from './Login/LoginReducer';
 import ProfileReducer from './CustomerProfile/ProfileReducer';
 import SignUpReducer from './CustomerSignUp/SignUpReducer';
 import CartReducer from './Cart/CartReducer';
-
+import CommonReducer from './Common/CommonReducer'
 import reduceReducers from 'reduce-reducers';
 
 import { initialState } from './storeObject'
 
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
+// import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 
 
 
@@ -21,29 +21,30 @@ const persistConfig = {
 
 }
 
-const rootReducer = combineReducers({
-    loginReducer,
-    ProfileReducer,
-    SignUpReducer,
-    CartReducer
-})
+// const rootReducer = combineReducers({
+//     loginReducer,
+//     ProfileReducer,
+//     SignUpReducer,
+//     CartReducer
+// })
 
 
 const reducer = reduceReducers(initialState,
     loginReducer,
     ProfileReducer,
     SignUpReducer,
-    CartReducer
+    CartReducer,
+    CommonReducer
 );
 
-function combineReducers2(appState, action) {
-    return {
-        loginReducer: loginReducer(appState, action),
-        ProfileReducer: ProfileReducer(appState, action),
-        SignUpReducer: SignUpReducer(appState, action),
-        CartReducer: CartReducer(appState, action),
-    };
-}
+// function combineReducers2(appState, action) {
+//     return {
+//         loginReducer: loginReducer(appState, action),
+//         ProfileReducer: ProfileReducer(appState, action),
+//         SignUpReducer: SignUpReducer(appState, action),
+//         CartReducer: CartReducer(appState, action),
+//     };
+// }
 
 
 // const combineReducers3 = (state = initialState, action, root) => {

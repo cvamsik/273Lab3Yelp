@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import './RestaurantOrdersCard.styles.css'
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
-
-import { Redirect } from "react-router-dom";
+import { connect } from 'react-redux'
+import { setOrderID } from '../../../../reduxConfig/Common/CommonActions'
+// import { Redirect } from "react-router-dom";
 
 class RestaurantOrdersCard extends Component {
     state = {
         redirect: false,
-        cat: [
-            "",
-            "Pick Up Ready",
-            "Picked Up",
-            "On the way",
-            "Delivered",
-            "In the making",
-            "Order Placed",
-            "Cancelled"
-        ]
+
     }
 
     handleClick = () => {
         console.log(this.props);
-        localStorage.setItem('order_id', this.props.props.res.order_id)
-        this.props.history.push({
-            pathname: '/restaurant/orderDetails',
-            state: {
-                order_id: this.props.props.res.order_id
-            }
-        })
+        // localStorage.setItem('order_id', this.props.props.res.order_id)
+        this.props.setOrderID({ order_id: this.props.props.res.order_id })
+        this.props.history.push('/restaurant/orderDetails')
     }
     render() {
         // if (this.state.redirect) {
@@ -42,7 +30,7 @@ class RestaurantOrdersCard extends Component {
         //         }} />
         // }
         const restData = { ...this.props.props.res }
-        if (restData.order_date != undefined) {
+        if (restData.order_date !== undefined) {
             restData.order_date = restData.order_date.split('T')[0]
         }
 
@@ -54,7 +42,7 @@ class RestaurantOrdersCard extends Component {
                     {restData.restaurant_name}
                 </h3>
                 <h5>
-                    Status:{this.state.cat[restData.order_status]}
+                    Status:{restData.order_status}
                 </h5>
                 <h5>
                     Time: {restData.order_time}
@@ -80,4 +68,22 @@ class RestaurantOrdersCard extends Component {
 }
 
 // export default RestaurantCard;
-export default withRouter(RestaurantOrdersCard);
+// export default withRouter(RestaurantOrdersCard);
+
+// export default RestaurantOrders;
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id,
+        order_id: state.order_id,
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setOrderID: (order_id) => dispatch(setOrderID(order_id))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RestaurantOrdersCard));

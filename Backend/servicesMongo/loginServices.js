@@ -22,7 +22,7 @@ module.exports.login = (req, res) => {
     console.log("Inside Login POST service");
     console.log("req body" + JSON.stringify(req.body));
     kafka.make_request('login', {
-        api: POST_LOGIN,
+        api: "POST_LOGIN",
         body: req.body
     }, function (err, results) {
         console.log('in result');

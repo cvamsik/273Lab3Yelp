@@ -95,16 +95,24 @@ function handle_request(msg, callback) {
                         callback(err, 'Error')
                     }
                     else {
-                        Restaurant.findOneAndUpdate({ email: msg.body.email }, { $push: { "dishes": dish } }, (err, result) => {
-                            if (err) {
+
+                        console.log(res)
+                        Restaurant.findOneAndUpdate({ _id: msg.body.restaurant_id },
+                            { $push: { "dishes": dish._id } },
+                            (err, result) => {
+                                if (err) {
+                                    console.log('Error occured while Creating Menu Items' + err)
+                                    callback(err, 'Error')
+                                }
+                                else {
+                                    console.log('Created Menu Items' + result)
+                                    callback(null, result)
+
+                                }
+                            }).catch((err) => {
                                 console.log('Error occured while creating Menu Item' + err)
-                                callback(err, 'Error')
-                            }
-                            else {
-                                console.log('Menu Item Created' + result)
-                                callback(null, result)
-                            }
-                        })
+                                callback(err, 'Error');
+                            })
                     }
 
                 })
@@ -113,17 +121,20 @@ function handle_request(msg, callback) {
                 break;
             }
         case "GET_RESTAURANT_MENU": {
-            let temp = Restaurants.findOne({ email: msg.body.email },
-                (err, result) => {
-                    if (err) {
-                        console.log('Error occured while creating Menu Item' + err)
-                        callback(err, 'Error')
-                    }
-                    else {
-                        console.log('Fetch Menu Items' + result.dishes)
-                        callback(null, result.dishes)
-                    }
-                }).populate('dishes')
+            let temp = Restaurants.findOne({ _id: msg.body.restaurant_id }).populate({
+                path: 'dishes',
+                model: 'Dish'
+            }).exec((err, result) => {
+                if (err) {
+                    console.log('Error occured while fetching Menu Items' + err)
+                    callback(err, 'Error')
+                }
+                else {
+                    console.log('Fetch Menu Items' + result)
+                    callback(null, result.dishes)
+
+                }
+            })
             break;
         }
         case "UPDATE_MENU_ITEM":
@@ -138,7 +149,7 @@ function handle_request(msg, callback) {
                     category_id: msg.body.category_id
                 }
 
-                Dish.findOneAndUpdate({ dish_id: msg.body.dish_id }, { ...dish }, (err, result) => {
+                Dish.findOneAndUpdate({ _id: msg.body._id }, { ...dish }, (err, result) => {
                     if (err) {
                         console.log('Error occured while updating Menu Item' + err)
                         callback(err, 'Error')
@@ -187,7 +198,7 @@ function handle_request(msg, callback) {
             }
         case "GET_RESTAURANT_PROFILE":
             {
-                Restaurants.find({ email: msg.body.email_id }, (err, result) => {
+                Restaurants.find({ _id: msg.body._id }, (err, result) => {
                     if (err) {
                         console.log('Error occured while fetching restaurant profile' + err)
                         callback(err, 'Error')
@@ -215,7 +226,7 @@ function handle_request(msg, callback) {
                     open_time: msg.body.open_time,
                     close_time: msg.body.close_time,
                 }
-                Restaurants.findOneAndUpdate({ email: msg.body.email }, { ...rest }, (err, result) => {
+                Restaurants.findOneAndUpdate({ _id: msg.body.restaurant_id }, { ...rest }, (err, result) => {
                     if (err) {
                         console.log('Error occured while updating restaurant profile' + err)
                         callback(err, 'Error')

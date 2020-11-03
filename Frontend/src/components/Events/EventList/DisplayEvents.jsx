@@ -22,12 +22,12 @@ class DisplayEvents extends Component {
     render() {
         let resList = []
         if (this.state.resData.length > 0) {
-            resList = this.state.resData.map((res) => {
+            resList = this.state.resData.map((res, key) => {
                 let obj = {
                     res: res,
                     props: this.props
                 }
-                return <EventCard props={obj} />
+                return <EventCard key={key} props={obj} />
 
             })
 

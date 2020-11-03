@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './OrderCard.styles.css'
-import { Link } from "react-router-dom";
-import Menu from '../../../Restaurant/Menu/Menu';
+// import { Link } from "react-router-dom";
+// import Menu from '../../../Restaurant/Menu/Menu';
 import { withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
+import { setOrderID } from '../../../../reduxConfig/Common/CommonActions'
 
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 class OrderCard extends Component {
     state = {
@@ -14,12 +16,10 @@ class OrderCard extends Component {
     handleClick = () => {
         console.log(this.props);
         localStorage.setItem('order_id', this.props.props.res.order_id)
-        this.props.history.push({
-            pathname: '/customer/order',
-            state: {
-                order_id: this.props.props.res.order_id
-            }
+        this.props.setOrderID({
+            order_id: this.props.props.res.order_id
         })
+        this.props.history.push('/customer/order')
     }
     render() {
         // if (this.state.redirect) {
@@ -33,7 +33,7 @@ class OrderCard extends Component {
         //         }} />
         // }
         const restData = { ...this.props.props.res }
-        if (restData.order_date != undefined) {
+        if (restData.order_date !== undefined) {
             restData.order_date = restData.order_date.split('T')[0]
         }
 
@@ -71,4 +71,20 @@ class OrderCard extends Component {
 }
 
 // export default RestaurantCard;
-export default withRouter(OrderCard);
+// export default withRouter(OrderCard);
+
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id,
+        order_id: state.order_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setOrderID: (order_id) => dispatch(setOrderID(order_id))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(OrderCard));

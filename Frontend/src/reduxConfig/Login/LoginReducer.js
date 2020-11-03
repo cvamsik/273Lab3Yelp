@@ -6,19 +6,19 @@ const loginReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.USER_LOGIN:
-            console.log("logging in");
-            console.log("In login Reducer" + JSON.stringify(action));
-            console.log(
-                state)
+            // console.log("logging in");
+            // console.log("In login Reducer" + JSON.stringify(action));
+            // console.log(state)
             return Object.assign({},
                 state, {
                 loggedIn: true,
-                user_email: action.payload.user_email,
+                customer_id: action.payload.customer_id,
+                restaurant_id: action.payload.restaurant_id,
                 user_type: action.payload.user_type
             }
             );
         case actionTypes.USER_LOGOUT:
-            console.log("logging out");
+            // console.log("logging out");
             return {
                 ...state,
                 loggedIn: false,

@@ -134,7 +134,7 @@ class RestaurantProfile extends Component {
         if (this.state.loaded) {
             renderVar = <form className="formData6">
                 <div className="imageDiv">
-                    <img src={profileURL} width='250px' height='250px' className="imageCont" />
+                    <img src={profileURL} width='250px' height='250px' alt="profileImage" className="imageCont" />
                     <input type="file" onChange={this.onFileChange} />
                     <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
                     {this.fileData()}

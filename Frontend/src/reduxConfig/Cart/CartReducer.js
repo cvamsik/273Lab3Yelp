@@ -25,7 +25,7 @@ const CartReducer = (state = { ...initialState }, action) => {
         for (i = 0; i < cartTemp.length; i++) {
             if (cartTemp[i].dish_id === action.payload.dish_id) {
                 // console.log("--" + i);
-                if (cartTemp[i].count > 1) {
+                if (cartTemp[i].count >= 1) {
                     cartTemp[i].count = cartTemp[i].count - 1;
                     cartTotal = cartTotal - action.payload.price;
                 }
@@ -48,7 +48,8 @@ const CartReducer = (state = { ...initialState }, action) => {
                 // console.log("adding item" + (state.CartReducer.cartTotal + action.payload.price));
                 console.log(state);
                 return Object.assign({}, state, {
-                    cart: [...temp]
+                    cart: [...temp],
+                    cartTotal: state.cartTotal + action.payload.price
                 })
                 //  {
                 //     ...state,
@@ -76,7 +77,7 @@ const CartReducer = (state = { ...initialState }, action) => {
 
 
         default:
-            console.log("Returning default")
+            // console.log("Returning default")
             return state;
     }
 }

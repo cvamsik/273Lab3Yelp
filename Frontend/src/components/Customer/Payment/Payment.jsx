@@ -7,11 +7,11 @@ import { Component } from "react";
 import CustomButton from "../../Common/CustomButton/CustomButton";
 import axios from "axios";
 import RouteConstants from "../../../Config/routeConstants";
-import { Link } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+// import { Link } from "react-router-dom";
+// import { Grid } from "@material-ui/core";
 import MenuItem from '@material-ui/core/MenuItem';
 import { connect } from 'react-redux';
-import cookie from 'react-cookies'
+// import cookie from 'react-cookies'
 import { clearCart } from '../../../reduxConfig/Cart/CartActions'
 
 
@@ -53,10 +53,10 @@ class Payment extends Component {
             primary_phone: this.state.primary_phone,
             payment_card_digits: this.state.cardno.slice(this.state.cardno.length - 4, this.state.cardno.length),
             cart_items: this.props.cart.cart,
-            customer_email: cookie.load('email'),
-            restaurant_id: localStorage.getItem("restaurant_id"),
+            customer_id: this.props.cart.customer_id,
+            restaurant_id: this.props.cart.restaurant_id,
             order_type: localStorage.getItem("order_type"),
-            order_status: 6,
+            order_status: "Order Placed",
             order_total_price: this.props.cart.cartTotal,
 
 
@@ -92,7 +92,7 @@ class Payment extends Component {
 
         ];
         let add = ""
-        if (localStorage.getItem('order_type') === "2") {
+        if (localStorage.getItem('order_type') === "Delivery") {
             add = <div>
                 <h4 className="display-4"> Delivery Address</h4>
 
@@ -282,7 +282,7 @@ class Payment extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        cart: state.CartReducer
+        cart: state
     }
 }
 

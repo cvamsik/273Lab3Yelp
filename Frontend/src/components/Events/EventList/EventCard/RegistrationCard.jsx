@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './EventCard.styles.css'
-import { Redirect, withRouter } from "react-router-dom";
-import cookie from 'react-cookies';
-import Axios from 'axios'
+import { withRouter } from "react-router-dom";
+// import cookie from 'react-cookies';
+// import Axios from 'axios'
 import routeConstants from '../../../../Config/routeConstants'
 
 class RegistrationCard extends Component {

@@ -57,10 +57,10 @@ class CustomerReviewCard extends Component {
                     </h2>
                     <div>
                         Review:
-               <textarea type='text' class="form-control" name="review_text" value={this.state.review_text} onChange={this.inputChangeHandler} />
+               <textarea type='text' className="form-control" name="review_text" value={this.state.review_text} onChange={this.inputChangeHandler} />
                     </div>
                     <div>
-                        <button type="submit" onClick={this.handleSubmit} class="btn btn-danger mt-3">Post Review</button>
+                        <button type="submit" onClick={this.handleSubmit} className="btn btn-danger mt-3">Post Review</button>
                     </div>
                 </div>
             </form>

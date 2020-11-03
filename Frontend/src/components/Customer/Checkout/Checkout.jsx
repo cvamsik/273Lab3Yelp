@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import store from '../../../reduxConfig/store';
+// import store from '../../../reduxConfig/store';
 import { addToCart, removeFromCart, clearCart } from '../../../reduxConfig/Cart/CartActions'
 import { connect } from 'react-redux';
 import EnhancedTable from './Table/Table'
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
 class CheckOut extends Component {
@@ -35,10 +35,8 @@ class CheckOut extends Component {
 
     handleSelectChange = (m) => {
         const { value, name } = m.target;
-        if (value == "Pickup")
-            localStorage.setItem('order_type', 1)
-        else
-            localStorage.setItem('order_type', 2)
+
+        localStorage.setItem('order_type', value)
 
         this.setState({ [name]: value });
     };
@@ -55,7 +53,7 @@ class CheckOut extends Component {
             {/* {JSON.stringify(this.props.cart)}
             <button onClick={() => this.props.addToCart(dish_dispatch)} >Increment</button> */}
             <EnhancedTable props={props} />
-            <select class="form-control"
+            <select className="form-control"
                 // value={this.state.order_type}
                 onChange={this.handleSelectChange}
                 required

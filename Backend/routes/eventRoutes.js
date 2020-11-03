@@ -1,6 +1,6 @@
 const express = require("express");
 const eventRouter = express.Router();
-const eventServices = require("../servicesSQL/eventServices");
+const eventServices = require("../servicesMongo/eventServices");
 
 const { GET_ALL_EVENTS, POST_EVENT_REGISTRATION, POST_EVENT, GET_REGISTRATIONS_CUSTOMER, GET_REGISTRATIONS_EVENT, GET_EVENT_BY_RESTAURANT } = require('../config/routeConstants');
 

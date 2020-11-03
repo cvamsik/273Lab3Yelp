@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './CreateEvent.styles.css'
-import { Redirect, withRouter } from "react-router-dom";
+// import { Redirect, withRouter } from "react-router-dom";
 import cookie from 'react-cookies';
 import Axios from 'axios'
 import routeConstants from '../../../Config/routeConstants'
+import { connect } from 'react-redux'
 
 class CreateEvent extends Component {
     state = {
@@ -37,6 +38,7 @@ class CreateEvent extends Component {
                 event_latitude: this.state.event_latitude,
                 event_longitude: this.state.event_longitude,
                 event_hashtags: this.state.event_hashtags,
+                event_creator_id: this.props.restaurant_id
             };
 
             Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT}`, d
@@ -116,7 +118,7 @@ class CreateEvent extends Component {
         }
     };
     render() {
-        let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
+        // let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
 
         return (<div className="cont">
             <h4>Create Event</h4>
@@ -145,4 +147,19 @@ class CreateEvent extends Component {
     }
 }
 
-export default CreateEvent;
+// export default CreateEvent;
+
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);

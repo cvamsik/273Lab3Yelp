@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import cookie from 'react-cookies';
-import { Redirect } from 'react-router';
+// import { Link } from 'react-router-dom';
+// import cookie from 'react-cookies';
+// import { Redirect } from 'react-router';
 // import { login, logout } from '../../../reduxConfig/LoginActions'
 // import { connect } from 'react-redux';
 import yelpLogo from '../../../Assets/YelpLogo.svg.png'
@@ -21,7 +21,7 @@ class CommonNavbar extends Component {
             <div>
 
                 <nav className="navbar navbar-expand-lg navbar-light bg-danger">
-                    <a className="navbar-brand" href="/"><img src={yelpLogo} height='40px' /></a>
+                    <a className="navbar-brand" href="/"><img src={yelpLogo} alt="yelpLogo" height='40px' /></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

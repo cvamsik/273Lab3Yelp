@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import CustomInput from "../../Common/CustomInput/CustomInput";
 import axios from "axios";
 import RouteConstants from "../../../Config/routeConstants";
 import "./CustomerProfile.styles.css";
 import CustomButton from "../../Common/CustomButton/CustomButton";
-import { Route } from "react-router";
 import cookie from 'react-cookies';
 import {
-    nameHandler, emailHandler, passwordHandler, confirmPasswordHandler, birthdayHandler
+    nameHandler, birthdayHandler
     , aboutHandler, phoneHandler, userTypeHandler, thingsLovedHandler, findMeHandler, blogsHandler
 } from '../../../reduxConfig/CustomerSignUp/SignUpActions';
 import { oldDetailsHandler, cancelEditHandler, editStateHandler, loadDetailsHandler } from '../../../reduxConfig/CustomerProfile/ProfileActions';

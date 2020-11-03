@@ -2,30 +2,31 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routeConstants from '../../../Config/routeConstants';
-import './OrderDetails.styles.css'
+import './OrderDetails.styles.css';
+import { connect } from 'react-redux'
+
 class OrderDetails extends Component {
     state = {
-        resData: {
-
-        }
+        loaded: false
     }
     componentDidMount = () => {
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
-                order_id: localStorage.getItem('order_id')
+                order_id: this.props.order_id
             }
         }).then((res) => {
             console.log(res);
-            this.setState({ resData: res.data.resArray[0] })
+            // this.setState({ resData: res.data })
+            this.setState({ ...res.data, loaded: true })
         }).catch((err) => {
             console.log(err)
         })
     }
     render() {
-        let restData = this.state.resData[0]
-        console.log(restData)
         let renderVar;
-        if (restData) {
+        if (this.state.loaded) {
+            let restData = { ...this.state.restDetails }
+            restData = { ...restData, ...this.state.orderDetails }
             renderVar = <div className="restCardOrders">
 
                 <h4>OrderDetails {localStorage.getItem('order_id')}</h4>
@@ -82,4 +83,20 @@ class OrderDetails extends Component {
     }
 }
 
-export default OrderDetails;
+// export default OrderDetails;
+
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id,
+        order_id: state.order_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // setOrderID: (order_id) => dispatch(setOrderID(order_id))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetails);

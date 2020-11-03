@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routeConstants from '../../../../Config/routeConstants';
+import { connect } from 'react-redux'
 
 class RestaurantOrderDetails extends Component {
     state = {
@@ -9,7 +10,7 @@ class RestaurantOrderDetails extends Component {
 
         },
         itemsArray: [],
-        order_status_id: 0
+        order_status_id: ""
 
     }
     inputChangeHandler = (e) => {
@@ -21,7 +22,7 @@ class RestaurantOrderDetails extends Component {
         console.log(this.state)
         Axios.put(`${routeConstants.BACKEND_URL}/orders${routeConstants.UPDATE_ORDER}`, {
             order_status_id: this.state.order_status_id,
-            order_id: localStorage.getItem('order_id')
+            order_id: this.props.order_id
         }).then((res) => {
             // console.log(res);
             window.alert("Updated Order status");
@@ -35,27 +36,20 @@ class RestaurantOrderDetails extends Component {
 
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
-                order_id: localStorage.getItem('order_id')
+                order_id: this.props.order_id
             }
         }).then((res) => {
-            console.log();
+            console.log(res);
 
             this.setState({
-                resData: { ...res.data.resArray[0][0] },
-                itemsArray: res.data.itemsArray[0],
-                order_status_id: res.data.resArray[0][0].order_status_id
-            }, () => console.log((this.state)))
+                ...res.data, order_status_id: res.data.orderDetails.order_status
+            })
         }).catch((err) => {
             console.log(err)
         })
     }
     render() {
-        let restData = { ...this.state.resData }
-        // console.log(restData)
-        if (restData) {
-            restData.order_date = restData.order_date
-        }
-
+        let restData = { ...this.state.orderDetails }
 
         let items = this.state.itemsArray.map((item) => {
             return <div>
@@ -69,24 +63,28 @@ class RestaurantOrderDetails extends Component {
             </div>
         })
         let renderData;
+        console.log(restData)
         if (restData) {
+            if (restData.order_date) {
+                restData.order_date = restData.order_date.split('T')[0]
+            }
             renderData =
                 <form className="restCard" onSubmit={this.handleSubmit} >
-                    <h4>OrderID {localStorage.getItem('order_id')}</h4>
+                    <h4>OrderID {this.props.order_id}</h4>
                     <h5>
                         Order Type:{restData.order_type}
                     </h5>
 
                     <div class="form-group col-md-8">
                         <label >Status</label>
-                        <select onChange={this.inputChangeHandler} name="order_status_id" value={this.state.order_status_id} placeholder={this.state.order_status_id} class="form-control" >
-                            <option value="1">Pick Up Ready</option>
-                            <option value="2">Picked Up</option>
-                            <option value="3">On the way</option>
-                            <option value="4">Delivered</option>
-                            <option value="5">In the making</option>
-                            <option value="6">Order Placed</option>
-                            <option value="7">Cancelled</option>
+                        <select onChange={this.inputChangeHandler} name="order_status_id" value={this.state.order_status_id} select={restData.order_status} class="form-control" >
+                            <option value="Pick Up Ready">Pick Up Ready</option>
+                            <option value="Picked Up">Picked Up</option>
+                            <option value="On The Way">On the way</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="In the making">In the making</option>
+                            <option value="Order Placed">Order Placed</option>
+                            <option value="Cancelled">Cancelled</option>
 
                         </select>
                     </div>
@@ -120,4 +118,20 @@ class RestaurantOrderDetails extends Component {
     }
 }
 
-export default RestaurantOrderDetails;
+// export default RestaurantOrderDetails;
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id,
+        order_id: state.order_id,
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        // setOrderID: (order_id) => dispatch(setOrderID(order_id))
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantOrderDetails);

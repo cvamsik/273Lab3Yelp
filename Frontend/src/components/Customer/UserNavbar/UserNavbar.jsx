@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
@@ -17,6 +17,7 @@ class UserNavbar extends Component {
         cookie.remove('cookie', { path: '/' });
         cookie.remove('email', { path: '/' });
         cookie.remove('user_type', { path: '/' });
+        localStorage.clear();
         this.props.logout();
         this.props.history.push('/')
 
@@ -33,7 +34,7 @@ class UserNavbar extends Component {
             <div>
                 {redirectVar}
                 <nav className="navbar navbar-expand-lg navbar-light bg-danger">
-                    <a className="navbar-brand" href="/customer/home"><img src={yelpLogo} width='60px' height='30px' /></a>
+                    <a className="navbar-brand" href="/customer/home"><img src={yelpLogo} alt="yelpLogo" width='60px' height='30px' /></a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -49,7 +50,7 @@ class UserNavbar extends Component {
                             </li>
 
                             <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a className="nav-link dropdown-toggle" href="/customer/events" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Events
                                   </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">

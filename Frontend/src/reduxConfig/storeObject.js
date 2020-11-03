@@ -6,6 +6,9 @@ export const initialState = {
     order_type: "",
     user_email: "",
     user_type: 0,
+    customer_id: "",
+    restaurant_id: "",
+    order_id: "",
     login: {
         email_id: "",
         password: "",

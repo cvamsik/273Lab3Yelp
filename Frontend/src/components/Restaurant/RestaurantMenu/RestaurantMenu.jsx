@@ -4,7 +4,7 @@ import constants from '../../../Config/routeConstants'
 import cookie from 'react-cookies'
 import RestaurantMenuCard from './RestaurantMenuCard/RestaurantMenuCard';
 import './RestaurantMenu.styles.css'
-
+import { connect } from 'react-redux'
 class RestaurantMenu extends Component {
     state = {
         res: []
@@ -17,7 +17,7 @@ class RestaurantMenu extends Component {
             params:
             {
                 // email: "Gustavo_Monk@example.com"
-                email: cookie.load('email')
+                restaurant_id: this.props.restaurant_id
             }
         }).then((res) => {
             console.log("Test data")
@@ -115,4 +115,18 @@ class RestaurantMenu extends Component {
     }
 }
 
-export default RestaurantMenu;
+// export default RestaurantMenu;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantMenu);

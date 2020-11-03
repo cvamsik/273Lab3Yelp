@@ -8,9 +8,9 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 // import Locations from "../../../DummyData/Locations";
 
 import "./MapDisplay.styles.css";
-import axios from "axios";
+// import axios from "axios";
 // import CustomButton from "../CustomButton/CustomButton";
-import routeConstants from '../../../Config/routeConstants'
+// import routeConstants from '../../../Config/routeConstants'
 class MapDisplay extends Component {
     state = {
         currentPosition: {
@@ -32,7 +32,7 @@ class MapDisplay extends Component {
         // console.log(this.state.currentPosition);
         // let d = new Date();
         // console.log(" before axios call " + d.getMilliseconds());
-        let locationdata;
+        // let locationdata;
         // console.log("getting locations");
 
         // await this.setState({ locations: locationdata }, () => {
@@ -75,14 +75,14 @@ class MapDisplay extends Component {
     render() {
         // console.log(this.props);
 
-        const style = {
-            width: "100%",
-            height: "100%",
-        };
-        const getPosition = {
-            latitude: 37.330516,
-            longitude: -121.885233,
-        };
+        // const style = {
+        //     width: "100%",
+        //     height: "100%",
+        // };
+        // const getPosition = {
+        //     latitude: 37.330516,
+        //     longitude: -121.885233,
+        // };
         //  = MapGetLocation();
         // console.log(getPosition);
         // let d = new Date();

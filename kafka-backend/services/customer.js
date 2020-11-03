@@ -16,7 +16,7 @@ const LoginCredentials = require('../models/LoginCredentials');
 
 function handle_request(msg, callback) {
 
-    console.log("Inside Login Services ->kafka backend");
+    console.log("Inside Customer Services ->kafka backend");
     console.log(msg);
     switch (msg.api) {
         case "POST_CUSTOMER_SIGNUP":
@@ -62,7 +62,7 @@ function handle_request(msg, callback) {
             }
         case "GET_CUSTOMER_PROFILE":
             {
-                Customers.findOne({ email_id: msg.body.email_id },
+                Customers.findOne({ _id: msg.body.customer_id },
                     (err, result) => {
                         if (err) {
                             console.log('Error occured while fetching customer profile' + err)
@@ -85,7 +85,7 @@ function handle_request(msg, callback) {
                 find_me: msg.body.find_me,
                 blog_ref: msg.body.blog_ref
             }
-            Customers.findOneAndUpdate({ customer_id: msg.body.customer_id }, { ...customer }, (err, result) => {
+            Customers.findOneAndUpdate({ _id: msg.body.customer_id }, { ...customer }, (err, result) => {
                 if (err) {
                     console.log('Error occured while updating Customer Profile ' + err)
                     callback(err, 'Error')

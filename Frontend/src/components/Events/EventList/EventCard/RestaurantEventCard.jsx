@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './EventCard.styles.css'
-import { Redirect, withRouter } from "react-router-dom";
-import cookie from 'react-cookies';
-import Axios from 'axios'
-import routeConstants from '../../../../Config/routeConstants'
+import { withRouter } from "react-router-dom";
+// import cookie from 'react-cookies';
+// import Axios from 'axios'
+// import routeConstants from '../../../../Config/routeConstants'
 
 class EventCard extends Component {
     state = {
@@ -39,7 +39,7 @@ class EventCard extends Component {
             {/* {redirectVar} */}
             <div className="restCard3">
                 <div className="eventImage">
-                    <img className="img-thumbnail" style={{ "marginBottom": '15px' }} src={restData.image_url} width='200px' height='150px' />
+                    <img className="img-thumbnail" alt="eventImage" style={{ "marginBottom": '15px' }} src={restData.image_url} width='200px' height='150px' />
                     <h4>{restData.event_name}</h4>
                 </div>
                 <h5>{restData.restaurant_name}</h5>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
-
+import { connect } from 'react-redux'
 class CreateMenuItem extends Component {
     state = {
         description: "",
@@ -11,7 +11,7 @@ class CreateMenuItem extends Component {
         ingredients: "",
         menu_id: 0,
         price: 0,
-        email: cookie.load('email')
+        restaurant_id: this.props.restaurant_id
 
     }
     inputChangeHandler = (e) => {
@@ -103,7 +103,7 @@ class CreateMenuItem extends Component {
                 <div className="profile">
                     <div >
                         <div className="imageDiv">
-                            <img src={profileURL} width='130px' height='130px' className="imageCont" />
+                            <img src={profileURL} width='130px' height='130px' alt="DishImage" className="imageCont" />
                             <input type="file" onChange={this.onFileChange} />
                             <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
                             {this.fileData()}
@@ -153,4 +153,18 @@ class CreateMenuItem extends Component {
     }
 }
 
-export default CreateMenuItem;
+// export default CreateMenuItem;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateMenuItem);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { withStyles } from "@material-ui/core/styles";
+// import { withStyles } from "@material-ui/core/styles";
 
 import './RestaurantMenuCard.styles.css'
 
@@ -63,14 +63,14 @@ class RestaurantMenuCard extends Component {
     render() {
         const { menuItem } = this.props;
         console.log(this.state.category_id)
-        const dish_dispatch = {
+        // const dish_dispatch = {
 
-            dish_id: menuItem.dish_id,
-            dish_name: menuItem.dish_name,
-            price: menuItem.price,
-            count: 1
+        //     dish_id: menuItem.dish_id,
+        //     dish_name: menuItem.dish_name,
+        //     price: menuItem.price,
+        //     count: 1
 
-        }
+        // }
         let imageURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
 
         return (
@@ -100,11 +100,11 @@ class RestaurantMenuCard extends Component {
                     <div class="form-group ">
                         <label >Category</label>
                         <select value={this.state.category_id} onChange={this.inputChangeHandler} selected={this.state.category_id} name="category_id" class="form-control" >
-                            <option value="1">Desserts</option>
-                            <option value="2">Salads</option>
-                            <option value="3">Beverages</option>
-                            <option value="4">Appetizers</option>
-                            <option value="5">Main Course</option>
+                            <option value="Desserts">Desserts</option>
+                            <option value="Salads">Salads</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Appetizers">Appetizers</option>
+                            <option value="Main Course">Main Course</option>
 
                         </select>
                     </div>

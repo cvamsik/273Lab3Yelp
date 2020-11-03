@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import constants from '../../../Config/routeConstants'
-import cookie from 'react-cookies'
+// import cookie from 'react-cookies'
 import MenuItem from './MenuItem/MenuItem';
 import './Menu.styles.css'
 import Checkout from '../../Customer/Checkout/Checkout';
 import CustomerReviews from '../../Customer/CustomerReviews/CustomerReviews'
 import MapDisplay from '../../Customer/MapDisplay/MapDisplay';
+import { connect } from 'react-redux'
 class Menu extends Component {
     state = {
         res: [],
 
     }
     componentDidMount() {
+        console.log(this.props)
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
             params:
-                { email: localStorage.getItem('restaurant_email') }
+                { restaurant_id: this.props.restaurant_id }
         }).then((res) => {
             this.setState({ res: res.data });
-            // console.log(res.data);
+            console.log(res.data);
 
         }).catch((err) => {
             console.log(err);
@@ -31,42 +33,45 @@ class Menu extends Component {
         let beverages = [];
         let appetizers = [];
         let mains = [];
-        let dishes = this.state.res.map((dish) => {
-            // <MenuItem menuItem={dish} />
-            // console.log(dish.category_id)
-            switch (dish.category_id) {
-                case "Desserts":
-                    {
-                        desserts.push(<MenuItem menuItem={dish} />)
-                        break;
-                    }
-                case "Salads":
-                    {
-                        salads.push(<MenuItem menuItem={dish} />)
-                        break;
-                    }
-                case "Beverages":
-                    {
-                        beverages.push(<MenuItem menuItem={dish} />)
-                        break;
-                    }
-                case "Appetizers":
-                    {
-                        appetizers.push(<MenuItem menuItem={dish} />)
-                        break;
-                    }
-                case "Main Course":
-                    {
-                        mains.push(<MenuItem menuItem={dish} />)
-                        break;
-                    }
-                default:
-                    {
+        if (this.state.res && this.state.res.length > 0) {
+            this.state.res.map((dish) => {
+                // <MenuItem menuItem={dish} />
+                console.log(dish.category_id)
+                switch (dish.category_id) {
+                    case "Desserts":
+                        {
+                            desserts.push(<MenuItem menuItem={dish} />)
+                            break;
+                        }
+                    case "Salads":
+                        {
+                            salads.push(<MenuItem menuItem={dish} />)
+                            break;
+                        }
+                    case "Beverages":
+                        {
+                            beverages.push(<MenuItem menuItem={dish} />)
+                            break;
+                        }
+                    case "Appetizers":
+                        {
+                            appetizers.push(<MenuItem menuItem={dish} />)
+                            break;
+                        }
+                    case "Main Course":
+                        {
+                            mains.push(<MenuItem menuItem={dish} />)
+                            break;
+                        }
+                    default:
+                        {
+                            console.log("Category not found")
+                        }
+                }
 
-                    }
             }
+            )
         }
-        )
         // console.log(this.props)
         return (
             <div className="menuPage1">
@@ -114,4 +119,18 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+// export default Menu;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

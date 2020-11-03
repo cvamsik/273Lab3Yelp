@@ -1,6 +1,6 @@
 const express = require("express");
 const orderRouter = express.Router();
-const orderServices = require("../servicesSQL/orderServices");
+const orderServices = require("../servicesMongo/orderServices");
 
 
 const { GET_ORDER_BY_CUSTOMER, POST_ORDER, UPDATE_ORDER, GET_ORDER_BY_ID, GET_ORDER_BY_RESTAURANT } = require("../../Frontend/src/Config/routeConstants");

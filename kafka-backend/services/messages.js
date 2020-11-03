@@ -20,7 +20,6 @@ function handle_request(msg, callback) {
     switch (msg.api) {
         case "POST_INITIATE_MESSAGE":
             {
-                let messaging = mongoose.Types.ObjectId;
                 let messaging = new Messaging({
                     conversation_id: msg.body.conversation_id,
                     restaurant_id: msg.body.restaurant_id,
@@ -56,6 +55,7 @@ function handle_request(msg, callback) {
                 console.log('Error occured while creating Message' + err)
                 callback(err, 'Error')
             })
+            break;
         }
         case "GET_MESSAGES_LIST_RESTAURANT": {
             Messaging.find({ restaurant_id: msg.body.restaurant_id }, (err, result) => {
@@ -68,6 +68,8 @@ function handle_request(msg, callback) {
                     callback(null, result)
                 }
             })
+            break;
+
         }
         case "GET_MESSAGES_LIST_CUSTOMER": {
             Messaging.find({ customer_id: msg.body.customer_id }, (err, result) => {
@@ -80,6 +82,8 @@ function handle_request(msg, callback) {
                     callback(null, result)
                 }
             })
+            break;
+
 
         }
         case "GET_MESSAGES": {
@@ -93,6 +97,8 @@ function handle_request(msg, callback) {
                     callback(null, result)
                 }
             })
+            break;
+
 
         }
         default: {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import bgImage from '../../../Assets/BackgroundImages/LandingPage.jpg'
+// import bgImage from '../../../Assets/BackgroundImages/LandingPage.jpg'
 import yelpLogo from '../../../Assets/YelpLogo.svg.png'
 import './LandingPage.styles.css'
 class LandingPage extends Component {
