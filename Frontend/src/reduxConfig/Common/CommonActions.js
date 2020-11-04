@@ -25,3 +25,10 @@ export const setOrderID = (payload) => {
         payload: payload
     }
 }
+export const setConversationID = (payload) => {
+    console.log(payload)
+    return {
+        type: actionTypes.SET_CONVERSATION_ID,
+        payload: payload
+    }
+}

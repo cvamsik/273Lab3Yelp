@@ -29,11 +29,10 @@ class MessageContainer extends Component {
 
 
     componentDidMount = () => {
-        setInterval(() => this.tick(), 1000);
+        // setInterval(() => this.tick(), 3000);
         axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
             params: {
-                restaurant_id: this.props.restaurant_id,
-                customer_id: this.props.customer_id
+                conversation_id: this.props.conversation_id
             }
         }).then((res) => {
             console.log(res)
@@ -57,7 +56,12 @@ class MessageContainer extends Component {
             }).then((res) => {
                 console.log(res)
                 this.setState({ messages: [...res.data[0].messages] })
+            }).catch((err) => {
+                console.log("error loading" + err)
             })
+
+        }).catch((err) => {
+            console.log("error loading" + err)
         })
 
     }
@@ -103,7 +107,8 @@ const mapStateToProps = (state) => {
         customer_id: state.customer_id,
         order_id: state.order_id,
         restaurant_id: state.restaurant_id,
-        user_type: state.user_type
+        user_type: state.user_type,
+        conversation_id: state.conversation_id
     };
 }
 

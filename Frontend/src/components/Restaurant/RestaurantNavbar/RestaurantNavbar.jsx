@@ -54,6 +54,7 @@ class RestaurantNavbar extends Component {
                                     <a className="dropdown-item text-danger" href="/restaurant/menu/create">Add a dish</a>
                                 </div>
                             </li>
+
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Events
@@ -65,6 +66,9 @@ class RestaurantNavbar extends Component {
 
                                     {/* <div className="dropdown-divider"></div> */}
                                 </div>
+                            </li>
+                            <li className="nav-item active">
+                                <a className="nav-link text-light" href="/restaurant/messages">Messages <span className="sr-only"></span></a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link text-light" href="/restaurant/reviews">Reviews</a>

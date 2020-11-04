@@ -92,7 +92,7 @@ function handle_request(msg, callback) {
                     console.log('Fetching Conversations' + result)
                     callback(null, result)
                 }
-            })
+            }).populate({ path: 'customer_id', model: 'Customers' }).populate({ path: 'restaurant_id', model: 'Restaurants' })
             break;
 
         }
@@ -106,13 +106,13 @@ function handle_request(msg, callback) {
                     console.log('Fetching Conversations' + result)
                     callback(null, result)
                 }
-            })
+            }).populate('restaurant_id')
             break;
 
 
         }
         case "GET_MESSAGES": {
-            Messaging.find({ $and: [{ customer_id: msg.body.customer_id }, { restaurant_id: msg.body.restaurant_id }] }, (err, result) => {
+            Messaging.find({ _id: msg.body.conversation_id }, (err, result) => {
                 if (err) {
                     console.log('Error occured while fetching Conversations' + err)
                     callback(err, 'Error')

@@ -38,6 +38,7 @@ module.exports = {
     SET_CUSTOMER_ID: "setCustomerID",
     SET_SEARCH_STRING: "setSearchString",
     SET_ORDER_ID: "setOrderID",
+    SET_CONVERSATION_ID: "setConversationID"
 
 
 }
