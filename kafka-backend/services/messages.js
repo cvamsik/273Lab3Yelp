@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 const routes = require("../config/routeConstants");
 
 const Messaging = require('../models/Messaging')
-const Message = require('../models/Messaging')
+const Message = require('../models/Message')
 function handle_request(msg, callback) {
 
     console.log("Inside Login Services ->kafka backend");
@@ -20,18 +20,36 @@ function handle_request(msg, callback) {
     switch (msg.api) {
         case "POST_INITIATE_MESSAGE":
             {
+                let oId = mongoose.Types.ObjectId()
                 let messaging = new Messaging({
-                    conversation_id: msg.body.conversation_id,
+                    conversation_id: oId,
                     restaurant_id: msg.body.restaurant_id,
                     customer_id: msg.body.customer_id
                 })
-                messaging.save().then((res) => {
-                    console.log('Restaurant Profile Created ' + response)
-                    callback(null, response)
-                }).catch((err) => {
-                    console.log('Unable to create Login Creds' + err)
-                    callback(err, 'Error')
+                Messaging.findOne({ $and: [{ restaurant_id: msg.body.restaurant_id }, { customer_id: msg.body.customer_id }] }, (err, res) => {
+                    console.log(res)
+                    if (err) {
+                        console.log('Unable to Initiate Message' + err)
+                        callback(err, 'Error')
+                    }
+                    else if (res !== null) {
+                        console.log('Conversation Exists ')
+                        callback(null, messaging)
+                    }
+                    else {
+                        messaging.save((err) => {
+                            if (err) {
+                                console.log('Unable to Initiate Message' + err)
+                                callback(err, 'Error')
+                            }
+                            else {
+                                console.log('Conversation Created ')
+                                callback(null, messaging)
+                            }
+                        })
+                    }
                 })
+
                 break;
             }
         case "POST_MESSGAGES": {
@@ -40,22 +58,29 @@ function handle_request(msg, callback) {
                 timeStamp: Date.now(),
                 sender: msg.body.sender
             })
-            Message.save().then(
-                Messaging.findOneAndUpdate({ conversation_id: msg.body.conversation_id }, { $push: { "messages": message } }, (err, result) => {
-                    if (err) {
-                        console.log('Error occured while Updating Conversation' + err)
-                        callback(err, 'Error')
-                    }
-                    else {
-                        console.log('Message Created' + result)
-                        callback(null, result)
-                    }
-                })
-            ).catch((err) => {
-                console.log('Error occured while creating Message' + err)
-                callback(err, 'Error')
+            message.save((err) => {
+                if (err) {
+                    console.log('Error occured while Updating Conversation' + err)
+                    callback(err, 'Error')
+                }
+                else {
+                    Messaging.findOneAndUpdate({ $and: [{ restaurant_id: msg.body.restaurant_id }, { customer_id: msg.body.customer_id }] },
+                        { $push: { "messages": message._id } }, (err, result) => {
+                            if (err) {
+                                console.log('Error occured while Updating Conversation' + err)
+                                callback(err, 'Error')
+                            }
+                            else {
+                                console.log('Message Created' + result)
+                                callback(null, result)
+                            }
+                        })
+                }
+
             })
+
             break;
+
         }
         case "GET_MESSAGES_LIST_RESTAURANT": {
             Messaging.find({ restaurant_id: msg.body.restaurant_id }, (err, result) => {
@@ -87,7 +112,7 @@ function handle_request(msg, callback) {
 
         }
         case "GET_MESSAGES": {
-            Messaging.find({ customer_id: msg.body.customer_id }, { restaurant_id: msg.body.restaurant_id }, (err, result) => {
+            Messaging.find({ $and: [{ customer_id: msg.body.customer_id }, { restaurant_id: msg.body.restaurant_id }] }, (err, result) => {
                 if (err) {
                     console.log('Error occured while fetching Conversations' + err)
                     callback(err, 'Error')
@@ -96,7 +121,7 @@ function handle_request(msg, callback) {
                     console.log('Fetching Conversations' + result)
                     callback(null, result)
                 }
-            })
+            }).populate('messages').populate('restaurant_id')
             break;
 
 

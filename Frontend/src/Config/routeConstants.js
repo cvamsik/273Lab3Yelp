@@ -86,6 +86,7 @@ module.exports = {
 
 
 
+
     //KAFKA TOPICS
     TOPIC_RESTAURANT: 'restaurant',
     TOPIC_CUSTOMER: 'customer',

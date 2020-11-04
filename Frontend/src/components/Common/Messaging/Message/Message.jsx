@@ -5,6 +5,7 @@ class Message extends Component {
     state = {}
 
     render() {
+        // console.log(this.props)
         const ifSender = this.props.user == cookie.load("user_type") ? 'isSender' : '';
         return (
             <div className={`message ${ifSender}`}>

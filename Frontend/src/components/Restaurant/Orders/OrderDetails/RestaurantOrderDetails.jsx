@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routeConstants from '../../../../Config/routeConstants';
 import { connect } from 'react-redux'
-
+import { setCustomerID } from '../../../../reduxConfig/Common/CommonActions'
 class RestaurantOrderDetails extends Component {
     state = {
         resData: {
@@ -32,38 +32,53 @@ class RestaurantOrderDetails extends Component {
         })
 
     }
+    handleContact = (e) => {
+        this.props.setCustomerID({ customer_id: this.state.resData.customer_id })
+        // console.log(this.props)
+        Axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_INITIATE_MESSAGE}`, {
+            customer_id: this.props.customer_id,
+            restaurant_id: this.props.restaurant_id
+        })
+        this.props.history.push('/message')
+    }
     componentDidMount = () => {
-
+        console.log(this.props)
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
                 order_id: this.props.order_id
             }
         }).then((res) => {
-            console.log(res);
 
             this.setState({
-                ...res.data, order_status_id: res.data.orderDetails.order_status
-            })
+                resData: { ...res.data, ...res.data.restaurant_id }, order_status_id: res.data.order_status, itemsArray: [...res.data.cart_items]
+            }, () => {
+                console.log(this.state.itemsArray)
+                console.log(this.state)
+            }
+            )
         }).catch((err) => {
             console.log(err)
         })
     }
     render() {
-        let restData = { ...this.state.orderDetails }
+        let restData = { ...this.state.resData }
 
-        let items = this.state.itemsArray.map((item) => {
-            return <div>
-                <ul>
-                    <lh><h5>Dish Name: {item.dish_name}</h5></lh>
-                    <li>Dish ID: {item.dish_id}</li>
+        let items
+        if (this.state.itemsArray.length > 0) {
+            items = this.state.itemsArray.map((item) => {
+                return <div>
+                    <ul>
+                        <lh><h5>Dish Name: {item.dish_id.dish_name}</h5></lh>
+                        <li>Dish ID: {item.dish_id._id}</li>
+                        <li>Ingredients: {item.dish_id.ingredients}</li>
+                        <li>Count: {item.count}</li>
+                    </ul>
 
-                    <li>Count: {item.count}</li>
-                </ul>
-
-            </div>
-        })
+                </div>
+            })
+        }
         let renderData;
-        console.log(restData)
+        // console.log(restData)
         if (restData) {
             if (restData.order_date) {
                 restData.order_date = restData.order_date.split('T')[0]
@@ -75,9 +90,9 @@ class RestaurantOrderDetails extends Component {
                         Order Type:{restData.order_type}
                     </h5>
 
-                    <div class="form-group col-md-8">
+                    <div className="form-group col-md-8">
                         <label >Status</label>
-                        <select onChange={this.inputChangeHandler} name="order_status_id" value={this.state.order_status_id} select={restData.order_status} class="form-control" >
+                        <select onChange={this.inputChangeHandler} name="order_status_id" value={this.state.order_status_id} select={restData.order_status} className="form-control" >
                             <option value="Pick Up Ready">Pick Up Ready</option>
                             <option value="Picked Up">Picked Up</option>
                             <option value="On The Way">On the way</option>
@@ -111,6 +126,7 @@ class RestaurantOrderDetails extends Component {
                 <div className="restCard">
                     {items}
                     <Link to="/restaurant/orders"><button className="btn btn-danger">Back to Orders</button></Link>
+                    <button className="btn btn-danger " onClick={this.handleContact} >Contact Customer</button>
 
                 </div>
             </div>
@@ -129,7 +145,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // setOrderID: (order_id) => dispatch(setOrderID(order_id))
+        setCustomerID: (customer_id) => dispatch(setCustomerID(customer_id))
 
     }
 }

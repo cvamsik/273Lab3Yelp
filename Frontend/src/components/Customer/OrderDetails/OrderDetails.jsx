@@ -12,7 +12,7 @@ class OrderDetails extends Component {
     componentDidMount = () => {
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
-                order_id: this.props.order_id
+                order_id: this.props._id
             }
         }).then((res) => {
             console.log(res);

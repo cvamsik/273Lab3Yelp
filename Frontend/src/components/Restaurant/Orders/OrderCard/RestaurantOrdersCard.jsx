@@ -15,7 +15,7 @@ class RestaurantOrdersCard extends Component {
     handleClick = () => {
         console.log(this.props);
         // localStorage.setItem('order_id', this.props.props.res.order_id)
-        this.props.setOrderID({ order_id: this.props.props.res.order_id })
+        this.props.setOrderID({ order_id: this.props.props.res._id })
         this.props.history.push('/restaurant/orderDetails')
     }
     render() {

@@ -64,7 +64,7 @@ class MenuItem extends Component {
         // console.log(menuItem)
         const dish_dispatch = {
 
-            dish_id: menuItem.dish_id,
+            dish_id: menuItem._id,
             dish_name: menuItem.dish_name,
             price: menuItem.price,
             count: 1
@@ -132,6 +132,7 @@ class MenuItem extends Component {
         );
     }
 }
+
 const mapStateToProps = (state) => {
     return {
     };

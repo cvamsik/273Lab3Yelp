@@ -75,6 +75,8 @@ class Main extends Component {
                 <Route exact path="/customer/reviews" component={CustomerSelfReviews} />
                 <Route exact path="/customer/events" component={DisplayEvents} />
                 <Route exact path="/customer/events/registrations" component={DisplayRegistrationsCustomer} />
+                <Route exact path="/customer/messages" component={MessageContainer} />
+
 
 
 
@@ -92,7 +94,7 @@ class Main extends Component {
                 <Route exact path="/restaurant/events/registrations" component={DisplayRegistrationsRestaurant} />
                 <Route exact path="/restaurant/events/home" component={EventsHome} />
 
-                <Route exact path="/message" component={MessageContainer} />
+                <Route exact path="/restaurant/messages" component={MessageContainer} />
 
 
             </div>

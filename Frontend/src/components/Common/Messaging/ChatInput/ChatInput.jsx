@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './ChatInput.styles.css';
 import axios from 'axios';
 import routeConstants from '../../../../Config/routeConstants'
-import cookie from 'react-cookies'
+import { connect } from 'react-redux';
+
 class ChatInput extends Component {
     state = {
         chatInput: ""
@@ -12,9 +13,9 @@ class ChatInput extends Component {
         console.log("chat input submitted" + this.state.chatInput);
         axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_MESSAGES}`, {
             message: this.state.chatInput,
-            customer_id: cookie.load('customer_id'),
-            restaurant_id: cookie.load('restaurant_id'),
-            sender: cookie.load('user_type')
+            customer_id: this.props.customer_id,
+            restaurant_id: this.props.restaurant_id,
+            sender: this.props.user_type
         })
     }
     inputChangeHandler = (e) => {
@@ -28,8 +29,28 @@ class ChatInput extends Component {
                     <input type='text' onChange={this.inputChangeHandler} value={this.state.chatInput} name="chatInput" placeholder="Enter message here" required />
                     <button type='submit'>Send</button>
                 </form>
-            </div>);
+            </div>
+        );
     }
 }
 
-export default ChatInput;
+// export default ChatInput;
+
+const mapStateToProps = (state) => {
+    return {
+        customer_id: state.customer_id,
+        restaurant_id: state.restaurant_id,
+        user_type: state.user_type
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatInput);
