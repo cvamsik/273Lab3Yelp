@@ -6,7 +6,7 @@ const Registrations = new mongoose.Schema({
         ref: 'Events',
         required: true
     },
-    event_id: {
+    customer_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customers',
         required: true

@@ -14,7 +14,8 @@ const loginReducer = (state = initialState, action) => {
                 loggedIn: true,
                 customer_id: action.payload.customer_id,
                 restaurant_id: action.payload.restaurant_id,
-                user_type: action.payload.user_type
+                user_type: action.payload.user_type,
+                jwtToken: action.payload.jwtToken
             }
             );
         case actionTypes.USER_LOGOUT:

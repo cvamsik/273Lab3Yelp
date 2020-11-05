@@ -9,9 +9,11 @@ const {
     TEXT_PLAIN,
     RES_INTERNAL_SERVER_ERROR
 } = require("../config/routeConstants");
-const routes = require("../config/routeConstants");
 
 const kafka = require('../kafka/client')
+var passport = require('passport');
+
+const { checkAuth } = require("../config/passport");
 
 
 module.exports.createRestaurant = (req, res) => {
@@ -195,6 +197,7 @@ module.exports.getRestaurantSearch = (req, res) => {
             res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
         } else {
             console.log("Inside else");
+
             res.status(RES_SUCCESS).send(JSON.stringify(result));
         }
 

@@ -1,9 +1,8 @@
 
 const mongoose = require("mongoose");
-const Dish = require('./Dish')
 
-const Menu = new mongoose.Schema({
-    menu_id: {
+const Messaging = new mongoose.Schema({
+    conversation_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
@@ -12,9 +11,14 @@ const Menu = new mongoose.Schema({
         ref: 'Restaurants',
         required: true
     },
-    dishes: [{
+    customer_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dish'
+        ref: 'Restaurants',
+        required: true
+    },
+    messages: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Message'
     }]
 
 }, { versionKey: false })
@@ -22,4 +26,4 @@ const Menu = new mongoose.Schema({
 
 
 
-module.exports = mongoose.model('Menu', Menu)
+module.exports = mongoose.model('Messaging', Messaging)

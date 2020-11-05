@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import { login } from '../../../reduxConfig/Login/LoginActions';
 import loginImage from '../../../Assets/BackgroundImages/LoginImage.jpg'
 import './Login.styles.css'
+import jwt_decode from 'jwt-decode';
+
 //Define a Login Component
 class Login extends Component {
     state = {
@@ -110,38 +112,36 @@ class Login extends Component {
             .then(response => {
                 console.log("Status Code : ", response.status);
                 if (response.status === 200) {
-                    console.log(response.data);
-                    user_type = response.data.user_type;
+                    // console.log(response.data);
+                    user_type = response.data.data.user_type;
+                    var decoded = jwt_decode(response.data.token.split(' ')[1]);
+                    // console.log(decoded.username)
                     this.setState({
                         authFlag: true
                     }, () => {
-                        cookie.save("email", response.data.email_id, {
-                            path: '/'
-                        });
-                        cookie.save("user_type", response.data.user_type, {
-                            path: '/'
-                        });
-                        console.log("Updated state");
-                        if (response.data.user_type === 1) {
+                        if (response.data.data.user_type === 1) {
                             console.log("cust redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                customer_id: response.data.customer_id,
-                                user_type: response.data.user_type
+                                customer_id: response.data.data.customer_id,
+                                user_type: response.data.data.user_type,
+                                jwtToken: response.data.token
+
                             });
                             this.props.history.push('/customer/home');
                         }
-                        else if (response.data.user_type === 2) {
+                        else if (response.data.data.user_type === 2) {
                             console.log("rest redirect");
                             cookie.save('cookie');
                             this.props.login({
-                                restaurant_id: response.data.restaurant_id,
-                                user_type: response.data.user_type
+                                restaurant_id: response.data.data.restaurant_id,
+                                user_type: response.data.data.user_type,
+                                jwtToken: response.data.token
                             });
                             this.props.history.push('/restaurant/home');
                         }
                         else {
-                            console.log(response.data.user_type + "<----")
+                            console.log(response.data.data.user_type + "<----")
                         }
                     })
 

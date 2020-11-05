@@ -14,6 +14,7 @@ class RestaurantList extends Component {
         console.log(localStorage.getItem('search_string'))
         if (localStorage.getItem('search_string')) {
             // console.log("In search part")
+            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
             Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
                 params: {
                     search_string: localStorage.getItem('search_string')
@@ -94,7 +95,8 @@ class RestaurantList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        restaurant_id: state.restaurant_id
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
     };
 }
 

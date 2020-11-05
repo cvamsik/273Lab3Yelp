@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Registrations = require('registrations')
+// const Registrations = require('Registrations')
 
 const Events = new mongoose.Schema({
     event_id: {
@@ -42,7 +42,10 @@ const Events = new mongoose.Schema({
         required: true,
     },
     event_images: [String],
-    event_registrations: [Registrations]
+    event_registrations: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Registrations'
+    }]
 }, { versionKey: false })
 
 module.exports = mongoose.model('Events', Events)

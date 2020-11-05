@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 
-const Customers = new mongoose.Schema({
+const Restaurants = new mongoose.Schema({
     restaurant_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -52,6 +52,7 @@ const Customers = new mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true
     },
     open_time: {
         type: String,
@@ -76,9 +77,10 @@ const Customers = new mongoose.Schema({
     profile_image_link: {
         type: String,
     },
-    menu: {
-
-    }
+    dishes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Dish'
+    }]
 }, { versionKey: false })
 
-module.exports = mongoose.model('Customers', Customers)
+module.exports = mongoose.model('Restaurants', Restaurants)

@@ -7,7 +7,12 @@ const dbConfig = {
     mongoURL: process.env.MONGO_URL
 }
 
-mongoose.connect(dbConfig.mongoURL, { useNewUrlParser: true, useUnifiedTopology: true, poolSize: 5 })
+mongoose.connect(dbConfig.mongoURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    poolSize: 500,
+    bufferMaxEntries: 0
+})
     .then(() => console.log('MongoDB Connected')).catch((err) => console.log(err))
 mongoose.Promise = global.Promise
 mongoose.set('useFindAndModify', false);

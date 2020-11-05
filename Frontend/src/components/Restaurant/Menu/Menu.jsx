@@ -15,6 +15,8 @@ class Menu extends Component {
     }
     componentDidMount() {
         console.log(this.props)
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
             params:
                 { restaurant_id: this.props.restaurant_id }
@@ -123,7 +125,8 @@ class Menu extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        restaurant_id: state.restaurant_id
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
     };
 }
 

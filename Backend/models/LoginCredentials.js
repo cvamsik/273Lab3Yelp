@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const LoginCredentials = new mongoose.Schema({
     email_id: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     user_password: {
         type: String,
@@ -12,6 +13,7 @@ const LoginCredentials = new mongoose.Schema({
     },
     user_type: {
         type: Number,
+        enum: [1, 2],
         required: true
     },
 

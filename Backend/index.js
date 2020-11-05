@@ -10,6 +10,16 @@ var cors = require('cors');
 app.set('view engine', 'ejs');
 const path = require('path');
 var kafka = require('./kafka/client');
+let mongo = require('./config/mongoConnection')
+
+
+
+var passport = require('passport');
+var jwt = require('jwt-simple');
+app.use(passport.initialize());
+
+// var passport = require('passport');// create a passport instance
+// var myPassportService = require('./config/passport')(passport);// pass it into passport.js file
 
 app.use(cors({ origin: `${routeConstants.FRONTEND_URL}`, credentials: true }));
 // const formidable = require('express-formidable');

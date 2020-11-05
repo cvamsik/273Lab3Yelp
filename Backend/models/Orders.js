@@ -35,7 +35,6 @@ const Orders = new mongoose.Schema({
     order_time: {
         type: String,
         required: true,
-        default: `${Date.now().getHours}:${Date.now().getMinutes}:${Date.now().getSeconds}`
     },
     order_total_price: {
         type: Number,
@@ -43,59 +42,20 @@ const Orders = new mongoose.Schema({
         default: 0,
     },
     delivery_address: {
-        DeliveryAddress
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'DeliveryAddress'
     },
     payment_card_digits: {
         type: Number,
         required: true,
     },
-    order_items: [OrderItems]
-}, { versionKey: false })
-
-
-
-const OrderItems = new mongoose.Schema({
-
-    dish_id: {
+    cart_items: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dish',
-        required: true
-    },
-    count: {
-        type: Number,
-        required: true,
-    },
+        ref: 'CartItem'
+    }]
 }, { versionKey: false })
 
-const DeliveryAddress = new mongoose.Schema({
-    delivery_address: {
-        type: String,
-        required: true,
-    },
-    address_city: {
-        type: String,
-        required: true,
-    },
-    address_state: {
-        type: String,
-        required: true,
-    },
-    address_postal_code: {
-        type: Number,
-        required: true,
-    },
-    address_latitude: {
-        type: Number,
-        required: true,
-    },
-    address_longitude: {
-        type: Number,
-        required: true,
-    },
-    primary_phone: {
-        type: Number,
-        required: true,
-    },
-}, { versionKey: false })
+
+
 
 module.exports = mongoose.model('Orders', Orders)
