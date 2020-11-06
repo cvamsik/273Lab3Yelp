@@ -51,7 +51,8 @@ class RestaurantMenuCard extends Component {
         const postData = {
             ...temp
         }
-        console.log(postData)
+        // console.log(postData)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         Axios.put(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.UPDATE_MENU_ITEM}`, temp).then((res) => {
             console.log(res);
             window.alert("Updated Successfully");
@@ -124,9 +125,9 @@ class RestaurantMenuCard extends Component {
         );
     }
 }
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-
+        jwtToken: state.jwtToken
     };
 }
 

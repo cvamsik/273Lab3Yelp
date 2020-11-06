@@ -5,6 +5,8 @@ import cookie from 'react-cookies'
 import CustomerReviewCard from './CustomerReviewCard/CustomerReviewCard';
 import './CustomerReviews.styles.css'
 import CustomerCreateReview from './CustomerReviewCard/CustomerCreateReview'
+import { connect } from 'react-redux'
+
 class CustomerReviews extends Component {
     state = {
         resData: []
@@ -12,9 +14,10 @@ class CustomerReviews extends Component {
 
 
     componentDidMount = () => {
+        // Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_BY_RESTAURANT}`, {
             params: {
-                restaurant_id: localStorage.getItem("restaurant_id")
+                restaurant_id: this.props.restaurant_id
             }
         }).then((res) => {
             this.setState({ resData: [...res.data] })
@@ -45,4 +48,19 @@ class CustomerReviews extends Component {
     }
 }
 
-export default CustomerReviews;
+// export default CustomerReviews;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id,
+        // jwtToken: state.jwtToken
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerReviews);

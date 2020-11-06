@@ -51,6 +51,8 @@ class UserProfile extends Component {
         console.log("in edit profile")
         let body;
         console.log(cookie.load("email"));
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         axios.get(`${RouteConstants.BACKEND_URL}/customer${RouteConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
@@ -271,7 +273,7 @@ const mapStateToProps = (state) => {
         oldDetails: state.ProfileReducer.profile.oldDetails,
         disabled: state.ProfileReducer.profile.disabled,
         editstate: state.ProfileReducer.profile.editstate,
-
+        jwtToken: state.jwtToken
     };
 }
 

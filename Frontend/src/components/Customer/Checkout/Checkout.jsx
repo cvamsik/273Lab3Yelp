@@ -59,7 +59,7 @@ class CheckOut extends Component {
                 required
             >
 
-                <option selected>Delivery or Pickup</option>
+                <option defaultValue>Delivery or Pickup</option>
                 <option value="Delivery">Delivery</option>
                 <option value="Pickup">Pickup</option>
             </select>

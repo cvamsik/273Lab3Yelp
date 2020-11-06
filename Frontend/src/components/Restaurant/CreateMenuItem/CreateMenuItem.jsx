@@ -23,7 +23,9 @@ class CreateMenuItem extends Component {
         const postData = {
             ...this.state
         }
-        console.log(postData)
+        // console.log(postData)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.post(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`, postData).then((res) => {
             console.log(res);
             window.alert("Created Successfully");
@@ -157,7 +159,8 @@ class CreateMenuItem extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        restaurant_id: state.restaurant_id
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
     };
 }
 

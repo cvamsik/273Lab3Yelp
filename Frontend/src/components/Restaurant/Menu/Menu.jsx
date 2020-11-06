@@ -14,7 +14,7 @@ class Menu extends Component {
 
     }
     componentDidMount() {
-        console.log(this.props)
+        // console.log(this.props)
         axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
@@ -36,33 +36,33 @@ class Menu extends Component {
         let appetizers = [];
         let mains = [];
         if (this.state.res && this.state.res.length > 0) {
-            this.state.res.map((dish) => {
+            this.state.res.map((dish, i) => {
                 // <MenuItem menuItem={dish} />
-                console.log(dish.category_id)
+                // console.log(dish.category_id)
                 switch (dish.category_id) {
                     case "Desserts":
                         {
-                            desserts.push(<MenuItem menuItem={dish} />)
+                            desserts.push(<MenuItem key={i} menuItem={dish} />)
                             break;
                         }
                     case "Salads":
                         {
-                            salads.push(<MenuItem menuItem={dish} />)
+                            salads.push(<MenuItem key={i} menuItem={dish} />)
                             break;
                         }
                     case "Beverages":
                         {
-                            beverages.push(<MenuItem menuItem={dish} />)
+                            beverages.push(<MenuItem key={i} menuItem={dish} />)
                             break;
                         }
                     case "Appetizers":
                         {
-                            appetizers.push(<MenuItem menuItem={dish} />)
+                            appetizers.push(<MenuItem key={i} menuItem={dish} />)
                             break;
                         }
                     case "Main Course":
                         {
-                            mains.push(<MenuItem menuItem={dish} />)
+                            mains.push(<MenuItem key={i} menuItem={dish} />)
                             break;
                         }
                     default:

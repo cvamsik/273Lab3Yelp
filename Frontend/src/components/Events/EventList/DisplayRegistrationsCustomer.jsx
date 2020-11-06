@@ -14,6 +14,7 @@ class DisplayRegistrationsCustomer extends Component {
 
     componentDidMount = () => {
         console.log(this.props)
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/events${routeConstants.GET_REGISTRATIONS_CUSTOMER}`, {
             params: {
                 customer_id: this.props.customer_id
@@ -52,7 +53,8 @@ const mapStateToProps = (state) => {
     return {
         restaurant_id: state.restaurant_id,
         user_type: state.user_type,
-        customer_id: state.customer_id
+        customer_id: state.customer_id,
+        jwtToken: state.jwtToken
     };
 }
 

@@ -12,15 +12,15 @@ class CustomerReviewCard extends Component {
     render() {
 
         const restData = { ...this.props.props.res }
-        // console.log(restData)
+        console.log(restData)
         let renderItem;
         if (restData) {
             renderItem = <div className="reviewCard">
                 <div className="reviewHeader" >
-                    <h4>
-                        {restData.customer_name}
+                    <h5>
+                        {restData.customer_id.customer_name}
 
-                    </h4>
+                    </h5>
 
                     <p>
                         {restData.review_date.split('T')[0]}

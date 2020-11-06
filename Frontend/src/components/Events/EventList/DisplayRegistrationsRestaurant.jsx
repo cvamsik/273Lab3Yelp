@@ -4,6 +4,8 @@ import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
 import RegistrationCard from './EventCard/RegistrationCard'
 import './EventList.styles.css'
+import { connect } from 'react-redux'
+
 class DisplayRegistrationsRestaurant extends Component {
     state = {
         resData: []
@@ -12,6 +14,7 @@ class DisplayRegistrationsRestaurant extends Component {
 
     componentDidMount = () => {
         // console.log(this.props)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/events${routeConstants.GET_REGISTRATIONS_EVENT}`, {
             params: {
                 event_id: this.props.history.location.state.event_id
@@ -44,4 +47,19 @@ class DisplayRegistrationsRestaurant extends Component {
     }
 }
 
-export default DisplayRegistrationsRestaurant;
+// export default DisplayRegistrationsRestaurant;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayRegistrationsRestaurant);

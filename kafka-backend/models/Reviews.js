@@ -31,4 +31,4 @@ const Reviews = new mongoose.Schema({
 
 }, { versionKey: false })
 
-module.exports = mongoose.model('login_credentials', Reviews)
+module.exports = mongoose.model('Reviews', Reviews)

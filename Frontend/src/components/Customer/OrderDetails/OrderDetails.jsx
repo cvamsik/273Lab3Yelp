@@ -10,6 +10,8 @@ class OrderDetails extends Component {
         loaded: false
     }
     componentDidMount = () => {
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
                 order_id: this.props._id
@@ -88,7 +90,8 @@ class OrderDetails extends Component {
 const mapStateToProps = (state) => {
     return {
         customer_id: state.customer_id,
-        order_id: state.order_id
+        order_id: state.order_id,
+        jwtToken: state.jwtToken
     };
 }
 

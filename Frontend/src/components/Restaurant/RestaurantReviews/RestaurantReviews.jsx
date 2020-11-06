@@ -4,7 +4,9 @@ import routeConstants from '../../../Config/routeConstants';
 import cookie from 'react-cookies'
 import CustomerReviewCard from './CustomerReviewCard/CustomerReviewCard';
 import './RestaurantReviews.styles.css'
-import CustomerCreateReview from './CustomerReviewCard/CustomerCreateReview'
+// import CustomerCreateReview from './CustomerReviewCard/CustomerCreateReview'
+import { connect } from 'react-redux'
+
 class RestaurantReviews extends Component {
     state = {
         resData: []
@@ -12,6 +14,7 @@ class RestaurantReviews extends Component {
 
 
     componentDidMount = () => {
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_ID_RESTAURANT}`, {
             params: {
                 email: cookie.load('email')
@@ -43,4 +46,20 @@ class RestaurantReviews extends Component {
     }
 }
 
-export default RestaurantReviews;
+// export default RestaurantReviews;
+
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantReviews);

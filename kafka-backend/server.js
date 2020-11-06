@@ -9,6 +9,8 @@ const customer = require('./services/customer')
 const messages = require('./services/messages')
 const orders = require('./services/orders')
 const events = require('./services/events')
+const reviews = require('./services/reviews')
+
 
 
 function handleTopicRequest(topic_name, fname) {
@@ -71,6 +73,7 @@ handleTopicRequest("login", login)
 handleTopicRequest("messages", messages)
 handleTopicRequest("orders", orders)
 handleTopicRequest("events", events)
+handleTopicRequest("reviews", reviews)
 
 
 

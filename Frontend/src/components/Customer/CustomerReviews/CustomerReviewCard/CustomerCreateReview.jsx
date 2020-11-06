@@ -3,7 +3,9 @@ import './CustomerReviewCard.styles.css'
 import StarRatingComponent from 'react-star-rating-component';
 import Axios from 'axios'
 import cookie from 'react-cookies'
-import routeConstants from '../../../../Config/routeConstants'
+import routeConstants from '../../../../Config/routeConstants';
+import { connect } from 'react-redux'
+
 class CustomerReviewCard extends Component {
     state = {
         stars: 0,
@@ -13,11 +15,14 @@ class CustomerReviewCard extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        console.log(this.props);
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+
         Axios.post(`${routeConstants.BACKEND_URL}/reviews${routeConstants.POST_REVIEW_CUSTOMER}`, {
             ...this.state,
-            email_id: cookie.load('email'),
-            restaurant_id: localStorage.getItem('restaurant_id')
+            // email_id: cookie.load('email'),
+            restaurant_id: this.props.restaurant_id,
+            customer_id: this.props.customer_id
         }).then((res) => {
             window.alert("Review Posted")
             console.log(res)
@@ -69,4 +74,19 @@ class CustomerReviewCard extends Component {
     }
 }
 
-export default CustomerReviewCard;
+// export default CustomerReviewCard;
+
+const mapStateToProps = (state) => {
+    return {
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerReviewCard);

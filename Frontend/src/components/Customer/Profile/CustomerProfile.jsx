@@ -36,6 +36,7 @@ class UserProfile extends Component {
 
         // console.log("in edit profile")
         // console.log(cookie.load("email"));
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         axios.get(`${routeConstants.BACKEND_URL}/customer${routeConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
@@ -107,6 +108,8 @@ class UserProfile extends Component {
             customer_id: this.props.customer_id
         };
         // console.log(req)
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         axios
             .put(`${routeConstants.BACKEND_URL}/customer${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
             .then((res) => {
@@ -317,7 +320,8 @@ class UserProfile extends Component {
 // export default UserProfile;
 const mapStateToProps = (state) => {
     return {
-        customer_id: state.customer_id
+        customer_id: state.customer_id,
+        jwtToken: state.jwtToken
     }
 }
 

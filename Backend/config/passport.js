@@ -14,8 +14,8 @@ function auth() {
     };
     passport.use(
         new JwtStrategy(opts, (jwt_payload, callback) => {
-            console.log("Creating token" + jwt_payload)
-            LoginCredentials.find({ email_id: jwt_payload.email_id }, (err, results) => {
+            console.log("Creating token" + JSON.stringify(jwt_payload))
+            LoginCredentials.find({ email_id: jwt_payload.username }, (err, results) => {
                 if (err) {
                     return callback(err, false);
                 }

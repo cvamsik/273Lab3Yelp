@@ -15,7 +15,8 @@ class EventCard extends Component {
         // console.log(this.props);
         // localStorage.setItem('event_id', this.props.props.res.event_id)
         if (cookie.load('cookie')) {
-            console.log(this.props.props.res._id)
+            // console.log(this.props.props.res._id)
+            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
             Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT_REGISTRATION}`, {
                 customer_id: this.props.customer_id,
                 event_id: this.props.props.res._id
@@ -82,7 +83,8 @@ const mapStateToProps = (state) => {
     return {
         restaurant_id: state.restaurant_id,
         user_type: state.user_type,
-        customer_id: state.customer_id
+        customer_id: state.customer_id,
+        jwtToken: state.jwtToken
     };
 }
 

@@ -13,7 +13,7 @@ class RestaurantCard extends Component {
     }
 
     handleClick = () => {
-        console.log(this.props.props.res);
+        console.log(this.props.props.res._id);
         localStorage.setItem('restaurant_id', this.props.props.res.restaurant_id)
         localStorage.setItem('restaurant_name', this.props.props.res.restaurant_name)
         localStorage.setItem('latitude', this.props.props.res.address_latitude)

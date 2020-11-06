@@ -30,6 +30,8 @@ class MessageContainer extends Component {
 
     componentDidMount = () => {
         // setInterval(() => this.tick(), 3000);
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
             params: {
                 conversation_id: this.props.conversation_id
@@ -42,12 +44,16 @@ class MessageContainer extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         // console.log("chat input submitted" + this.state.chatInput);
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_MESSAGES}`, {
             message: this.state.chatInput,
             customer_id: this.props.customer_id,
             restaurant_id: this.props.restaurant_id,
             sender: this.props.user_type
         }).then(() => {
+            axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
             axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
                 params: {
                     restaurant_id: this.props.restaurant_id,
@@ -108,7 +114,8 @@ const mapStateToProps = (state) => {
         order_id: state.order_id,
         restaurant_id: state.restaurant_id,
         user_type: state.user_type,
-        conversation_id: state.conversation_id
+        conversation_id: state.conversation_id,
+        jwtToken: state.jwtToken
     };
 }
 

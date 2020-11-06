@@ -9,6 +9,7 @@ class MessagesList extends Component {
         resData: []
     }
     componentDidMount() {
+        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
         axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES_LIST_RESTAURANT}`, {
             params: {
                 restaurant_id: this.props.restaurant_id,
@@ -39,6 +40,7 @@ class MessagesList extends Component {
 const mapStateToProps = (state) => {
     return {
         restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
     };
 }
 

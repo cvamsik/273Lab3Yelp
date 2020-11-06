@@ -20,6 +20,8 @@ class RestaurantOrderDetails extends Component {
     handleSubmit = (e) => {
         // e.preventDefault();
         console.log(this.state)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.put(`${routeConstants.BACKEND_URL}/orders${routeConstants.UPDATE_ORDER}`, {
             order_status_id: this.state.order_status_id,
             order_id: this.props.order_id
@@ -35,6 +37,8 @@ class RestaurantOrderDetails extends Component {
     handleContact = (e) => {
         this.props.setCustomerID({ customer_id: this.state.resData.customer_id })
         // console.log(this.props)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_INITIATE_MESSAGE}`, {
             customer_id: this.props.customer_id,
             restaurant_id: this.props.restaurant_id
@@ -43,6 +47,8 @@ class RestaurantOrderDetails extends Component {
     }
     componentDidMount = () => {
         console.log(this.props)
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
                 order_id: this.props.order_id
@@ -139,7 +145,8 @@ const mapStateToProps = (state) => {
     return {
         customer_id: state.customer_id,
         order_id: state.order_id,
-        restaurant_id: state.restaurant_id
+        restaurant_id: state.restaurant_id,
+        jwtToken: state.jwtToken
     };
 }
 

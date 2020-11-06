@@ -28,6 +28,7 @@ class RestaurantList extends Component {
         }
         else {
             console.log("not search part")
+            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
 
             Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_ALL_RESTAURANTS}`).then((res) => {
                 // console.log(res.data[0]);
@@ -45,6 +46,8 @@ class RestaurantList extends Component {
     searchHandler = (e) => {
         // console.log("search submitted");
         e.preventDefault()
+        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+
         Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
             params: {
                 search_string: this.state.search_string

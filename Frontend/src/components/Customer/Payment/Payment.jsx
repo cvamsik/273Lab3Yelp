@@ -62,6 +62,8 @@ class Payment extends Component {
 
         }
         // console.log(postObj)
+        axios.defaults.headers.common['authorization'] = this.props.cart.jwtToken;
+
         axios.post(`${RouteConstants.BACKEND_URL}/orders${RouteConstants.POST_ORDER}`, postObj).then((res) => {
             window.alert("Order Placed successfully");
             this.props.clearCart();

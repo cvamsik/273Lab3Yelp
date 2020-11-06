@@ -27,7 +27,6 @@ function handle_request(msg, callback) {
             {
                 console.log("Inside Restaurant Signup ->kafka backend");
 
-                let loginId = mongoose.Types.ObjectId;
                 let login = new LoginCredentials({
                     email_id: msg.body.email,
                     user_password: msg.body.password,

@@ -11,7 +11,7 @@ class LandingPage extends Component {
                 <div className=" jumboImage jumbotron-fluid">
                     <div className="container2">
 
-                        <img src={yelpLogo} width='200px' height='100px' />
+                        <img src={yelpLogo} alt="yelpLogo" width='200px' height='100px' />
                         <div className="searchComp">
                             <form className="form-inline" onSubmit={this.searchHandler}>
                                 <input className="form-control mr-sm-2 " type="text" name="search_string" style={{ width: '550px' }} placeholder="Search for Restaurants, Locations and Dishes" value={this.state.searchString} onChange={this.inputChangeHandler} aria-label="Search" />
