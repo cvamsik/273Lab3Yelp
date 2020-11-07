@@ -10,11 +10,11 @@ class OrderDetails extends Component {
         loaded: false
     }
     componentDidMount = () => {
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
-                order_id: this.props._id
+                order_id: this.props.order_id
             }
         }).then((res) => {
             console.log(res);
@@ -27,7 +27,7 @@ class OrderDetails extends Component {
     render() {
         let renderVar;
         if (this.state.loaded) {
-            let restData = { ...this.state.restDetails }
+            let restData = { ...this.state, ...this.state.restaurant_id }
             restData = { ...restData, ...this.state.orderDetails }
             renderVar = <div className="restCardOrders">
 

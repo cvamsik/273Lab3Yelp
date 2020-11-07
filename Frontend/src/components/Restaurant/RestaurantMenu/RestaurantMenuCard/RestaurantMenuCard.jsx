@@ -52,7 +52,7 @@ class RestaurantMenuCard extends Component {
             ...temp
         }
         // console.log(postData)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.put(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.UPDATE_MENU_ITEM}`, temp).then((res) => {
             console.log(res);
             window.alert("Updated Successfully");
@@ -79,7 +79,7 @@ class RestaurantMenuCard extends Component {
                 <form className="formDataRes">
                     {/* <div className="profile"> */}
                     <div className="restImage2">
-                        <img src={imageURL} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
+                        <img src={this.state.image_url} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
                     </div>
                     <div class="form-group ">
                         <label >Name</label>

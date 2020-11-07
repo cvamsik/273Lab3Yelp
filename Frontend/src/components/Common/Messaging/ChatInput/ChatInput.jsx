@@ -11,7 +11,7 @@ class ChatInput extends Component {
     submitHandler = (e) => {
         e.preventDefault();
         console.log("chat input submitted" + this.state.chatInput);
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_MESSAGES}`, {
             message: this.state.chatInput,

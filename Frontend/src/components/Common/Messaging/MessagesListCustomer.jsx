@@ -4,13 +4,13 @@ import routeConstants from '../../../Config/routeConstants'
 import { connect } from 'react-redux'
 import { setConversationID } from '../../../reduxConfig/Common/CommonActions'
 import MessageCard from './MessageCard/MessageCard';
-class MessagesList extends Component {
+class MessagesListCustomer extends Component {
     state = {
         resData: []
     }
     componentDidMount() {
         axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
-        axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES_LIST_RESTAURANT}`, {
+        axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES_LIST_CUSTOMER}`, {
             params: {
                 restaurant_id: this.props.restaurant_id,
             }
@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesListCustomer);

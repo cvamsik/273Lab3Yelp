@@ -10,7 +10,7 @@ const messages = require('./services/messages')
 const orders = require('./services/orders')
 const events = require('./services/events')
 const reviews = require('./services/reviews')
-
+const images = require('./services/images')
 
 
 function handleTopicRequest(topic_name, fname) {
@@ -74,6 +74,7 @@ handleTopicRequest("messages", messages)
 handleTopicRequest("orders", orders)
 handleTopicRequest("events", events)
 handleTopicRequest("reviews", reviews)
+handleTopicRequest("images", images)
 
 
 

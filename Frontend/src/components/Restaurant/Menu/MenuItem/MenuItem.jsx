@@ -87,7 +87,7 @@ class MenuItem extends Component {
                     />
                     <CardMedia
                         className={classes.media}
-                        image={`${routeConstants.BACKEND_URL}${menuItem.image_url}`}
+                        image={menuItem.image_url}
                         title={menuItem.dish_name}
                     />
 

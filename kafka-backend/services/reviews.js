@@ -55,11 +55,12 @@ async function handle_request(msg, callback) {
 
                 let rev = new Reviews({
                     review_id: revid,
-                    customer_id: msg.body.customer_id,
-                    restaurant_id: msg.body.restaurant_id,
-                    stars: msg.body.stars,
+                    customer_id: msg.body.data.customer_id,
+                    restaurant_id: msg.body.data.restaurant_id,
+                    stars: msg.body.data.stars,
                     review_date: Date.now(),
-                    review_text: msg.body.review_text
+                    review_text: msg.body.data.review_text,
+                    images: msg.body.urls
                 })
 
                 rev.save().then((result) => {

@@ -27,7 +27,10 @@ const Reviews = new mongoose.Schema({
     },
     review_text: {
         type: String,
-    }
+    },
+    images: [{
+        type: String
+    }]
 
 }, { versionKey: false })
 

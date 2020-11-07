@@ -51,7 +51,7 @@ class UserProfile extends Component {
         console.log("in edit profile")
         let body;
         console.log(cookie.load("email"));
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios.get(`${RouteConstants.BACKEND_URL}/customer${RouteConstants.GET_CUSTOMER_PROFILE}`,
             {

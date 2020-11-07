@@ -14,7 +14,7 @@ class RestaurantReviews extends Component {
 
 
     componentDidMount = () => {
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_ID_RESTAURANT}`, {
             params: {
                 email: cookie.load('email')

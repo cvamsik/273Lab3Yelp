@@ -5,6 +5,7 @@ import cookie from 'react-cookies'
 import { connect } from 'react-redux'
 class CreateMenuItem extends Component {
     state = {
+        category_id: "",
         description: "",
         dish_name: "",
         image_url: "",
@@ -24,7 +25,7 @@ class CreateMenuItem extends Component {
             ...this.state
         }
         // console.log(postData)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.post(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`, postData).then((res) => {
             console.log(res);
@@ -44,25 +45,27 @@ class CreateMenuItem extends Component {
         let formData = new FormData();
 
         formData.append("file", this.state.selectedFile);
-        formData.append('customer_id', this.state.customer_id)
-        formData.append('customer_name', this.state.customer_name)
-        formData.append('email_id', cookie.load('email'))
+        formData.append('restaurant_id', this.props.restaurant_id)
+        formData.append('dish_name', this.state.dish_name)
+        formData.append('ingredients', this.state.ingredients)
+        formData.append('price', this.state.price)
+        formData.append('category_id', this.state.category_id)
+        formData.append('description', this.state.description)
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
-        console.log(this.state)
-        console.log(JSON.stringify(formData.get("customer_id")))
         Axios
             .post(
-                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_MENU_ITEM}`,
-                // {
-                //     file: formData,
-                //     customer_id: this.state.customer_id,
-                //     customer_name: this.state.customer_name
-                // }
+                `${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`,
                 formData
             )
             .then(response => {
-                this.setState({ image_url: response.data })
-            });
+                // this.setState({ image_url: response.data })
+                window.alert("Added to Menu");
+                this.props.history.push('/restaurant/menu/list')
+            }).catch((err) => {
+                console.log("Error creating" + err);
+                window.alert("Error Saving Dish")
+            })
     };
 
 
@@ -101,7 +104,7 @@ class CreateMenuItem extends Component {
         let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
         return (<div className="menuItem">
 
-            <form className="formData">
+            <form className="formData" onSubmit={this.onFileUpload}>
                 <div className="profile">
                     <div >
                         <div className="imageDiv">
@@ -111,24 +114,24 @@ class CreateMenuItem extends Component {
                             {this.fileData()}
                         </div>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div className="form-group col-md-2">
                         <label >Name</label>
                         <input type="text" onChange={this.inputChangeHandler} className="form-control" name="dish_name" value={this.state.dish_name} />
                     </div>
-                    <div class="form-group col-md-5">
+                    <div className="form-group col-md-5">
                         <label >Description</label>
                         <input onChange={this.inputChangeHandler} type="text" className="form-control" name="description" value={this.state.description} />
                     </div>
-                    <div class="form-group col-md-2">
+                    <div className="form-group col-md-2">
                         <label >Ingredients</label>
                         <input type="text" onChange={this.inputChangeHandler} className="form-control" name="ingredients" value={this.state.ingredients} />
                     </div>
 
-                    <div class="form-group col-md-3">
+                    <div className="form-group col-md-3">
                         <label>Price</label>
                         <input type="text" onChange={this.inputChangeHandler} className="form-control" name="price" value={this.state.price} />
                     </div>
-                    <div class="form-group col-md-6">
+                    <div className="form-group col-md-6">
                         <label >Category</label>
                         <select value={this.state.category_id} onChange={this.inputChangeHandler} selected={this.state.category_id} name="category_id" class="form-control" >
                             <option value="1">Desserts</option>
@@ -143,7 +146,7 @@ class CreateMenuItem extends Component {
                 {/* </div> */}
                 {/* <div class="form-row"> */}
                 <div >
-                    <button type="submit" onClick={this.handleSubmit} class="btn btn-danger">Create Dish</button>
+                    <button type="submit" className="btn btn-danger">Create Dish</button>
                 </div>
                 {/* <div class="form-group col-md-2">
                     <button type="reset" class="btn btn-danger">Cancel Edit</button>

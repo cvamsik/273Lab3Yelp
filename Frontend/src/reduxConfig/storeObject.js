@@ -8,6 +8,7 @@ export const initialState = {
     user_type: 0,
     customer_id: "",
     restaurant_id: "",
+    conversation_id: "",
     order_id: "",
     login: {
         email_id: "",

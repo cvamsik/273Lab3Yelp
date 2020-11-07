@@ -16,7 +16,7 @@ class EventCard extends Component {
         // localStorage.setItem('event_id', this.props.props.res.event_id)
         if (cookie.load('cookie')) {
             // console.log(this.props.props.res._id)
-            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+            Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
             Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT_REGISTRATION}`, {
                 customer_id: this.props.customer_id,
                 event_id: this.props.props.res._id

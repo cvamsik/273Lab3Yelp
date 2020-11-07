@@ -17,7 +17,7 @@ class OrderCard extends Component {
         console.log(this.props);
         localStorage.setItem('order_id', this.props.props.res.order_id)
         this.props.setOrderID({
-            order_id: this.props.props.res.order_id
+            order_id: this.props.props.res._id
         })
         this.props.history.push('/customer/order')
     }

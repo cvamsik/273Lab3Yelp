@@ -31,7 +31,7 @@ class RestaurantProfile extends Component {
     }
     componentDidMount() {
         // console.log(this.props)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_PROFILE}`, {
             params: {
                 email_id: this.props.email_id
@@ -58,7 +58,7 @@ class RestaurantProfile extends Component {
             ...this.state
         }
         // console.log(`${routeConstants.BACKEND_URL}/orders${UPDATE_RESTAURANT_PROFILE}`);
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.put(`${routeConstants.BACKEND_URL}/restaurant${UPDATE_RESTAURANT_PROFILE}`, putData).then((res) => {
             window.alert("Profile Updated")
             console.log(res)

@@ -12,7 +12,7 @@ class DisplayRestaurantEvents extends Component {
 
     componentDidMount = () => {
         // console.log("Orders")
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/events${routeConstants.GET_EVENT_BY_RESTAURANT}`, {
             params: { restaurant_id: this.props.restaurant_id }
         }

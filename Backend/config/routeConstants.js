@@ -73,6 +73,7 @@ module.exports = {
     UPDATE_USER_IMAGE: '/userProfile',
     POST_IMAGE_MENU_ITEM: '/dishImage',
     POST_IMAGE_EVENT: '/eventImage',
+    POST_IMAGES_REVIEW: '/reviewImages',
 
 
     //Messaging

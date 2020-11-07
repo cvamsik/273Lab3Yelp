@@ -14,7 +14,7 @@ class RestaurantList extends Component {
         console.log(localStorage.getItem('search_string'))
         if (localStorage.getItem('search_string')) {
             // console.log("In search part")
-            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+            Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
             Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
                 params: {
                     search_string: localStorage.getItem('search_string')
@@ -28,7 +28,7 @@ class RestaurantList extends Component {
         }
         else {
             console.log("not search part")
-            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+            Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
             Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_ALL_RESTAURANTS}`).then((res) => {
                 // console.log(res.data[0]);
@@ -46,7 +46,7 @@ class RestaurantList extends Component {
     searchHandler = (e) => {
         // console.log("search submitted");
         e.preventDefault()
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.get(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`, {
             params: {

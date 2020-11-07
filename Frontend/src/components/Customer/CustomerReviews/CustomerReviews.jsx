@@ -14,14 +14,14 @@ class CustomerReviews extends Component {
 
 
     componentDidMount = () => {
-        // Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        // Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_BY_RESTAURANT}`, {
             params: {
                 restaurant_id: this.props.restaurant_id
             }
         }).then((res) => {
             this.setState({ resData: [...res.data] })
-            // console.log(res)
+            console.log(res)
         }).catch((err) => {
             console.log(err);
         })
@@ -30,12 +30,12 @@ class CustomerReviews extends Component {
         let resList = []
         console.log(this.state.resData)
         if (this.state.resData.length > 0) {
-            resList = this.state.resData.map((res) => {
+            resList = this.state.resData.map((res, i) => {
                 let obj = {
                     res: res,
                     props: this.props
                 }
-                return <CustomerReviewCard props={obj} />
+                return <CustomerReviewCard key={i} props={obj} />
 
             })
 

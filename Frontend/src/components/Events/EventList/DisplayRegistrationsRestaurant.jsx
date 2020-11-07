@@ -14,7 +14,7 @@ class DisplayRegistrationsRestaurant extends Component {
 
     componentDidMount = () => {
         // console.log(this.props)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/events${routeConstants.GET_REGISTRATIONS_EVENT}`, {
             params: {
                 event_id: this.props.history.location.state.event_id

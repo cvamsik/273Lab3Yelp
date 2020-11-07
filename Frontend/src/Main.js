@@ -36,6 +36,7 @@ import DisplayRegistrationsCustomer from './components/Events/EventList/DisplayR
 import EventsHome from './components/Restaurant/Home/EventsHome';
 import MessageContainer from './components/Common/Messaging/MessageContainer';
 import MessagesList from './components/Common/Messaging/MessagesList';
+import MessagesListCustomer from './components/Common/Messaging/MessagesListCustomer';
 
 
 
@@ -76,7 +77,7 @@ class Main extends Component {
                 <Route exact path="/customer/reviews" component={CustomerSelfReviews} />
                 <Route exact path="/customer/events" component={DisplayEvents} />
                 <Route exact path="/customer/events/registrations" component={DisplayRegistrationsCustomer} />
-                <Route exact path="/customer/messages" component={MessagesList} />
+                <Route exact path="/customer/messages" component={MessagesListCustomer} />
 
                 <Route exact path="/customer/messages/conversation" component={MessageContainer} />
 

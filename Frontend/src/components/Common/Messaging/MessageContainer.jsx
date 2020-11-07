@@ -30,21 +30,21 @@ class MessageContainer extends Component {
 
     componentDidMount = () => {
         // setInterval(() => this.tick(), 3000);
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
-
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+        // console.log(this.props)
         axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
             params: {
                 conversation_id: this.props.conversation_id
             }
         }).then((res) => {
-            console.log(res)
+            // console.log(res)
             this.setState({ messages: [...res.data[0].messages], conversationData: { ...res.data[0] } })
         })
     }
     submitHandler = (e) => {
         e.preventDefault();
         // console.log("chat input submitted" + this.state.chatInput);
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_MESSAGES}`, {
             message: this.state.chatInput,
@@ -52,7 +52,7 @@ class MessageContainer extends Component {
             restaurant_id: this.props.restaurant_id,
             sender: this.props.user_type
         }).then(() => {
-            axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+            axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
             axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
                 params: {
@@ -60,7 +60,7 @@ class MessageContainer extends Component {
                     customer_id: this.props.customer_id
                 }
             }).then((res) => {
-                console.log(res)
+                // console.log(res)
                 this.setState({ messages: [...res.data[0].messages] })
             }).catch((err) => {
                 console.log("error loading" + err)
@@ -76,14 +76,19 @@ class MessageContainer extends Component {
         this.setState({ [name]: value });
     }
     render() {
-        console.log(this.state)
-        const messages = this.state.messages.map((message, i) => {
-            return <Message key={i} message={message.message} user={message.sender} />
-        })
+        // console.log(this.state)
+        let messages
+        if (this.state.messages.length > 0) {
+            messages = this.state.messages.map((message, i) => {
+                return <Message key={i} message={message.message} user={message.sender} />
+            })
+        }
         let restDetails
         if (this.state.conversationData.restaurant_id) {
             restDetails = <div className="conversationDetails">
                 <h4>Restaurant Name : {this.state.conversationData.restaurant_id.restaurant_name}</h4>
+                {/* <h4>Customer Name : {this.state.conversationData.customer_id.customer_name}</h4> */}
+
             </div>
         }
         return (

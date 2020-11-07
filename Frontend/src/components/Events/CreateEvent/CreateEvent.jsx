@@ -40,7 +40,7 @@ class CreateEvent extends Component {
                 event_hashtags: this.state.event_hashtags,
                 event_creator_id: this.props.restaurant_id
             };
-            Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+            Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
             Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT}`, d
             ).then((res) => {

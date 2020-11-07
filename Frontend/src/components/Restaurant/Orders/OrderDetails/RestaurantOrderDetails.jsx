@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import routeConstants from '../../../../Config/routeConstants';
 import { connect } from 'react-redux'
-import { setCustomerID } from '../../../../reduxConfig/Common/CommonActions'
+import { setCustomerID, setConversationID } from '../../../../reduxConfig/Common/CommonActions'
 class RestaurantOrderDetails extends Component {
     state = {
         resData: {
@@ -20,7 +20,7 @@ class RestaurantOrderDetails extends Component {
     handleSubmit = (e) => {
         // e.preventDefault();
         console.log(this.state)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.put(`${routeConstants.BACKEND_URL}/orders${routeConstants.UPDATE_ORDER}`, {
             order_status_id: this.state.order_status_id,
@@ -35,19 +35,25 @@ class RestaurantOrderDetails extends Component {
 
     }
     handleContact = (e) => {
-        this.props.setCustomerID({ customer_id: this.state.resData.customer_id })
+        e.preventDefault();
+        // this.props.setCustomerID({ customer_id: this.state.resData.customer_id })
         // console.log(this.props)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_INITIATE_MESSAGE}`, {
             customer_id: this.props.customer_id,
             restaurant_id: this.props.restaurant_id
+        }).then((res) => {
+            // console.log(res.data._id)
+            this.props.setConversationID({ conversation_id: res.data._id })
+            this.props.history.push('/restaurant/messages/conversation')
         })
-        this.props.history.push('/message')
+
+
     }
     componentDidMount = () => {
         console.log(this.props)
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         Axios.get(`${routeConstants.BACKEND_URL}/orders${routeConstants.GET_ORDER_BY_ID}`, {
             params: {
@@ -71,10 +77,10 @@ class RestaurantOrderDetails extends Component {
 
         let items
         if (this.state.itemsArray.length > 0) {
-            items = this.state.itemsArray.map((item) => {
-                return <div>
+            items = this.state.itemsArray.map((item, i) => {
+                return <div key={i}>
                     <ul>
-                        <lh><h5>Dish Name: {item.dish_id.dish_name}</h5></lh>
+                        <lh ><h5>Dish Name: {item.dish_id.dish_name}</h5></lh>
                         <li>Dish ID: {item.dish_id._id}</li>
                         <li>Ingredients: {item.dish_id.ingredients}</li>
                         <li>Count: {item.count}</li>
@@ -152,7 +158,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCustomerID: (customer_id) => dispatch(setCustomerID(customer_id))
+        setCustomerID: (customer_id) => dispatch(setCustomerID(customer_id)),
+        setConversationID: (conversation_id) => dispatch(setConversationID(conversation_id))
 
     }
 }

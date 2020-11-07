@@ -16,7 +16,7 @@ class CustomerReviewCard extends Component {
     handleSubmit = (e) => {
         // e.preventDefault();
         console.log(this.state);
-        Axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.post(`${routeConstants.BACKEND_URL}/reviews${routeConstants.POST_REVIEW_CUSTOMER}`, {
             ...this.state,
             email_id: cookie.load('email'),

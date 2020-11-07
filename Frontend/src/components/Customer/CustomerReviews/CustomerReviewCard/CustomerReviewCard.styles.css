@@ -29,3 +29,12 @@
   margin: 0px 0px 20px;
   /* min-height: 280px; */
 }
+
+.imageDisplay{
+  height: 100px;
+  width:auto;
+  padding: 5px;
+}
+.imageList{
+  display: flex;
+}

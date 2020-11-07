@@ -13,7 +13,7 @@ class RestaurantMenu extends Component {
         // console.log("card loaded")
 
         // console.log(this.props)
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         axios.get(`${constants.BACKEND_URL}/restaurant/${constants.GET_RESTAURANT_MENU}`, {
             params:
             {

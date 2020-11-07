@@ -34,9 +34,11 @@ function handle_request(msg, callback) {
                     }
                     else if (res !== null) {
                         console.log('Conversation Exists ')
-                        callback(null, messaging)
+                        callback(null, res)
+
                     }
                     else {
+                        console.log("Hitting else")
                         messaging.save((err) => {
                             if (err) {
                                 console.log('Unable to Initiate Message' + err)

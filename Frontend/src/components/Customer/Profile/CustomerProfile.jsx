@@ -36,7 +36,7 @@ class UserProfile extends Component {
 
         // console.log("in edit profile")
         // console.log(cookie.load("email"));
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         axios.get(`${routeConstants.BACKEND_URL}/customer${routeConstants.GET_CUSTOMER_PROFILE}`,
             {
                 params: {
@@ -108,7 +108,7 @@ class UserProfile extends Component {
             customer_id: this.props.customer_id
         };
         // console.log(req)
-        axios.defaults.headers.common['authorization'] = this.props.jwtToken;
+        axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios
             .put(`${routeConstants.BACKEND_URL}/customer${routeConstants.UPDATE_CUSTOMER_PROFILE}`, req)
@@ -131,9 +131,9 @@ class UserProfile extends Component {
         let formData = new FormData();
 
         formData.append("file", this.state.selectedFile);
-        formData.append('customer_id', this.state.customer_id)
-        formData.append('customer_name', this.state.customer_name)
-        formData.append('email_id', cookie.load('email'))
+        formData.append('customer_id', this.props.customer_id)
+        // formData.append('customer_name', this.state.customer_name)
+        // formData.append('email_id', cookie.load('email'))
 
         // console.log(this.state)
         // console.log(JSON.stringify(formData.get("customer_id")))
@@ -188,12 +188,12 @@ class UserProfile extends Component {
     render() {
 
         // console.log(this.state)
-        let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
+        // let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
         return (
 
             <div className="profile">
                 <div className="imageDiv">
-                    <img src={profileURL} width='250px' alt="profileImage   " height='250px' className="imageCont" />
+                    <img src={this.state.profile_image_link} width='250px' alt="profileImage   " height='250px' className="imageCont" />
                     <input type="file" onChange={this.onFileChange} id="fileinput" />
                     <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
                     {this.fileData()}
