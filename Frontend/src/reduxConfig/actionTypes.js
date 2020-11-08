@@ -38,7 +38,13 @@ module.exports = {
     SET_CUSTOMER_ID: "setCustomerID",
     SET_SEARCH_STRING: "setSearchString",
     SET_ORDER_ID: "setOrderID",
-    SET_CONVERSATION_ID: "setConversationID"
+    SET_CONVERSATION_ID: "setConversationID",
+    SET_EVENTS_LIST: "setEventsList",
+    SET_ORDERS_LIST: "setOrdersList",
+    SET_PAGINATED_EVENTS_LIST: "setPaginatedEventsList",
+    SET_PAGINATED_ORDERS_LIST: "setPaginatedOrdersList",
+
+
 
 
 }

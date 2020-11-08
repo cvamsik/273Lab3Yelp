@@ -12,6 +12,10 @@ const {
 } = require("../config/routeConstants");
 
 const kafka = require('../kafka/client')
+const S3 = require('./s3Operations')
+const fs = require('fs')
+const path = require('path');
+const multer = require('multer');
 
 
 module.exports.getAllEvents = (req, res) => {
@@ -63,26 +67,93 @@ module.exports.registerEvent = (req, res) => {
 
 
 
-module.exports.createEvent = (req, res) => {
+module.exports.createEvent = async (req, res) => {
 
     console.log("Inside Events POST create service");
     console.log(req.body)
 
-    kafka.make_request('events', {
-        api: "POST_EVENT",
-        body: req.body
-    }, function (error, result) {
-        console.log('in result');
-        console.log(result);
-        if (error) {
-            console.log("Inside err");
-            res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
-        } else {
-            console.log("Inside else");
-            res.status(RES_SUCCESS).send(JSON.stringify(result));
-        }
+    // kafka.make_request('events', {
+    //     api: "POST_EVENT",
+    //     body: req.body
+    // }, function (error, result) {
+    //     console.log('in result');
+    //     console.log(result);
+    //     if (error) {
+    //         console.log("Inside err");
+    //         res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+    //     } else {
+    //         console.log("Inside else");
+    //         res.status(RES_SUCCESS).send(JSON.stringify(result));
+    //     }
 
-    });
+    // });
+    try {
+
+
+        var storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, './assets')
+            },
+            filename: function (req, file, cb) {
+
+                cb(null, Date.now() + '-' + file.originalname)
+            }
+        })
+
+        var upload = multer({ storage: storage }).array('file')
+
+
+        await upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                return res.status(500).json(err)
+            } else if (err) {
+                return res.status(500).json(err)
+            }
+            // console.log(res)
+            let urls = []
+            const loop = async () => {
+                for (let file of req.files) {
+                    await S3.fileupload(process.env.AWS_S3_BUCKET_NAME, "events", file).then((url) => {
+                        urls.push(url)
+                        console.log(url)
+                    })
+                }
+            }
+            loop().then(() => {
+                kafka.make_request('events', {
+                    api: "POST_EVENT",
+                    body: { data: req.body, urls: urls }
+                }, function (error, result) {
+                    console.log('in result');
+                    console.log(result);
+                    if (error) {
+                        console.log("Inside err");
+                        res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+                    } else {
+                        console.log("Inside else Reviews");
+                        fs.readdir('./assets', (err, files) => {
+                            if (err) throw err;
+
+                            for (const file of files) {
+                                fs.unlink(path.join('./assets', file), err => {
+                                    if (err) throw err;
+                                });
+                            }
+                        });
+                        res.status(RES_SUCCESS).send(JSON.stringify(result));
+                    }
+
+                });
+
+            })
+
+
+        })
+    }
+    catch (error) {
+        console.log(error);
+        res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+    }
 
 }
 

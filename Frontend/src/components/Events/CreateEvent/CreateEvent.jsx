@@ -59,71 +59,48 @@ class CreateEvent extends Component {
             // this.setState({ redirectA: true })
         }
     }
-    onFileUpload = e => {
-        // e.preventDefault();
-        console.log(this.state)
-        //  this.setState({ projectId: this.props.match.params.projectId })
-        let formData = new FormData();
-
-        formData.append("file", this.state.selectedFile);
-        formData.append('customer_id', this.state.customer_id)
-        formData.append('customer_name', this.state.customer_name)
-        formData.append('email_id', cookie.load('email'))
-
-        console.log(this.state)
-        console.log(JSON.stringify(formData.get("customer_id")))
-        Axios
-            .post(
-                `${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGE_EVENT}`,
-                // {
-                //     file: formData,
-                //     customer_id: this.state.customer_id,
-                //     customer_name: this.state.customer_name
-                // }
-                formData
-            )
-            .then(response => {
-                window.location.reload(false)
-            });
-    };
 
 
-    fileData = () => {
-        if (this.state.selectedFile) {
-            return (
-                <div>
-
-                    <p>File Name: {this.state.selectedFile.name}</p>
-
-                </div>
-            );
+    onChangeHandler = event => {
+        this.setState({
+            selectedFile: event.target.files,
+        })
+    }
+    onClickHandler = (e) => {
+        e.preventDefault()
+        const data = new FormData()
+        for (let x = 0; x < this.state.selectedFile.length; x++) {
+            data.append('file', this.state.selectedFile[x])
         }
-        // else {
-        //     return (
-        //         <div>
-        //             <br />
-        //             <p>Choose before Pressing the Upload button</p>
-        //         </div>
-        //     );
-        // }
-    };
 
+        data.append("event_name", this.state.event_name)
+        data.append("event_description", this.state.event_description)
+        data.append("event_date", this.state.event_date)
+        data.append("event_time", this.state.event_time)
+        data.append("event_creator_id", this.props.restaurant_id)
+        data.append("event_latitude", this.state.event_latitude)
+        data.append("event_longitude", this.state.event_longitude)
+        data.append("event_hashtags", this.state.event_hashtags)
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
+        Axios.post(`${routeConstants.BACKEND_URL}/events${routeConstants.POST_EVENT}`, data)
+            .then(res => { // then print response status
+                console.log(res.statusText)
+                window.alert("Event Created")
+                this.props.history.push('/restaurant/events/list')
+            }).catch((err) => {
+                window.alert("Unable to Create")
+                console.log(err)
 
+            })
 
-    onFileChange = event => {
-
-        this.setState({ selectedFile: event.target.files[0] });
-        if (this.state.selectedFile) {
-            this.setState({ app: this.state.selectedFile.name });
-        }
-    };
+    }
     render() {
         // let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_path}`
 
         return (<div className="cont">
             <h4>Create Event</h4>
-            <form className="formData2" onSubmit={this.handleSubmit}>
+            <form className="formData2" onSubmit={this.onClickHandler}>
 
                 <div class="form-group1 ">
                     <label>Name</label>
@@ -141,7 +118,12 @@ class CreateEvent extends Component {
                 <div class="form-group1 ">
                     <label>Hashtags</label> <input required onChange={this.inputChangeHandler} type="text" class="form-control" name="event_hashtags" value={this.state.event_hashtags} /></div>
                 <div class="form-group1 ">
-                    <button type="submit" class="btn btn-danger form-control" style={{ marginTop: "20px", marginLeft: "10px" }} >Submit</button></div>
+                    <button type="submit" class="btn btn-danger form-control" style={{ marginTop: "20px", marginLeft: "10px" }} >Submit</button>
+                </div>
+                <div className="form-group">
+                    <label for="example-input-file"> </label>
+                    <input type="file" className="form-control" multiple onChange={this.onChangeHandler} />
+                </div>
 
             </form>
         </div>);

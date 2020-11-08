@@ -61,6 +61,8 @@ class CustomerReviewCard extends Component {
         data.append('review_text', this.state.review_text)
         data.append('customer_id', this.props.customer_id)
         data.append('restaurant_id', this.props.restaurant_id)
+        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+
         Axios.post(`${routeConstants.BACKEND_URL}/images${routeConstants.POST_IMAGES_REVIEW}`, data)
             .then(res => { // then print response status
                 console.log(res.statusText)

@@ -9,8 +9,9 @@
   width: 850px;
   margin: 20px;
 }
-.eventImage {
-  grid-row: 1 / 6;
+.eventImages {
+  grid-row: 1 / 8;
+  grid-column: 1/2;
   /* align-self: center; */
   justify-self: center;
   text-align: center;
@@ -18,4 +19,13 @@
   width: 150px;
   height: 150px;
   padding-bottom: 15px;
+}
+.imageListEvents{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.imageDisplayEvent{
+  width: 300px;
+  padding: 2px;
 }

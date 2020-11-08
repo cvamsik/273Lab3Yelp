@@ -130,15 +130,15 @@ async function handle_request(msg, callback) {
             let id = mongoose.Types.ObjectId()
             let event = new Events({
                 event_id: id,
-                event_name: msg.body.event_name,
-                event_description: msg.body.event_description,
-                event_date: msg.body.event_date,
-                event_time: msg.body.event_time,
-                event_creator_id: msg.body.event_creator_id,
-                event_latitude: msg.body.event_latitude,
-                event_longitude: msg.body.event_longitude,
-                event_hashtags: msg.body.event_hashtags,
-
+                event_name: msg.body.data.event_name,
+                event_description: msg.body.data.event_description,
+                event_date: msg.body.data.event_date,
+                event_time: msg.body.data.event_time,
+                event_creator_id: msg.body.data.event_creator_id,
+                event_latitude: msg.body.data.event_latitude,
+                event_longitude: msg.body.data.event_longitude,
+                event_hashtags: msg.body.data.event_hashtags,
+                event_images: msg.body.urls
             })
             event.save((err, res) => {
                 if (err) {
@@ -152,6 +152,7 @@ async function handle_request(msg, callback) {
                 // console.log('Event created' + result)
                 // callback(null, result)
             })
+            break;
         }
         default:
             {
