@@ -68,18 +68,9 @@ class EventCard extends Component {
                 })
             }
         }
-        if (this.props.user_type === 1) {
-            Button = <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Register!</button>
-
-        }
-        return (<div>
-            {/* {JSON.stringify(this.props.props)} */}
-            {/* {redirectVar} */}
-            <div className="restCard3">
-                {/* <div className="eventImage">
-                    <img className="img-thumbnail" alt="eventImage" style={{ "marginBottom": '15px' }} src={restData.image_url} width='200px' height='150px' />
-                    <h4>{restData.event_name}</h4>
-                </div> */}
+        let renderVar = null
+        if (restData) {
+            renderVar = <div className="restCard3">
                 <h5>{restData.restaurant_name}</h5>
                 <p>{restData.restaurant_address}</p>
                 <p>{restData.event_description}</p>
@@ -92,7 +83,16 @@ class EventCard extends Component {
                 {Button}
 
             </div>
+        }
+        if (this.props.user_type === 1) {
+            Button = <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Register!</button>
 
+        }
+        return (<div>
+            {/* {JSON.stringify(this.props.props)} */}
+            {/* {redirectVar} */}
+
+            {renderVar}
         </div>);
     }
 }

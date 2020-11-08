@@ -72,7 +72,7 @@ class DisplayEvents extends Component {
 
 
     render() {
-        console.log(this.props.paginatedEvents)
+        // console.log(this.props.paginatedEvents)
         // let resList = []
         // if (this.props.eventsList.length > 0) {
         //     resList = this.props.eventsList.map((res, key) => {
@@ -89,13 +89,11 @@ class DisplayEvents extends Component {
             <div className="eventList">
                 <h4> Current Events </h4>
                 {/* {resList} */}
-                {/* {this.props.paginatedEvents} */}
-                <div className="list-group ">
-                    {this.props.paginatedEvents.map((res, key) => {
-                        return <EventCard key={key} props={res} />
-                    })}
 
-                </div>
+                {this.props.paginatedEvents.map((res, key) => {
+                    return <EventCard key={key} props={res} />
+                })}
+
                 <ReactPaginate
                     previousLabel={"Previous"}
                     nextLabel={"Next"}

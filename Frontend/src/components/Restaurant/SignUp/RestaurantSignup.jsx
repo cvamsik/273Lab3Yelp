@@ -2,9 +2,10 @@ import Axios from 'axios';
 import React, { Component } from 'react';
 import constants from '../../../Config/routeConstants'
 import CustomInput from '../../Common/CustomInput/CustomInput';
-import CustomButton from '../../Common/CustomButton/CustomButton';
+// import CustomButton from '../../Common/CustomButton/CustomButton';
 import { Link } from 'react-router-dom'
-import { setRawCookie } from 'react-cookies';
+// import { setRawCookie } from 'react-cookies';
+import './RestaurantSignup.styles.css'
 
 class RestaurantSignUp extends Component {
     state = {
@@ -59,7 +60,7 @@ class RestaurantSignUp extends Component {
                         <div className="inputs">
                             <CustomInput
                                 type="text"
-                                label="Restaurant Name"
+                                label="Restaurant Name *"
                                 name="restaurant_name"
                                 value={this.state.restaurant_name}
                                 handleChange={this.handleChange}
@@ -67,7 +68,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Restaurant Location"
+                                label="Restaurant Location *"
                                 name="restaurant_location"
                                 value={this.state.restaurant_location}
                                 handleChange={this.handleChange}
@@ -75,7 +76,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Restaurant Description"
+                                label="Restaurant Description *"
                                 name="restaurant_description"
                                 value={this.state.restaurant_description}
                                 handleChange={this.handleChange}
@@ -83,7 +84,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Restaurant Address"
+                                label="Restaurant Address *"
                                 name="restaurant_address"
                                 value={this.state.restaurant_address}
                                 handleChange={this.handleChange}
@@ -92,7 +93,7 @@ class RestaurantSignUp extends Component {
 
                             <CustomInput
                                 type="text"
-                                label="City"
+                                label="City *"
                                 name="address_city"
                                 value={this.state.address_city}
                                 handleChange={this.handleChange}
@@ -100,7 +101,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="State"
+                                label="State *"
                                 name="address_state"
                                 value={this.state.address_state}
                                 handleChange={this.handleChange}
@@ -108,7 +109,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Postal Code"
+                                label="Postal Code *"
                                 name="address_postal_code"
                                 value={this.state.address_postal_code}
                                 handleChange={this.handleChange}
@@ -116,7 +117,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Latitude"
+                                label="Latitude *"
                                 name="address_latitude"
                                 value={this.state.address_latitude}
                                 handleChange={this.handleChange}
@@ -124,7 +125,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Longitude"
+                                label="Longitude *"
                                 name="address_longitude"
                                 value={this.state.address_longitude}
                                 handleChange={this.handleChange}
@@ -132,7 +133,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="text"
-                                label="Primary Phone"
+                                label="Primary Phone *"
                                 name="primary_phone"
                                 value={this.state.primary_phone}
                                 handleChange={this.handleChange}
@@ -146,16 +147,9 @@ class RestaurantSignUp extends Component {
                                 handleChange={this.handleChange}
                                 required
                             />
-
-
-
-
-
-
-
                             <CustomInput
                                 type="email"
-                                label="Email"
+                                label="Email *"
                                 name="email"
                                 value={this.state.email}
                                 handleChange={this.handleChange}
@@ -163,7 +157,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="password"
-                                label="Password"
+                                label="Password *"
                                 name="password"
                                 value={this.state.password}
                                 handleChange={this.handleChange}
@@ -171,7 +165,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="password"
-                                label="Confirm Password"
+                                label="Confirm Password *"
                                 name="confirmPassword"
                                 value={this.state.confirmPassword}
                                 handleChange={this.handleChange}
@@ -179,7 +173,7 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="time"
-                                label="Opening Hour"
+                                label="Opening Hour *"
                                 name="open_time"
                                 value={this.state.open_time}
                                 handleChange={this.handleChange}
@@ -187,14 +181,14 @@ class RestaurantSignUp extends Component {
                             />
                             <CustomInput
                                 type="time"
-                                label="Closing Hour"
+                                label="Closing Hour *"
                                 name="close_time"
                                 value={this.state.close_time}
                                 handleChange={this.handleChange}
                                 required
                             />
                         </div>
-                        <CustomButton type="submit">SignUp</CustomButton>
+                        <button className="btn btn-danger" type="submit">SignUp</button>
                     </form>
                 </div>
             </div>

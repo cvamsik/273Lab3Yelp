@@ -21,7 +21,7 @@ async function handle_request(msg, callback) {
     switch (msg.api) {
         case "GET_ALL_EVENTS":
             {
-                Events.find({}).sort('event_date')
+                Events.find({}).sort('-event_date')
                     .exec((err, result) => {
                         if (err) {
                             console.log('Error occured while fetching Events' + err)
@@ -37,7 +37,7 @@ async function handle_request(msg, callback) {
             }
         case "GET_EVENT_BY_RESTAURANT":
             {
-                Events.find({ event_creator_id: msg.body.restaurant_id }).sort('event_date')
+                Events.find({ event_creator_id: msg.body.restaurant_id }).sort('-event_date')
                     .exec((err, result) => {
                         if (err) {
                             console.log('Error occured while fetching Events' + err)

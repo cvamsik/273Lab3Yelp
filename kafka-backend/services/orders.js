@@ -121,16 +121,17 @@ async function handle_request(msg, callback) {
             }
         case "GET_ORDER_BY_CUSTOMER":
             {
-                Orders.find({ customer_id: msg.body.customer_id }, (err, result) => {
-                    if (err) {
-                        console.log('Error occured while fetching Orders' + err)
-                        callback(err, 'Error')
-                    }
-                    else {
-                        console.log('Orders fetched' + result)
-                        callback(null, result)
-                    }
-                })
+                Orders.find({ customer_id: msg.body.customer_id }).sort('-order_date').exec(
+                    (err, result) => {
+                        if (err) {
+                            console.log('Error occured while fetching Orders' + err)
+                            callback(err, 'Error')
+                        }
+                        else {
+                            console.log('Orders fetched' + result)
+                            callback(null, result)
+                        }
+                    })
                 break;
             }
         case "GET_ORDER_BY_ID":
@@ -171,16 +172,17 @@ async function handle_request(msg, callback) {
             }
         case "GET_ORDER_BY_RESTAURANT":
             {
-                Orders.find({ restaurant_id: msg.body.restaurant_id }, (err, result) => {
-                    if (err) {
-                        console.log('Error occured while fetching Orders' + err)
-                        callback(err, 'Error')
-                    }
-                    else {
-                        console.log('Orders fetched' + result)
-                        callback(null, result)
-                    }
-                })
+                Orders.find({ restaurant_id: msg.body.restaurant_id }).sort('-order_date').exec(
+                    (err, result) => {
+                        if (err) {
+                            console.log('Error occured while fetching Orders' + err)
+                            callback(err, 'Error')
+                        }
+                        else {
+                            console.log('Orders fetched' + result)
+                            callback(null, result)
+                        }
+                    })
                 break;
             }
         case "UPDATE_ORDER":

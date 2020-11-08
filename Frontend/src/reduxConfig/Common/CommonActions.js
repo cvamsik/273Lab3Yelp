@@ -53,7 +53,7 @@ export const setPaginatedEventsList = (payload) => {
         payload: payload
     }
 }
-export const setPaginatedOrdersList = (payload) => {
+export const setPaginatedOrders = (payload) => {
     // console.log(payload)
     return {
         type: actionTypes.SET_PAGINATED_ORDERS_LIST,
