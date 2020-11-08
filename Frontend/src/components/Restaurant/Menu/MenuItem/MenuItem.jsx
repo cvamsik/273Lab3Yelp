@@ -87,7 +87,7 @@ class MenuItem extends Component {
                     />
                     <CardMedia
                         className={classes.media}
-                        image={menuItem.image_url}
+                        image={menuItem.image_url.split('?')[0]}
                         title={menuItem.dish_name}
                     />
 

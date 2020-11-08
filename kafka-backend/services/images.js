@@ -36,7 +36,17 @@ function handle_request(msg, callback) {
 
                 break;
             }
-        case POST_IMAGES_REVIEW: {
+        case "GET_RESTAURANT_IMAGES": {
+            Reviews.find({ restaurant_id: msg.body.restaurant_id }).select('images').exec((err, result) => {
+                if (err) {
+                    console.log('Error occured while fetching images' + err)
+                    callback(err, 'Error')
+                }
+                else {
+                    console.log('Image fetched' + result)
+                    callback(null, result)
+                }
+            })
         }
         default: {
             console.log("Hitting Default")

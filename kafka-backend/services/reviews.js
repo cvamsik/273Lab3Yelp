@@ -72,7 +72,20 @@ async function handle_request(msg, callback) {
                 })
                 break;
             }
+        case "GET_REVIEWS_ID_RESTAURANT": {
+            Reviews.find({ restaurant_id: msg.body.restaurant_id }, (err, result) => {
+                if (err) {
+                    console.log('Error occured while fetching Reviews' + err)
+                    callback(err, 'Error')
+                }
+                else {
+                    console.log('Reviews fetched' + result)
+                    callback(null, result)
+                }
+            }).populate('customer_id')
 
+            break;
+        }
         default:
             {
                 console.log("Hitting default")

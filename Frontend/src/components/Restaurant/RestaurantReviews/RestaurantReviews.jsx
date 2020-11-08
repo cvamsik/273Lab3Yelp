@@ -17,7 +17,7 @@ class RestaurantReviews extends Component {
         Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
         Axios.get(`${routeConstants.BACKEND_URL}/reviews${routeConstants.GET_REVIEWS_ID_RESTAURANT}`, {
             params: {
-                email: cookie.load('email')
+                restaurant_id: this.props.restaurant_id
             }
         }).then((res) => {
             this.setState({ resData: [...res.data] })

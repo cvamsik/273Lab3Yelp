@@ -274,7 +274,7 @@ class Payment extends Component {
                         {/* <Link to="/memsuccess">
              <CustomButton type="submit">Start Memebership</CustomButton> 
              </Link> */}
-                        <CustomButton type="submit">Pay Now!</CustomButton>
+                        <button className="btn btn-danger" type="submit">Pay Now!</button>
                     </form>
                 </div>
             </div>

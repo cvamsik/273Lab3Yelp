@@ -8,6 +8,7 @@ import Checkout from '../../Customer/Checkout/Checkout';
 import CustomerReviews from '../../Customer/CustomerReviews/CustomerReviews'
 import MapDisplay from '../../Customer/MapDisplay/MapDisplay';
 import { connect } from 'react-redux'
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
 class Menu extends Component {
     state = {
         res: [],
@@ -77,7 +78,9 @@ class Menu extends Component {
         // console.log(this.props)
         return (
             <div className="menuPage1">
-                <h3>{localStorage.getItem('restaurant_name')}</h3>
+
+                <h3 className="display-4">{localStorage.getItem('restaurant_name')}</h3>
+                <ImageCarousel />
                 <h4>Menu</h4>
                 <div className="menuCheckout1">
 

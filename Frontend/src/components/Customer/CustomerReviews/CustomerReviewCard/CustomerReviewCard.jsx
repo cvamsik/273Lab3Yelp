@@ -14,13 +14,14 @@ class CustomerReviewCard extends Component {
 
 
         const restData = { ...this.props.props.res }
-        console.log(restData)
+        // console.log(restData)
         let renderItem;
         let imageList
         if (restData) {
-            console.log(restData.images.length)
+            // console.log(restData.images.length)
             if (restData.images.length > 0) {
                 imageList = restData.images.map((img, i) => {
+                    img = img.split('?')[0]
                     return <ModalImage
                         small={img}
                         large={img}

@@ -74,6 +74,7 @@ module.exports = {
     POST_IMAGE_MENU_ITEM: '/dishImage',
     POST_IMAGE_EVENT: '/eventImage',
     POST_IMAGES_REVIEW: '/reviewImages',
+    GET_RESTAURANT_IMAGES: '/getRestaurantImages',
 
 
     //Messaging

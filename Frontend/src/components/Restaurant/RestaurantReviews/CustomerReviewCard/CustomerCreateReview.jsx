@@ -23,7 +23,7 @@ class CustomerReviewCard extends Component {
             restaurant_id: localStorage.getItem('restaurant_id')
         }).then((res) => {
             window.alert("Review Posted")
-            console.log(res)
+            // console.log(res)
         }).catch((err) => {
             window.alert("Unable to post")
             console.log(err)
@@ -32,7 +32,7 @@ class CustomerReviewCard extends Component {
     }
     onStarClick = (nextValue, prevValue, name) => {
         this.setState({ stars: nextValue }, () => {
-            console.log(this.state)
+            // console.log(this.state)
         });
     }
     inputChangeHandler = (e) => {

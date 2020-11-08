@@ -350,3 +350,29 @@ module.exports.uploadReviews = async (req, res) => {
         res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
     }
 }
+
+
+
+
+module.exports.getRestaurantImages = (req, res) => {
+
+    console.log("Inside Images GET Restaurant service");
+    console.log(req.query)
+
+    kafka.make_request('images', {
+        api: "GET_RESTAURANT_IMAGES",
+        body: req.query
+    }, function (error, result) {
+        console.log('in result');
+        console.log(result);
+        if (error) {
+            console.log("Inside err");
+            res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+        } else {
+            console.log("Inside else");
+            res.status(RES_SUCCESS).send(JSON.stringify(result));
+        }
+
+    });
+
+}

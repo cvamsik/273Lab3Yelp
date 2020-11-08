@@ -82,9 +82,9 @@ class CustomerReviewCard extends Component {
             <form onSubmit={this.onClickHandler} enctype="multipart/form-data">
                 <div className="reviewCard2">
                     <h5>Post a review</h5>
-                    <div class="form-group">
+                    <div className="form-group">
                         <label for="example-input-file"> </label>
-                        <input type="file" class="form-control" multiple onChange={this.onChangeHandler} />
+                        <input type="file" className="form-control" multiple onChange={this.onChangeHandler} />
                     </div>
                     Rating:
                     <h2><StarRatingComponent
