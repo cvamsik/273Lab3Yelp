@@ -1,5 +1,5 @@
 const { response } = require('express');
-const con = require('../config/dbConnection');
+// const con = require('../config/dbConnection');
 const {
     CONTENT_TYPE,
     APP_JSON,

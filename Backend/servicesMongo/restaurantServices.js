@@ -1,4 +1,4 @@
-const con = require('../config/dbConnection');
+// const con = require('../config/dbConnection');
 const {
     CONTENT_TYPE,
     APP_JSON,

@@ -1,4 +1,4 @@
-const con = require('../config/dbConnection');
+// const con = require('../config/dbConnection');
 const {
     CONTENT_TYPE,
     APP_JSON,
@@ -16,18 +16,18 @@ const kafka = require('../kafka/client')
 
 module.exports.getAllCustomers = (req, res) => {
     console.log("Inside Customer GET All service");
-    con.query("SELECT * FROM customer_primary_data ", (error, result, fields) => {
-        if (error) {
-            console.log(error);
-            //res.setHeader(CONTENT_TYPE, APP_JSON);
-            res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
-        }
-        else {
-            console.log(JSON.stringify(result));
-            //res.setHeader(CONTENT_TYPE, APP_JSON);
-            res.status(RES_SUCCESS).end(JSON.stringify(result));
-        }
-    });
+    // con.query("SELECT * FROM customer_primary_data ", (error, result, fields) => {
+    //     if (error) {
+    //         console.log(error);
+    //         //res.setHeader(CONTENT_TYPE, APP_JSON);
+    //         res.status(RES_INTERNAL_SERVER_ERROR).end(JSON.stringify(error));
+    //     }
+    //     else {
+    //         console.log(JSON.stringify(result));
+    //         //res.setHeader(CONTENT_TYPE, APP_JSON);
+    //         res.status(RES_SUCCESS).end(JSON.stringify(result));
+    //     }
+    // });
 
 }
 
