@@ -43,7 +43,8 @@ module.exports = {
     SET_ORDERS_LIST: "setOrdersList",
     SET_PAGINATED_EVENTS_LIST: "setPaginatedEventsList",
     SET_PAGINATED_ORDERS_LIST: "setPaginatedOrdersList",
-
+    SET_EVENTS_SORT: 'setEventsSorting',
+    SET_ORDER_TYPE: 'setOrderType',
 
 
 

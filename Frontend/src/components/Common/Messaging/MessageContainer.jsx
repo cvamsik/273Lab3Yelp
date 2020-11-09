@@ -43,7 +43,7 @@ class MessageContainer extends Component {
     }
     submitHandler = (e) => {
         e.preventDefault();
-        // console.log("chat input submitted" + this.state.chatInput);
+        console.log(this.props);
         axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
         axios.post(`${routeConstants.BACKEND_URL}/messages${routeConstants.POST_MESSAGES}`, {
@@ -51,24 +51,26 @@ class MessageContainer extends Component {
             customer_id: this.props.customer_id,
             restaurant_id: this.props.restaurant_id,
             sender: this.props.user_type
-        }).then(() => {
-            axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+        })
+            .then((res) => {
+                console.log(res)
+                // axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
-            axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
-                params: {
-                    restaurant_id: this.props.restaurant_id,
-                    customer_id: this.props.customer_id
-                }
-            }).then((res) => {
-                // console.log(res)
-                this.setState({ messages: [...res.data[0].messages] })
+                // axios.get(`${routeConstants.BACKEND_URL}/messages${routeConstants.GET_MESSAGES}`, {
+                //     params: {
+                //         restaurant_id: this.props.restaurant_id,
+                //         customer_id: this.props.customer_id
+                //     }
+                // }).then((res) => {
+                //     console.log(res)
+                //     // this.setState({ messages: [...res.data[0].messages] })
+                // }).catch((err) => {
+                //     console.log("error loading" + err)
+                // })
+
             }).catch((err) => {
                 console.log("error loading" + err)
             })
-
-        }).catch((err) => {
-            console.log("error loading" + err)
-        })
 
     }
     inputChangeHandler = (e) => {

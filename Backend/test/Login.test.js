@@ -12,11 +12,11 @@ chai.use(chaiHttp);
 describe('Restaurants', () => {
 
     describe('/restaurant/all', () => {
-        it('it should GET all the restaurants', (done) => {
+        it('it should GET unauthorized', (done) => {
             chai.request(`${routeConstants.BACKEND_URL}`)
                 .get(`/restaurant${routeConstants.GET_ALL_RESTAURANTS}`)
                 .end((err, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(401);
                     done();
                 });
         });
@@ -45,14 +45,14 @@ describe('login', () => {
     describe('/POST login', () => {
         it('Give a an error on non existent user', (done) => {
             let body = {
-                email_id: "The Lord of the Rings",
-                password: "J.R.R. Tolkien",
+                email_id: "xyz@abc.com",
+                password: "123",
             }
             chai.request(`${routeConstants.BACKEND_URL}`)
                 .post('/login')
                 .send(body)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(200);
 
                     done();
                 });
@@ -64,7 +64,7 @@ describe('login', () => {
 
 describe('Restaurant Search', () => {
     describe('/POST Search', () => {
-        it('Give a array of restaurants', (done) => {
+        it('Get unauthorized error', (done) => {
             let body = {
                 search_string: "pizza"
             }
@@ -72,7 +72,7 @@ describe('Restaurant Search', () => {
                 .get(`/restaurant${routeConstants.GET_RESTAURANT_SEARCH}`)
                 .send(body)
                 .end((err, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(401);
                     done();
                 });
         });

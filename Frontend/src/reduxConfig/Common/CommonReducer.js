@@ -82,6 +82,22 @@ const Common = (state = initialState, action) => {
                 }
 
             }
+        case actionTypes.SET_EVENTS_SORT:
+            {
+                return {
+                    ...state,
+                    eventsList: state.eventsList.reverse()
+                }
+
+            }
+        case actionTypes.SET_ORDER_TYPE:
+            {
+                return {
+                    ...state,
+                    order_type: action.payload.order_type,
+                }
+
+            }
         default:
             return state;
     }

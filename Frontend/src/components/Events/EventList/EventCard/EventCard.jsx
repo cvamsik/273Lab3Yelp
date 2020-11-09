@@ -69,6 +69,11 @@ class EventCard extends Component {
             }
         }
         let renderVar = null
+        console.log(this.props.user_type)
+        if (this.props.user_type === 1) {
+            Button = <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Register!</button>
+
+        }
         if (restData) {
             renderVar = <div className="restCard3">
                 <h5>{restData.restaurant_name}</h5>
@@ -84,10 +89,7 @@ class EventCard extends Component {
 
             </div>
         }
-        if (this.props.user_type === 1) {
-            Button = <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Register!</button>
 
-        }
         return (<div>
             {/* {JSON.stringify(this.props.props)} */}
             {/* {redirectVar} */}

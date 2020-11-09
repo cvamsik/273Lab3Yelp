@@ -88,10 +88,10 @@ class CreateUser extends Component {
                 .then((response) => {
                     console.log(response);
                     window.alert("Profile created successfully. Please Login.");
-                    this.props.history.push('/login');
+                    // this.props.history.push('/login');
                 }).catch((err) => {
                     window.alert("Invalid Details. Please Re-enter");
-
+                    console.log(err)
                 });
 
             // this.setState({

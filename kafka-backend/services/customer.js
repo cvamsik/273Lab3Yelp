@@ -26,36 +26,40 @@ function handle_request(msg, callback) {
                     user_password: msg.body.user_password,
                     user_type: 1
                 })
-                login.save().then((res) => {
-                    console.log("Login creds created" + res);
-                    let id = mongoose.Types.ObjectId()
-                    console.log('Req Body : ', msg)
-                    let mesg = new Customers({
-                        customer_id: id,
-                        customer_name: msg.body.customer_name,
-                        email_id: msg.body.email_id,
-                        birthday: msg.body.birthday,
-                        contact_number: msg.body.contact_number,
-                        about: msg.body.about,
-                        things_loved: msg.body.things_loved,
-                        find_me: msg.body.find_me,
-                        blog_ref: msg.body.blog_ref
-                    })
-                    mesg
-                        .save()
-                        .then(response => {
-                            console.log('Customer Profile Created ' + response)
-                            callback(null, response)
+                login.save((err) => {
+                    if (err) {
+                        console.log('Error occured while creating login creds' + err)
+                        callback(err, 'Error')
+                    }
+                    else {
+                        console.log("Login creds created");
+                        let id = mongoose.Types.ObjectId()
+                        console.log('Req Body : ', msg)
+                        let mesg = new Customers({
+                            customer_id: id,
+                            customer_name: msg.body.customer_name,
+                            email_id: msg.body.email_id,
+                            birthday: msg.body.birthday,
+                            contact_number: msg.body.contact_number,
+                            about: msg.body.about,
+                            things_loved: msg.body.things_loved,
+                            find_me: msg.body.find_me,
+                            blog_ref: msg.body.blog_ref
                         })
-                        .catch(err => {
-                            console.log('Unable to create Customer Profile' + err)
-                            LoginCredentials.findOneAndDelete({ email_id: msg.body.email_id }).then(
-                                callback(err, 'Error'))
-                        })
-                }).catch((err) => {
+                        mesg
+                            .save((err) => {
+                                if (err) {
+                                    console.log('Error occured while creating profile' + err)
+                                    callback(err, 'Error')
+                                }
+                                else {
 
-                    console.log('Unable to create Login Creds' + err)
-                    callback(err, 'Error')
+                                    console.log('Customer Profile Created ')
+                                    callback(null, "Crated")
+                                }
+                            })
+                    }
+
 
                 })
                 break;

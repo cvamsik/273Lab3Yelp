@@ -26,7 +26,7 @@ function handle_request(msg, callback) {
                     console.log('User Not found' + err)
                     callback(err, 'Error')
                 }
-                else {
+                else if (response) {
                     console.log(response)
                     if (response.user_password === msg.body.password) {
                         // console.log("Inside first if")
@@ -69,6 +69,10 @@ function handle_request(msg, callback) {
                         }
                     }
 
+                }
+                else {
+                    console.log('User Not found' + err)
+                    callback(err, 'Error')
                 }
             })
 

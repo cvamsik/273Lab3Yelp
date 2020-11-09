@@ -9,6 +9,7 @@ import CustomerReviews from '../../Customer/CustomerReviews/CustomerReviews'
 import MapDisplay from '../../Customer/MapDisplay/MapDisplay';
 import { connect } from 'react-redux'
 import ImageCarousel from '../ImageCarousel/ImageCarousel';
+
 class Menu extends Component {
     state = {
         res: [],

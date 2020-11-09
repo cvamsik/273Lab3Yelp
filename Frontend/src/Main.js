@@ -52,6 +52,7 @@ class Main extends Component {
             else if (this.props.user_type === 2) {
                 navbarRender = <Route path="/restaurant" component={RestaurantNavbar} />
             }
+
         }
         else {
             navbarRender = <Route path="/" component={CommonNavbar} />
@@ -78,7 +79,6 @@ class Main extends Component {
                 <Route exact path="/customer/events" component={DisplayEvents} />
                 <Route exact path="/customer/events/registrations" component={DisplayRegistrationsCustomer} />
                 <Route exact path="/customer/messages" component={MessagesListCustomer} />
-
                 <Route exact path="/customer/messages/conversation" component={MessageContainer} />
 
 

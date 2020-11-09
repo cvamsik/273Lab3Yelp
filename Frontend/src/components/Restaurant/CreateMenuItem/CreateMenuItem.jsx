@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import routeConstants from '../../../Config/routeConstants';
+import './CreateMenuItem.styles.css'
 import cookie from 'react-cookies'
 import { connect } from 'react-redux'
 class CreateMenuItem extends Component {
@@ -19,22 +20,22 @@ class CreateMenuItem extends Component {
         const { value, name } = e.target;
         this.setState({ [name]: value });
     }
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const postData = {
-            ...this.state
-        }
-        // console.log(postData)
-        Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const postData = {
+    //         ...this.state
+    //     }
+    //     // console.log(postData)
+    //     Axios.defaults.headers.common['Authorization'] = this.props.jwtToken;
 
-        Axios.post(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`, postData).then((res) => {
-            console.log(res);
-            window.alert("Created Successfully");
-        }).catch((err) => {
-            console.log(err)
-            window.alert("Unable to create");
-        })
-    }
+    //     Axios.post(`${routeConstants.BACKEND_URL}/restaurant${routeConstants.POST_MENU_ITEM}`, postData).then((res) => {
+    //         console.log(res);
+    //         window.alert("Created Successfully");
+    //     }).catch((err) => {
+    //         console.log(err)
+    //         window.alert("Unable to create");
+    //     })
+    // }
 
 
 
@@ -69,25 +70,25 @@ class CreateMenuItem extends Component {
     };
 
 
-    fileData = () => {
-        if (this.state.selectedFile) {
-            return (
-                <div>
+    // fileData = () => {
+    //     if (this.state.selectedFile) {
+    //         return (
+    //             <div>
 
-                    <p>File Name: {this.state.selectedFile.name}</p>
+    //                 <p>File Name: {this.state.selectedFile.name}</p>
 
-                </div>
-            );
-        }
-        // else {
-        //     return (
-        //         <div>
-        //             <br />
-        //             <p>Choose before Pressing the Upload button</p>
-        //         </div>
-        //     );
-        // }
-    };
+    //             </div>
+    //         );
+    //     }
+    //     // else {
+    //     //     return (
+    //     //         <div>
+    //     //             <br />
+    //     //             <p>Choose before Pressing the Upload button</p>
+    //     //         </div>
+    //     //     );
+    //     // }
+    // };
 
 
 
@@ -103,15 +104,15 @@ class CreateMenuItem extends Component {
     render() {
         let profileURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
         return (<div className="menuItem">
-
+            <h4>Create Menu Item</h4>
             <form className="formData" onSubmit={this.onFileUpload}>
                 <div className="profile">
                     <div >
                         <div className="imageDiv">
-                            <img src={profileURL} width='130px' height='130px' alt="DishImage" className="imageCont" />
+                            {/* <img src={profileURL} width='130px' height='130px' alt="DishImage" className="imageCont" /> */}
                             <input type="file" onChange={this.onFileChange} />
-                            <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button>
-                            {this.fileData()}
+                            {/* <button className="btn btn-danger" style={{ width: '100px' }} onClick={this.onFileUpload}>Upload!</button> */}
+                            {/* {this.fileData()} */}
                         </div>
                     </div>
                     <div className="form-group col-md-2">
@@ -133,7 +134,8 @@ class CreateMenuItem extends Component {
                     </div>
                     <div className="form-group col-md-6">
                         <label >Category</label>
-                        <select value={this.state.category_id} onChange={this.inputChangeHandler} selected={this.state.category_id} name="category_id" class="form-control" >
+                        <select value={this.state.category_id} onChange={this.inputChangeHandler} required name="category_id" className="form-control" >
+                            <option defaultValue>Select</option>
                             <option value="1">Desserts</option>
                             <option value="2">Salads</option>
                             <option value="3">Beverages</option>
@@ -143,15 +145,9 @@ class CreateMenuItem extends Component {
                         </select>
                     </div>
                 </div>
-                {/* </div> */}
-                {/* <div class="form-row"> */}
                 <div >
                     <button type="submit" className="btn btn-danger">Create Dish</button>
                 </div>
-                {/* <div class="form-group col-md-2">
-                    <button type="reset" class="btn btn-danger">Cancel Edit</button>
-                </div> */}
-                {/* </div> */}
 
             </form>
         </div >);

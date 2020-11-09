@@ -62,24 +62,17 @@ class RestaurantMenuCard extends Component {
         })
     }
     render() {
-        const { menuItem } = this.props;
-        console.log(this.state.category_id)
-        // const dish_dispatch = {
-
-        //     dish_id: menuItem.dish_id,
-        //     dish_name: menuItem.dish_name,
-        //     price: menuItem.price,
-        //     count: 1
-
-        // }
-        let imageURL = `${routeConstants.BACKEND_URL}${this.state.image_url}`
+        let image
+        if (this.state.image_url) {
+            image = this.state.image_url.split('?')[0]
+        }
 
         return (
             <div className="menuItemRes">
                 <form className="formDataRes">
                     {/* <div className="profile"> */}
                     <div className="restImage2">
-                        <img src={this.state.image_url} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
+                        <img src={image} alt="Dish Image" className="img-thumbnail" width='100px' height='100px' />
                     </div>
                     <div class="form-group ">
                         <label >Name</label>

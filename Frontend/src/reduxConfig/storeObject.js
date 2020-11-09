@@ -10,6 +10,7 @@ export const initialState = {
     restaurant_id: "",
     conversation_id: "",
     order_id: "",
+    order_type: "",
     ordersList: [],
     eventsList: [],
     paginatedOrders: [],

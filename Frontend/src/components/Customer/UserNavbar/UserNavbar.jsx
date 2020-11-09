@@ -51,7 +51,9 @@ class UserNavbar extends Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="/customer/messages">Messages</a>
                             </li>
-
+                            <li className="nav-item">
+                                <a className="nav-link" href="/customer/home">Users</a>
+                            </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="/customer/events" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Events

@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 // import cookie from 'react-cookies';
 // import Axios from 'axios'
 // import routeConstants from '../../../../Config/routeConstants'
+import ModalImage from "react-modal-image";
 
 class EventCard extends Component {
     state = {
@@ -34,10 +35,45 @@ class EventCard extends Component {
         //     restData.order_date = restData.order_date.split('T')[0]
         // }
         // console.log(this.props);
+        let imageList
+        if (restData.event_images) {
+            // console.log(restData.images.length)
+            if (restData.event_images.length > 0) {
+                imageList = restData.event_images.map((img, i) => {
+                    img = img.split('?')[0]
+                    return <ModalImage
+                        small={img}
+                        large={img}
+                        alt="Event Image"
+                        key={i}
+                        hideDownload={true}
+                        className="imageDisplayEvent"
+                    />;
+                })
+            }
+        }
+        let renderVar = null
+        if (restData) {
+            renderVar = <div className="restCard3">
+                <h5>{restData.restaurant_name}</h5>
+                <p>{restData.restaurant_address}</p>
+                <p>{restData.event_description}</p>
+                <p>{restData.event_date.split('T')[0]}</p>
+                <p>{restData.event_time}</p>
+                <p>{restData.event_hashtags}</p>
+                <div className="imageListEvents eventImages">
+                    {imageList}
+                </div>
+                <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Check Registrations</button>
+
+            </div>
+        }
+
+
         return (<div>
             {/* {JSON.stringify(this.props.props)} */}
             {/* {redirectVar} */}
-            <div className="restCard3">
+            {/* <div className="restCard3">
                 <div className="eventImage">
                     <img className="img-thumbnail" alt="eventImage" style={{ "marginBottom": '15px' }} src={restData.image_url} width='200px' height='150px' />
                     <h4>{restData.event_name}</h4>
@@ -50,7 +86,8 @@ class EventCard extends Component {
                 <p>{restData.event_hashtags}</p>
                 <button className="btn btn-danger col-md-6" onClick={this.handleClick}>Check Registrations</button>
 
-            </div>
+            </div> */}
+            {renderVar}
         </div>);
     }
 }

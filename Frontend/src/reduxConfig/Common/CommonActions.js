@@ -60,3 +60,17 @@ export const setPaginatedOrders = (payload) => {
         payload: payload
     }
 }
+export const setEventsSorting = (payload) => {
+    // console.log(payload)
+    return {
+        type: actionTypes.SET_EVENTS_SORT,
+        payload: payload
+    }
+}
+export const setOrderType = (payload) => {
+    // console.log(payload)
+    return {
+        type: actionTypes.SET_ORDER_TYPE,
+        payload: payload
+    }
+}

@@ -4,7 +4,7 @@ import './MessageCard.styles.css'
 // import Menu from '../../../Restaurant/Menu/Menu';
 import { withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
-import { setConversationID } from '../../../../reduxConfig/Common/CommonActions'
+import { setConversationID, setRestaurantID, setCustomerID } from '../../../../reduxConfig/Common/CommonActions'
 
 // import { Redirect } from "react-router-dom";
 
@@ -19,6 +19,7 @@ class MessageCard extends Component {
         this.props.setConversationID({
             conversation_id: this.props.data._id
         })
+        this.props.setRestaurantID({ restaurant_id: this.props.data.restaurant_id._id })
         this.props.history.push('/restaurant/messages/conversation')
     }
     render() {
@@ -68,7 +69,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setConversationID: (conversation_id) => dispatch(setConversationID(conversation_id))
+        setConversationID: (conversation_id) => dispatch(setConversationID(conversation_id)),
+        setRestaurantID: (conversation_id) => dispatch(setRestaurantID(conversation_id))
 
     }
 }

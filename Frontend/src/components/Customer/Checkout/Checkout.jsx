@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { addToCart, removeFromCart, clearCart } from '../../../reduxConfig/Cart/CartActions'
 import { connect } from 'react-redux';
 import EnhancedTable from './Table/Table'
+import { setOrderType } from '../../../reduxConfig/Common/CommonActions'
+
 // import { useHistory } from "react-router-dom";
 
 
@@ -19,7 +21,7 @@ class CheckOut extends Component {
     handleSubmit = (e) => {
         // const hist = useHistory();
         if (this.props.cart.cart.length > 0) {
-            if (localStorage.getItem('order_type') == null) {
+            if (this.props.cart.order_type == null) {
                 window.alert("Select order Type")
             }
             else {
@@ -35,8 +37,10 @@ class CheckOut extends Component {
 
     handleSelectChange = (m) => {
         const { value, name } = m.target;
-
         localStorage.setItem('order_type', value)
+        this.props.setOrderType({
+            order_type: value
+        })
 
         this.setState({ [name]: value });
     };
@@ -81,7 +85,8 @@ const mapDispatchToProps = (dispatch) => {
 
         addToCart: (dish) => dispatch(addToCart(dish)),
         removeFromCart: (dish) => dispatch(removeFromCart(dish)),
-        clearCart: (temp) => dispatch(clearCart(temp))
+        clearCart: (temp) => dispatch(clearCart(temp)),
+        setOrderType: (temp) => dispatch(setOrderType(temp))
 
     }
 }

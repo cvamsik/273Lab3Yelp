@@ -28,7 +28,7 @@ async function handle_request(msg, callback) {
                             callback(err, 'Error')
                         }
                         else {
-                            console.log('Events fetched' + result)
+                            // console.log('Events fetched' + result)
                             callback(null, result)
                         }
                     })
