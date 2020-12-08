@@ -11,7 +11,8 @@ app.set('view engine', 'ejs');
 const path = require('path');
 var kafka = require('./kafka/client');
 let mongo = require('./config/mongoConnection')
-
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./graphQLServices/schema')
 
 
 var passport = require('passport');
@@ -75,6 +76,10 @@ app.use('/messages', messagingRoutes);
 app.use('/events', eventRoutes);
 
 
+app.use("/graphql", graphqlHTTP({
+    schema,
+    graphiql: true
+}));
 
 
 //start your server on port 3001
