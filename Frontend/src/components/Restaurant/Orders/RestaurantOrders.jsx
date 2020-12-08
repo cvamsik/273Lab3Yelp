@@ -6,12 +6,24 @@ import RestaurantOrdersCard from './OrderCard/RestaurantOrdersCard';
 import './RestaurantOrders.styles.css';
 import { connect } from 'react-redux'
 import { setOrderID } from '../../../reduxConfig/Common/CommonActions'
+import { graphql } from 'react-apollo';
+import { restaurantOrderList } from '../../../graphQL/queries/Restaurant'
 
 class RestaurantOrders extends Component {
     state = {
         resData: []
     }
+    displayBooks() {
+        var data = this.props.data;
+        console.log(this.props)
+        if (data.loading) {
+            // return( <div>Loading Orders...</div> );
+            console.log("Loading")
+        } else {
+            console.log(data)
 
+        }
+    }
 
     componentDidMount() {
         // console.log("Orders")
@@ -41,6 +53,8 @@ class RestaurantOrders extends Component {
 
         }
         return (<div className="ordersList">
+            {        this.displayBooks()
+            }
             {resList}
         </div>);
     }
@@ -63,4 +77,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantOrders);
+export default graphql(restaurantOrderList)(connect(mapStateToProps, mapDispatchToProps)(RestaurantOrders));
